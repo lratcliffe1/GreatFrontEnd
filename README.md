@@ -1,0 +1,82 @@
+# GreatFrontEnd Portfolio
+
+Portfolio app for solving and showcasing:
+
+- [GFE 75](https://www.greatfrontend.com/interviews/gfe75)
+- [Blind 75](https://www.greatfrontend.com/interviews/study/blind75/questions/algo/array-balanced-brackets)
+
+The app includes two track tabs, question grids, and detail pages that can render:
+
+- UI demos
+- Algorithm visualizers
+- Code + tests solutions
+- System design and quiz writeups
+
+## Stack
+
+- React + Next.js (App Router) + TypeScript
+- Redux (currently used for shared question filter state)
+- GraphQL (`/api/graphql`) + `graphql-request`
+- Tailwind CSS + MUI
+- Jest (unit testing)
+- Playwright (integration testing)
+- ESLint
+- npm
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Commands
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run test:e2e
+npm run build
+npm run start
+```
+
+`npm run test:e2e` requires Playwright browsers to be installed once via `npx playwright install`.
+
+## Project layout
+
+- `src/app`: routes and API handlers
+- `src/content/questions.ts`: typed question manifest
+- `src/features/questions`: grid/detail pages and renderer logic
+- `src/solutions`: solution implementations and visualizers
+- `tests/e2e`: Playwright tests
+
+## Boilerplate status
+
+- This repo is intentionally seeded with a full challenge backlog.
+- Most entries in `src/content/questions.ts` are `todo` and act as placeholders for iterative implementation.
+- A small set of questions are fully implemented as working examples (`done`) to validate app flow and testing setup.
+
+## State management notes
+
+- Redux is intentionally wired globally and currently powers question filters and the Todo demo task list.
+- As you implement more challenges, prefer local state first and promote to Redux only when state must be shared across routes/components.
+- Redux state persists across in-app route navigation, but resets on full browser refresh unless you add storage hydration.
+
+## Add a new question
+
+1. Add a new question entry to `src/content/questions.ts`.
+2. Create implementation files under `src/solutions/<id>` based on `solutionType`.
+3. Run `npm run test`, `npm run lint`, and `npm run test:e2e`.
+
+For a fuller challenge-by-challenge workflow, see `CONTRIBUTING.md`.
+
+## Store tests
+
+- Redux slice tests live in `src/lib/store/*.test.ts` and run as part of `npm run test`.
+
+## Deployment
+
+Deploy to [Vercel](https://vercel.com/) as a standard Next.js app.
