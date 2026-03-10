@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -43,11 +42,6 @@ export default async function QuestionPage({
 	}
 
 	return (
-		<div className="space-y-4">
-			<Link href={`/${track}`} className="text-sm text-link underline">
-				Back to list
-			</Link>
-			<QuestionDetailPage question={question} />
-		</div>
+		<QuestionDetailPage question={question} />
 	);
 }

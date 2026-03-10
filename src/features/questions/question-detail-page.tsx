@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { Question } from "@/content/questions";
 import { MutedText, SurfacePanel } from "@/components/ui/tailwind-primitives";
 import { BalancedBracketsVisualizer } from "@/solutions/blind-balanced-brackets/visualizer";
@@ -68,15 +69,23 @@ function renderSolution(question: Question) {
 export function QuestionDetailPage({ question }: { question: Question }) {
 	return (
 		<article className="space-y-6">
-			<div className="space-y-1">
-				<p className="text-sm font-semibold text-link">{question.category}</p>
-				<h2 className="text-3xl font-bold text-foreground">
-					#{question.questionNumber} {question.title}
-				</h2>
-				<MutedText>
-					Difficulty: {question.difficulty} • Status:{" "}
-					{formatQuestionStatus(question.status)}
-				</MutedText>
+			<div className="flex flex-wrap items-start justify-between gap-4">
+				<div className="min-w-0 space-y-1">
+					<p className="text-sm font-semibold text-link">{question.category}</p>
+					<h2 className="text-3xl font-bold text-foreground">
+						#{question.questionNumber} {question.title}
+					</h2>
+					<MutedText>
+						Difficulty: {question.difficulty} • Status:{" "}
+						{formatQuestionStatus(question.status)}
+					</MutedText>
+				</div>
+				<Link
+					href={`/${question.track}`}
+					className="shrink-0 rounded-md border border-card-border px-4 py-2 text-sm font-medium [background:var(--card-bg)] text-foreground transition hover:[background:var(--surface)]"
+				>
+					Back to list
+				</Link>
 			</div>
 
 			<SurfacePanel className="space-y-2">

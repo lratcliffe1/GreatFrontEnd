@@ -2,7 +2,7 @@
 
 import { useMediaQuery } from "@mui/material";
 import { Provider } from "react-redux";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 import { store } from "@/lib/store";
 
@@ -54,7 +54,6 @@ function ThemeWrapper({ children }: { children: React.ReactNode }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
 			{children}
 		</ThemeProvider>
 	);

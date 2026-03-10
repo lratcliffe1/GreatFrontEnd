@@ -40,7 +40,7 @@ export function StepVisualizerLayout({
 	children,
 }: StepVisualizerLayoutProps) {
 	return (
-		<div className="grid gap-4 md:grid-cols-[3fr_2fr]">
+		<div className="grid gap-4 md:grid-cols-[4fr_1.5fr]">
 			<CodePanel>
 				<p className="mb-2 text-xs text-slate-400">{codeTitle}</p>
 				{codeLines.map((entry, index) => {
@@ -62,7 +62,7 @@ export function StepVisualizerLayout({
 			</CodePanel>
 
 			<TracePanel>
-				<h4 className="font-semibold text-slate-900">{traceTitle}</h4>
+				<h4 className="font-semibold text-foreground">{traceTitle}</h4>
 				{summary}
 				<div className="flex items-center gap-2">
 					<StepControlButton onClick={onPrev} disabled={!canPrev}>
@@ -71,7 +71,7 @@ export function StepVisualizerLayout({
 					<StepControlButton onClick={onNext} disabled={!canNext}>
 						Next
 					</StepControlButton>
-					<span className="text-sm text-slate-600">
+					<span className="text-sm text-muted">
 						Step {totalSteps === 0 ? 0 : stepIndex + 1}/{totalSteps}
 					</span>
 				</div>

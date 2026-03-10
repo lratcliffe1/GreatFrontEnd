@@ -17,7 +17,7 @@ const PRIMITIVE_CLASSES = {
 	metaPill:
 		"rounded-full px-2 py-1 text-xs font-medium [background:var(--surface)] [color:var(--muted)]",
 	stepControlButton:
-		"rounded px-3 py-1 text-sm disabled:opacity-50 [background:var(--surface)]",
+		"rounded-md border border-card-border px-4 py-2 text-sm font-medium [background:var(--card-bg)] [color:var(--foreground)] transition hover:[background:var(--surface)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:[background:var(--card-bg)]",
 	mutedText: "text-sm [color:var(--muted)]",
 } as const;
 

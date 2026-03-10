@@ -53,14 +53,14 @@ export function BalancedBracketsVisualizer() {
 		<div className="space-y-4">
 			<div className="space-y-2">
 				<label
-					className="text-sm font-medium text-slate-700"
+					className="text-sm font-medium text-foreground"
 					htmlFor="bracket-input"
 				>
 					Bracket input
 				</label>
 				<input
 					id="bracket-input"
-					className="w-full rounded-md border border-slate-300 px-3 py-2"
+					className="w-full rounded-md border border-card-border bg-background px-3 py-2 text-foreground"
 					value={input}
 					onChange={(event) => {
 						setInput(event.target.value);
@@ -84,24 +84,26 @@ export function BalancedBracketsVisualizer() {
 				canNext={steps.length > 0 && stepIndex < steps.length - 1}
 			>
 				{step ? (
-					<div className="rounded bg-white p-3">
-						<p className="text-sm text-slate-700">
+					<div className="rounded border border-card-border bg-card-bg p-3">
+						<p className="text-sm text-foreground">
 							Current token: {step.token}
 						</p>
-						<p className="text-sm text-slate-700">Action: {step.action}</p>
-						<p className="text-sm text-slate-700">
+						<p className="text-sm text-foreground">Action: {step.action}</p>
+						<p className="text-sm text-foreground">
 							Stack: {step.stack.length ? step.stack.join(" ") : "(empty)"}
 						</p>
 						<p
 							className={`text-sm font-semibold ${
-								step.validSoFar ? "text-green-700" : "text-red-700"
+								step.validSoFar
+									? "text-green-700 dark:text-green-400"
+									: "text-red-700 dark:text-red-400"
 							}`}
 						>
 							{step.validSoFar ? "Valid so far" : "Invalid"}
 						</p>
 					</div>
 				) : (
-					<p className="text-slate-500">No steps yet for this input.</p>
+					<p className="text-muted">No steps yet for this input.</p>
 				)}
 			</StepVisualizerLayout>
 		</div>

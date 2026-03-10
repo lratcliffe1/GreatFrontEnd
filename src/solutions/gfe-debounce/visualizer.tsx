@@ -17,14 +17,10 @@ const CODE_LINES: CodeLine[] = [
 	{ line: 16, code: "  if (hasActiveTimeout) {" },
 	{ line: 17, code: "    clearTimeout(timeoutId);" },
 	{ line: null, code: "  }" },
-	{
-		line: 19,
-		code: "  onTrace?.({ line: 19, message: 'Assigning a new timeout.' });",
-	},
-	{ line: 20, code: "  timeoutId = setTimeout(() => {" },
-	{ line: 21, code: "    onTrace?.({ line: 21, message: 'Timer fired.' });" },
+	{ line: 19, code: "  timeoutId = setTimeout(() => {" },
+	{ line: 21, code: "    // timer fired" },
 	{ line: 22, code: "    callback(...args);" },
-	{ line: null, code: "  }, delayMs);" },
+	{ line: 20, code: "  }, delayMs);" },
 	{ line: null, code: "};" },
 ];
 
@@ -97,7 +93,7 @@ export function DebounceVisualizer() {
 		<div className="space-y-5">
 			<div className="flex flex-wrap items-center gap-3">
 				<label
-					className="text-sm font-medium text-slate-700"
+					className="text-sm font-medium text-foreground"
 					htmlFor="delay-ms"
 				>
 					Delay (ms)
@@ -109,26 +105,26 @@ export function DebounceVisualizer() {
 					step={100}
 					value={delayMs}
 					onChange={(event) => setDelayMs(Number(event.target.value) || 100)}
-					className="w-28 rounded-md border border-slate-300 px-2 py-1"
+					className="w-28 rounded-md border border-card-border bg-background px-2 py-1 text-foreground"
 				/>
 				<button
 					type="button"
 					onClick={triggerDebouncedCall}
-					className="rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white"
+					className="rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-600 dark:bg-teal-500 dark:hover:bg-teal-400"
 				>
 					Trigger debounced handler
 				</button>
 				<button
 					type="button"
 					onClick={runRapidScenario}
-					className="rounded-md bg-slate-800 px-4 py-2 text-sm font-semibold text-white"
+					className="rounded-md border border-card-border px-4 py-2 text-sm font-semibold [background:var(--card-bg)] text-foreground hover:[background:var(--surface)]"
 				>
 					Run rapid 3-click scenario
 				</button>
 			</div>
 
 			<StepVisualizerLayout
-				codeTitle="Debounce implementation (active line highlights on interaction)"
+				codeTitle="Debounce implementation"
 				codeLines={CODE_LINES}
 				activeLine={activeLine}
 				traceTitle="Trace events (step-by-step)"
@@ -142,26 +138,26 @@ export function DebounceVisualizer() {
 				canNext={traceLogs.length > 0 && stepIndex < traceLogs.length - 1}
 			>
 				{currentStep ? (
-					<div className="rounded bg-white p-2 text-sm text-slate-700">
-						<span className="mr-2 font-medium text-slate-500">
+					<div className="rounded border border-card-border bg-card-bg p-2 text-sm text-foreground">
+						<span className="mr-2 font-medium text-muted">
 							{currentStep.at}
 						</span>
-						<span className="mr-2 rounded bg-slate-100 px-1.5 py-0.5 text-xs">
+						<span className="mr-2 rounded [background:var(--surface)] px-1.5 py-0.5 text-xs text-foreground">
 							line {currentStep.line}
 						</span>
 						{currentStep.message}
 					</div>
 				) : (
-					<p className="text-sm text-slate-500">
+					<p className="text-sm text-muted">
 						No events yet. Trigger the handler or run the rapid scenario.
 					</p>
 				)}
 
 				<div>
-					<p className="text-sm font-semibold text-slate-900">
+					<p className="text-sm font-semibold text-foreground">
 						Executed payloads
 					</p>
-					<p className="text-sm text-slate-700">
+					<p className="text-sm text-foreground">
 						{executedPayloads.length
 							? executedPayloads.join(", ")
 							: "None yet (debounce delay has not elapsed)."}
