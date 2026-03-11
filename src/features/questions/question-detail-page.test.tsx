@@ -5,7 +5,7 @@ import type { Question } from "@/content/questions";
 const mockQuestion: Question = {
 	id: "gfe-other",
 	questionNumber: 1,
-	slug: "debounce",
+	path: "debounce",
 	title: "Debounce",
 	track: "gfe75",
 	category: "JavaScript functions",

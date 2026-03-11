@@ -11,7 +11,7 @@ export type QuestionStatus = "todo" | "in_progress" | "done";
 export type Question = {
 	id: string;
 	questionNumber: number;
-	slug: string;
+	path: string;
 	title: string;
 	track: Track;
 	category: string;

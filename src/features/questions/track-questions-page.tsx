@@ -304,12 +304,12 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 					{filtered.map((question) => (
 						<ElevatedCard
 							key={question.id}
-							data-testid={`question-card-${question.slug}`}
+							data-testid={`question-card-${question.path}`}
 							className="flex h-full min-w-0 flex-col overflow-hidden p-3 sm:p-4"
 						>
 							<div className="mb-1.5 flex min-w-0 items-start justify-between gap-2 sm:mb-2 sm:gap-3">
 								<h3
-									data-testid={`question-title-${question.slug}`}
+									data-testid={`question-title-${question.path}`}
 									className="min-w-0 wrap-break-word text-sm font-semibold text-foreground sm:text-base"
 								>
 									#{question.questionNumber} {question.title}
@@ -334,8 +334,8 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 								<div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
 									{question.status === "done" ? (
 										<Link
-											href={`/${track}/${question.slug}`}
-											data-testid={`open-solution-${question.slug}`}
+											href={`/${track}/${question.path}`}
+											data-testid={`open-solution-${question.path}`}
 											className="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400 sm:px-3 sm:py-1.5"
 										>
 											Open solution

@@ -4,11 +4,11 @@ describe("GraphQL schema integration", () => {
 	it("returns question data for a valid query", async () => {
 		const result = await executeGraphQLQuery(`
       {
-        question(track: gfe75, slug: "debounce") {
+        question(track: gfe75, path: "debounce") {
           id
           title
           track
-          slug
+          path
           status
           solutionType
         }
@@ -21,7 +21,7 @@ describe("GraphQL schema integration", () => {
 					id: string;
 					title: string;
 					track: string;
-					slug: string;
+					path: string;
 					status: string;
 					solutionType: string;
 				} | null;
@@ -35,7 +35,7 @@ describe("GraphQL schema integration", () => {
 			id: "gfe-debounce",
 			title: "Debounce",
 			track: "gfe75",
-			slug: "debounce",
+			path: "debounce",
 			status: "done",
 			solutionType: "algo_visualizer",
 		});

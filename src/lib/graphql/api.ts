@@ -28,10 +28,10 @@ export const graphqlApi = createApi({
 			}),
 			transformResponse: (response: QuestionsResponse) => response.questions,
 		}),
-		question: builder.query<Question | null, { track: Track; slug: string }>({
-			query: ({ track, slug }) => ({
+		question: builder.query<Question | null, { track: Track; path: string }>({
+			query: ({ track, path }) => ({
 				document: QUESTION_QUERY,
-				variables: { track, slug },
+				variables: { track, path },
 			}),
 			transformResponse: (response: QuestionResponse) => response.question,
 		}),

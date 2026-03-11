@@ -14,7 +14,7 @@ const mockQuestions: Question[] = [
 	{
 		id: "q1",
 		questionNumber: 1,
-		slug: "debounce",
+		path: "debounce",
 		title: "Debounce",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -31,7 +31,7 @@ const mockQuestions: Question[] = [
 	{
 		id: "q2",
 		questionNumber: 2,
-		slug: "array-reduce",
+		path: "array-reduce",
 		title: "Array.prototype.reduce",
 		track: "gfe75",
 		category: "JavaScript functions",

@@ -4,7 +4,7 @@ export const BLIND75_QUESTIONS: Question[] = [
 	{
 		id: "blind-balanced-brackets",
 		questionNumber: 1,
-		slug: "balanced-brackets",
+		path: "balanced-brackets",
 		title: "Balanced Brackets",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -33,7 +33,7 @@ Constraints:
 	{
 		id: "blind-find-duplicates-in-array",
 		questionNumber: 2,
-		slug: "find-duplicates-in-array",
+		path: "find-duplicates-in-array",
 		title: "Find Duplicates in Array",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -62,7 +62,7 @@ Constraints:
 	{
 		id: "blind-find-missing-number-in-sequence",
 		questionNumber: 3,
-		slug: "find-missing-number-in-sequence",
+		path: "find-missing-number-in-sequence",
 		title: "Find Missing Number in Sequence",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -79,7 +79,7 @@ Constraints:
 	{
 		id: "blind-maximum-product-in-contiguous-array",
 		questionNumber: 4,
-		slug: "maximum-product-in-contiguous-array",
+		path: "maximum-product-in-contiguous-array",
 		title: "Maximum Product in Contiguous Array",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -96,7 +96,7 @@ Constraints:
 	{
 		id: "blind-maximum-sum-in-contiguous-array",
 		questionNumber: 5,
-		slug: "maximum-sum-in-contiguous-array",
+		path: "maximum-sum-in-contiguous-array",
 		title: "Maximum Sum in Contiguous Array",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -113,7 +113,7 @@ Constraints:
 	{
 		id: "blind-most-common-elements",
 		questionNumber: 6,
-		slug: "most-common-elements",
+		path: "most-common-elements",
 		title: "Most Common Elements",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -130,7 +130,7 @@ Constraints:
 	{
 		id: "blind-array-product-excluding-current",
 		questionNumber: 7,
-		slug: "array-product-excluding-current",
+		path: "array-product-excluding-current",
 		title: "Array Product Excluding Current",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -147,7 +147,7 @@ Constraints:
 	{
 		id: "blind-end-of-array-reachable",
 		questionNumber: 8,
-		slug: "end-of-array-reachable",
+		path: "end-of-array-reachable",
 		title: "End of Array Reachable",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -164,7 +164,7 @@ Constraints:
 	{
 		id: "blind-find-element-in-rotated-array",
 		questionNumber: 9,
-		slug: "find-element-in-rotated-array",
+		path: "find-element-in-rotated-array",
 		title: "Find Element in Rotated Array",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -181,7 +181,7 @@ Constraints:
 	{
 		id: "blind-smallest-element-in-rotated-sorted-array",
 		questionNumber: 10,
-		slug: "smallest-element-in-rotated-sorted-array",
+		path: "smallest-element-in-rotated-sorted-array",
 		title: "Smallest element in rotated sorted array",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -198,7 +198,7 @@ Constraints:
 	{
 		id: "blind-bst-kth-smallest-element",
 		questionNumber: 11,
-		slug: "binary-search-tree-kth-smallest-element",
+		path: "binary-search-tree-kth-smallest-element",
 		title: "Binary Search Tree Kth Smallest Element",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -215,7 +215,7 @@ Constraints:
 	{
 		id: "blind-bst-lowest-common-ancestor",
 		questionNumber: 12,
-		slug: "binary-search-tree-lowest-common-ancestor",
+		path: "binary-search-tree-lowest-common-ancestor",
 		title: "Binary Search Tree Lowest Common Ancestor",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -232,7 +232,7 @@ Constraints:
 	{
 		id: "blind-validate-binary-search-tree",
 		questionNumber: 13,
-		slug: "validate-binary-search-tree",
+		path: "validate-binary-search-tree",
 		title: "Validate Binary Search Tree",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -249,7 +249,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-equal",
 		questionNumber: 14,
-		slug: "binary-tree-equal",
+		path: "binary-tree-equal",
 		title: "Binary Tree Equal",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -266,7 +266,7 @@ Constraints:
 	{
 		id: "blind-flip-binary-tree",
 		questionNumber: 15,
-		slug: "flip-binary-tree",
+		path: "flip-binary-tree",
 		title: "Flip Binary Tree",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -283,7 +283,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-level-order-traversal",
 		questionNumber: 16,
-		slug: "binary-tree-level-order-traversal",
+		path: "binary-tree-level-order-traversal",
 		title: "Binary Tree Level Order Traversal",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -300,7 +300,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-maximum-depth",
 		questionNumber: 17,
-		slug: "binary-tree-maximum-depth",
+		path: "binary-tree-maximum-depth",
 		title: "Binary Tree Maximum Depth",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -317,7 +317,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-maximum-total-path",
 		questionNumber: 18,
-		slug: "binary-tree-maximum-total-path",
+		path: "binary-tree-maximum-total-path",
 		title: "Binary Tree Maximum Total Path",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -334,7 +334,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-rebuild-preorder-inorder",
 		questionNumber: 19,
-		slug: "binary-tree-rebuilding-from-preorder-and-inorder-traversals",
+		path: "binary-tree-rebuilding-from-preorder-and-inorder-traversals",
 		title: "Binary Tree Rebuilding from Preorder and Inorder Traversals",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -352,7 +352,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-serialization-deserialization",
 		questionNumber: 20,
-		slug: "binary-tree-serialization-and-deserialization",
+		path: "binary-tree-serialization-and-deserialization",
 		title: "Binary Tree Serialization and Deserialization",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -369,7 +369,7 @@ Constraints:
 	{
 		id: "blind-binary-tree-subtree",
 		questionNumber: 21,
-		slug: "binary-tree-subtree",
+		path: "binary-tree-subtree",
 		title: "Binary Tree Subtree",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -386,7 +386,7 @@ Constraints:
 	{
 		id: "blind-bit-counting",
 		questionNumber: 22,
-		slug: "bit-counting",
+		path: "bit-counting",
 		title: "Bit Counting",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -403,7 +403,7 @@ Constraints:
 	{
 		id: "blind-bit-reversal",
 		questionNumber: 23,
-		slug: "bit-reversal",
+		path: "bit-reversal",
 		title: "Bit Reversal",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -420,7 +420,7 @@ Constraints:
 	{
 		id: "blind-minimum-coins-for-change",
 		questionNumber: 24,
-		slug: "minimum-coins-for-change",
+		path: "minimum-coins-for-change",
 		title: "Minimum Coins for Change",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -437,7 +437,7 @@ Constraints:
 	{
 		id: "blind-combinations-for-target-sum",
 		questionNumber: 25,
-		slug: "combinations-for-target-sum",
+		path: "combinations-for-target-sum",
 		title: "Combinations for Target Sum",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -454,7 +454,7 @@ Constraints:
 	{
 		id: "blind-count-set-bits-binary-number",
 		questionNumber: 26,
-		slug: "count-set-bits-in-a-binary-number",
+		path: "count-set-bits-in-a-binary-number",
 		title: "Count Set Bits in a Binary Number",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -471,7 +471,7 @@ Constraints:
 	{
 		id: "blind-course-dependency",
 		questionNumber: 27,
-		slug: "course-dependency",
+		path: "course-dependency",
 		title: "Course Dependency",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -488,7 +488,7 @@ Constraints:
 	{
 		id: "blind-disjoint-intervals",
 		questionNumber: 28,
-		slug: "disjoint-intervals",
+		path: "disjoint-intervals",
 		title: "Disjoint Intervals",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -505,7 +505,7 @@ Constraints:
 	{
 		id: "blind-extraterrestrial-language",
 		questionNumber: 29,
-		slug: "extraterrestrial-language",
+		path: "extraterrestrial-language",
 		title: "Extraterrestrial Language",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -522,7 +522,7 @@ Constraints:
 	{
 		id: "blind-graph-clone",
 		questionNumber: 30,
-		slug: "graph-clone",
+		path: "graph-clone",
 		title: "Graph Clone",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -539,7 +539,7 @@ Constraints:
 	{
 		id: "blind-graph-count-connected-components",
 		questionNumber: 31,
-		slug: "graph-count-connected-components",
+		path: "graph-count-connected-components",
 		title: "Graph Count Connected Components",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -556,7 +556,7 @@ Constraints:
 	{
 		id: "blind-is-the-graph-a-tree",
 		questionNumber: 32,
-		slug: "is-the-graph-a-tree",
+		path: "is-the-graph-a-tree",
 		title: "Is the Graph a Tree",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -573,7 +573,7 @@ Constraints:
 	{
 		id: "blind-count-islands-in-grid",
 		questionNumber: 33,
-		slug: "count-islands-in-a-grid",
+		path: "count-islands-in-a-grid",
 		title: "Count Islands in a Grid",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -590,7 +590,7 @@ Constraints:
 	{
 		id: "blind-distinct-paths-in-grid",
 		questionNumber: 34,
-		slug: "distinct-paths-in-grid",
+		path: "distinct-paths-in-grid",
 		title: "Distinct Paths in Grid",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -607,7 +607,7 @@ Constraints:
 	{
 		id: "blind-find-word-in-grid",
 		questionNumber: 35,
-		slug: "find-word-in-grid",
+		path: "find-word-in-grid",
 		title: "Find Word in Grid",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -624,7 +624,7 @@ Constraints:
 	{
 		id: "blind-find-words-in-grid",
 		questionNumber: 36,
-		slug: "find-words-in-grid",
+		path: "find-words-in-grid",
 		title: "Find Words in Grid",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -641,7 +641,7 @@ Constraints:
 	{
 		id: "blind-merge-overlapping-intervals",
 		questionNumber: 37,
-		slug: "merge-overlapping-intervals",
+		path: "merge-overlapping-intervals",
 		title: "Merge Overlapping Intervals",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -658,7 +658,7 @@ Constraints:
 	{
 		id: "blind-meeting-calendar",
 		questionNumber: 38,
-		slug: "meeting-calendar",
+		path: "meeting-calendar",
 		title: "Meeting Calendar",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -675,7 +675,7 @@ Constraints:
 	{
 		id: "blind-merge-new-interval",
 		questionNumber: 39,
-		slug: "merge-new-interval",
+		path: "merge-new-interval",
 		title: "Merge New Interval",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -692,7 +692,7 @@ Constraints:
 	{
 		id: "blind-minimum-meeting-rooms-needed",
 		questionNumber: 40,
-		slug: "minimum-meeting-rooms-needed",
+		path: "minimum-meeting-rooms-needed",
 		title: "Minimum Meeting Rooms Needed",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -709,7 +709,7 @@ Constraints:
 	{
 		id: "blind-linked-lists-combine-k-sorted",
 		questionNumber: 41,
-		slug: "linked-lists-combine-k-sorted",
+		path: "linked-lists-combine-k-sorted",
 		title: "Linked Lists Combine K Sorted",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -726,7 +726,7 @@ Constraints:
 	{
 		id: "blind-linked-lists-combine-two-sorted",
 		questionNumber: 42,
-		slug: "linked-lists-combine-two-sorted",
+		path: "linked-lists-combine-two-sorted",
 		title: "Linked Lists Combine Two Sorted",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -743,7 +743,7 @@ Constraints:
 	{
 		id: "blind-delete-nth-node-from-end",
 		questionNumber: 43,
-		slug: "delete-nth-node-from-end-of-linked-list",
+		path: "delete-nth-node-from-end-of-linked-list",
 		title: "Delete Nth Node from End of Linked List",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -760,7 +760,7 @@ Constraints:
 	{
 		id: "blind-linked-list-detect-cycle",
 		questionNumber: 44,
-		slug: "linked-list-detect-cycle",
+		path: "linked-list-detect-cycle",
 		title: "Linked List Detect Cycle",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -777,7 +777,7 @@ Constraints:
 	{
 		id: "blind-rearrange-linked-list",
 		questionNumber: 45,
-		slug: "rearrange-linked-list",
+		path: "rearrange-linked-list",
 		title: "Rearrange Linked List",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -794,7 +794,7 @@ Constraints:
 	{
 		id: "blind-linked-list-reversal",
 		questionNumber: 46,
-		slug: "linked-list-reversal",
+		path: "linked-list-reversal",
 		title: "Linked List Reversal",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -811,7 +811,7 @@ Constraints:
 	{
 		id: "blind-longest-common-subsequence",
 		questionNumber: 47,
-		slug: "longest-common-subsequence",
+		path: "longest-common-subsequence",
 		title: "Longest Common Subsequence",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -828,7 +828,7 @@ Constraints:
 	{
 		id: "blind-longest-consecutive-number-sequence",
 		questionNumber: 48,
-		slug: "longest-consecutive-number-sequence",
+		path: "longest-consecutive-number-sequence",
 		title: "Longest Consecutive Number Sequence",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -845,7 +845,7 @@ Constraints:
 	{
 		id: "blind-longest-increasing-subsequence",
 		questionNumber: 49,
-		slug: "longest-increasing-subsequence",
+		path: "longest-increasing-subsequence",
 		title: "Longest Increasing Subsequence",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -862,7 +862,7 @@ Constraints:
 	{
 		id: "blind-longest-non-repeating-substring",
 		questionNumber: 50,
-		slug: "longest-non-repeating-substring",
+		path: "longest-non-repeating-substring",
 		title: "Longest Non-repeating Substring",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -879,7 +879,7 @@ Constraints:
 	{
 		id: "blind-longest-palindromic-substring",
 		questionNumber: 51,
-		slug: "find-the-longest-palindromic-substring",
+		path: "find-the-longest-palindromic-substring",
 		title: "Find the Longest Palindromic Substring",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -896,7 +896,7 @@ Constraints:
 	{
 		id: "blind-longest-repeating-substring-after-replacements",
 		questionNumber: 52,
-		slug: "longest-repeating-substring-after-replacements",
+		path: "longest-repeating-substring-after-replacements",
 		title: "Longest Repeating Substring After Replacements",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -913,7 +913,7 @@ Constraints:
 	{
 		id: "blind-matrix-rotation",
 		questionNumber: 53,
-		slug: "matrix-rotation",
+		path: "matrix-rotation",
 		title: "Matrix Rotation",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -930,7 +930,7 @@ Constraints:
 	{
 		id: "blind-matrix-spiral-traversal",
 		questionNumber: 54,
-		slug: "matrix-spiral-traversal",
+		path: "matrix-spiral-traversal",
 		title: "Matrix Spiral Traversal",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -947,7 +947,7 @@ Constraints:
 	{
 		id: "blind-matrix-zeroing",
 		questionNumber: 55,
-		slug: "matrix-zeroing",
+		path: "matrix-zeroing",
 		title: "Matrix Zeroing",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -964,7 +964,7 @@ Constraints:
 	{
 		id: "blind-maximum-water-trapped-between-walls",
 		questionNumber: 56,
-		slug: "maximum-water-trapped-between-walls",
+		path: "maximum-water-trapped-between-walls",
 		title: "Maximum Water Trapped Between Walls",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -981,7 +981,7 @@ Constraints:
 	{
 		id: "blind-neighborhood-theft",
 		questionNumber: 57,
-		slug: "neighborhood-theft",
+		path: "neighborhood-theft",
 		title: "Neighborhood Theft",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -998,7 +998,7 @@ Constraints:
 	{
 		id: "blind-neighborhood-theft-circular",
 		questionNumber: 58,
-		slug: "neighborhood-theft-circular",
+		path: "neighborhood-theft-circular",
 		title: "Neighborhood Theft (Circular)",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1015,7 +1015,7 @@ Constraints:
 	{
 		id: "blind-number-stream-median",
 		questionNumber: 59,
-		slug: "number-stream-median",
+		path: "number-stream-median",
 		title: "Number Stream Median",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1032,7 +1032,7 @@ Constraints:
 	{
 		id: "blind-ocean-flow",
 		questionNumber: 60,
-		slug: "ocean-flow",
+		path: "ocean-flow",
 		title: "Ocean Flow",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1049,7 +1049,7 @@ Constraints:
 	{
 		id: "blind-optimal-stock-trading",
 		questionNumber: 61,
-		slug: "optimal-stock-trading",
+		path: "optimal-stock-trading",
 		title: "Optimal Stock Trading",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1066,7 +1066,7 @@ Constraints:
 	{
 		id: "blind-pair-sum",
 		questionNumber: 62,
-		slug: "pair-sum",
+		path: "pair-sum",
 		title: "Pair sum",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1083,7 +1083,7 @@ Constraints:
 	{
 		id: "blind-staircase-climbing-combinations",
 		questionNumber: 63,
-		slug: "staircase-climbing-combinations",
+		path: "staircase-climbing-combinations",
 		title: "Staircase Climbing Combinations",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1100,7 +1100,7 @@ Constraints:
 	{
 		id: "blind-string-anagram",
 		questionNumber: 64,
-		slug: "string-anagram",
+		path: "string-anagram",
 		title: "String Anagram",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1117,7 +1117,7 @@ Constraints:
 	{
 		id: "blind-string-anagram-groups",
 		questionNumber: 65,
-		slug: "string-anagram-groups",
+		path: "string-anagram-groups",
 		title: "String Anagram Groups",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1134,7 +1134,7 @@ Constraints:
 	{
 		id: "blind-decode-message",
 		questionNumber: 66,
-		slug: "decode-message",
+		path: "decode-message",
 		title: "Decode Message",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1151,7 +1151,7 @@ Constraints:
 	{
 		id: "blind-string-palindrome",
 		questionNumber: 67,
-		slug: "string-palindrome",
+		path: "string-palindrome",
 		title: "String Palindrome",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1168,7 +1168,7 @@ Constraints:
 	{
 		id: "blind-palindromic-substrings",
 		questionNumber: 68,
-		slug: "palindromic-substrings",
+		path: "palindromic-substrings",
 		title: "Palindromic Substrings",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1185,7 +1185,7 @@ Constraints:
 	{
 		id: "blind-segment-words",
 		questionNumber: 69,
-		slug: "segment-words",
+		path: "segment-words",
 		title: "Segment Words",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1202,7 +1202,7 @@ Constraints:
 	{
 		id: "blind-shortest-substring-containing-characters",
 		questionNumber: 70,
-		slug: "shortest-substring-containing-characters",
+		path: "shortest-substring-containing-characters",
 		title: "Shortest Substring Containing Characters",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1219,7 +1219,7 @@ Constraints:
 	{
 		id: "blind-sum-without-addition",
 		questionNumber: 71,
-		slug: "sum-without-addition",
+		path: "sum-without-addition",
 		title: "Sum Without Addition",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1236,7 +1236,7 @@ Constraints:
 	{
 		id: "blind-task-coordination",
 		questionNumber: 72,
-		slug: "task-coordination",
+		path: "task-coordination",
 		title: "Task Coordination",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1253,7 +1253,7 @@ Constraints:
 	{
 		id: "blind-trie-prefix-tree",
 		questionNumber: 73,
-		slug: "trie-prefix-tree",
+		path: "trie-prefix-tree",
 		title: "Trie (Prefix Tree)",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1270,7 +1270,7 @@ Constraints:
 	{
 		id: "blind-triplet-sum",
 		questionNumber: 74,
-		slug: "triplet-sum",
+		path: "triplet-sum",
 		title: "Triplet Sum",
 		track: "blind75",
 		category: "Algorithmic coding",
@@ -1287,7 +1287,7 @@ Constraints:
 	{
 		id: "blind-word-finder",
 		questionNumber: 75,
-		slug: "word-finder",
+		path: "word-finder",
 		title: "Word Finder",
 		track: "blind75",
 		category: "Algorithmic coding",

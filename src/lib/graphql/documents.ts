@@ -1,7 +1,7 @@
 const QUESTION_FIELDS = /* GraphQL */ `
 	id
 	questionNumber
-	slug
+	path
 	title
 	track
 	category
@@ -25,8 +25,8 @@ export const QUESTIONS_QUERY = /* GraphQL */ `
 `;
 
 export const QUESTION_QUERY = /* GraphQL */ `
-	query GetQuestion($track: Track!, $slug: String!) {
-		question(track: $track, slug: $slug) {
+	query GetQuestion($track: Track!, $path: String!) {
+		question(track: $track, path: $path) {
 			${QUESTION_FIELDS}
 		}
 	}

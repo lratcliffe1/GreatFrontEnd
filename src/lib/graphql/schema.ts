@@ -1,7 +1,7 @@
 import { buildSchema, graphql } from "graphql";
 
 import {
-	getQuestionBySlug,
+	getQuestionByPath,
 	getQuestionsByTrack,
 	type Question,
 	type Track,
@@ -35,7 +35,7 @@ const schema = buildSchema(`
 	type Question {
 		id: String!
 		questionNumber: Int!
-		slug: String!
+		path: String!
 		title: String!
 		track: Track!
 		category: String!
@@ -52,7 +52,7 @@ const schema = buildSchema(`
 
 	type Query {
 		questions(track: Track!): [Question!]!
-		question(track: Track!, slug: String!): Question
+		question(track: Track!, path: String!): Question
 	}
 `);
 
@@ -61,11 +61,11 @@ const root = {
 		getQuestionsByTrack(track),
 	question: ({
 		track,
-		slug,
+		path,
 	}: {
 		track: Track;
-		slug: string;
-	}): Question | null => getQuestionBySlug(track, slug),
+		path: string;
+	}): Question | null => getQuestionByPath(track, path),
 };
 
 export async function executeGraphQLQuery(

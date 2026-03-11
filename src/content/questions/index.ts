@@ -10,10 +10,10 @@ export function getQuestionsByTrack(track: Track): Question[] {
 	return QUESTIONS.filter((question) => question.track === track);
 }
 
-export function getQuestionBySlug(track: Track, slug: string): Question | null {
+export function getQuestionByPath(track: Track, path: string): Question | null {
 	return (
 		QUESTIONS.find(
-			(question) => question.track === track && question.slug === slug,
+			(question) => question.track === track && question.path === path,
 		) ?? null
 	);
 }

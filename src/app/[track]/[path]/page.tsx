@@ -22,10 +22,10 @@ function toPlainQuestion(
 }
 
 const getQuestionFromGraphQL = cache(
-	async (track: Track, slug: string): Promise<Question | null> => {
+	async (track: Track, path: string): Promise<Question | null> => {
 		const result = (await executeGraphQLQuery(QUESTION_QUERY, {
 			track,
-			slug,
+			path,
 		})) as ExecutionResult<QuestionResponse>;
 
 		if (result.errors?.length) {
@@ -39,13 +39,13 @@ const getQuestionFromGraphQL = cache(
 export async function generateMetadata({
 	params,
 }: {
-	params: Promise<{ track: string; slug: string }>;
+	params: Promise<{ track: string; path: string }>;
 }): Promise<Metadata> {
-	const { track, slug } = await params;
+	const { track, path } = await params;
 	if (!isTrack(track)) {
 		return { title: "Not Found" };
 	}
-	const question = await getQuestionFromGraphQL(track, slug);
+	const question = await getQuestionFromGraphQL(track, path);
 	if (!question) {
 		return { title: "Question Not Found" };
 	}
@@ -59,15 +59,15 @@ export async function generateMetadata({
 export default async function QuestionPage({
 	params,
 }: {
-	params: Promise<{ track: string; slug: string }>;
+	params: Promise<{ track: string; path: string }>;
 }) {
-	const { track, slug } = await params;
+	const { track, path } = await params;
 
 	if (!isTrack(track)) {
 		notFound();
 	}
 
-	const question = await getQuestionFromGraphQL(track, slug);
+	const question = await getQuestionFromGraphQL(track, path);
 	if (!question) {
 		notFound();
 	}

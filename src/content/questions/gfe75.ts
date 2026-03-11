@@ -6,7 +6,7 @@ export const GFE75_QUESTIONS: Question[] = [
 	{
 		id: "gfe-debounce",
 		questionNumber: 1,
-		slug: "debounce",
+		path: "debounce",
 		title: "Debounce",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -32,7 +32,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 	{
 		id: "gfe-array-prototype-reduce",
 		questionNumber: 2,
-		slug: "array-prototype-reduce",
+		path: "array-prototype-reduce",
 		title: "Array.prototype.reduce",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -49,7 +49,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 	{
 		id: "gfe-classnames",
 		questionNumber: 3,
-		slug: "classnames",
+		path: "classnames",
 		title: "Classnames",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -67,7 +67,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 	{
 		id: "gfe-flatten",
 		questionNumber: 4,
-		slug: "flatten",
+		path: "flatten",
 		title: "Flatten",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -85,7 +85,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 	{
 		id: "gfe-throttle",
 		questionNumber: 5,
-		slug: "throttle",
+		path: "throttle",
 		title: "Throttle",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -103,7 +103,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 	{
 		id: "gfe-todo-list",
 		questionNumber: 6,
-		slug: "todo-list",
+		path: "todo-list",
 		title: "Todo List",
 		track: "gfe75",
 		category: "UI coding",
@@ -138,7 +138,7 @@ Implementation details:
 	{
 		id: "gfe-contact-form",
 		questionNumber: 7,
-		slug: "contact-form",
+		path: "contact-form",
 		title: "Contact Form",
 		track: "gfe75",
 		category: "UI coding",
@@ -156,7 +156,7 @@ Implementation details:
 	{
 		id: "gfe-holy-grail",
 		questionNumber: 8,
-		slug: "holy-grail",
+		path: "holy-grail",
 		title: "Holy Grail",
 		track: "gfe75",
 		category: "UI coding",
@@ -174,7 +174,7 @@ Implementation details:
 	{
 		id: "gfe-tabs",
 		questionNumber: 9,
-		slug: "tabs",
+		path: "tabs",
 		title: "Tabs",
 		track: "gfe75",
 		category: "UI coding",
@@ -192,7 +192,7 @@ Implementation details:
 	{
 		id: "gfe-job-board",
 		questionNumber: 10,
-		slug: "job-board",
+		path: "job-board",
 		title: "Job Board",
 		track: "gfe75",
 		category: "UI coding",
@@ -210,7 +210,7 @@ Implementation details:
 	{
 		id: "gfe-accordion",
 		questionNumber: 11,
-		slug: "accordion",
+		path: "accordion",
 		title: "Accordion",
 		track: "gfe75",
 		category: "UI coding",
@@ -228,7 +228,7 @@ Implementation details:
 	{
 		id: "gfe-news-feed",
 		questionNumber: 12,
-		slug: "news-feed-facebook",
+		path: "news-feed-facebook",
 		title: "News Feed (Facebook)",
 		track: "gfe75",
 		category: "System design",
@@ -292,7 +292,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-autocomplete",
 		questionNumber: 13,
-		slug: "autocomplete",
+		path: "autocomplete",
 		title: "Autocomplete",
 		track: "gfe75",
 		category: "System design",
@@ -310,7 +310,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-type-utilities-ii",
 		questionNumber: 14,
-		slug: "type-utilities-ii",
+		path: "type-utilities-ii",
 		title: "Type Utilities II",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -328,7 +328,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-promise-all",
 		questionNumber: 15,
-		slug: "promise-all",
+		path: "promise-all",
 		title: "Promise.all",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -346,7 +346,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-data-merging",
 		questionNumber: 16,
-		slug: "data-merging",
+		path: "data-merging",
 		title: "Data Merging",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -364,7 +364,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-deep-clone",
 		questionNumber: 17,
-		slug: "deep-clone",
+		path: "deep-clone",
 		title: "Deep Clone",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -381,7 +381,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-event-emitter",
 		questionNumber: 18,
-		slug: "event-emitter",
+		path: "event-emitter",
 		title: "Event Emitter",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -399,7 +399,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-get-elements-by-style",
 		questionNumber: 19,
-		slug: "get-elements-by-style",
+		path: "get-elements-by-style",
 		title: "getElementsByStyle",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -417,7 +417,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-function-prototype-call",
 		questionNumber: 20,
-		slug: "function-prototype-call",
+		path: "function-prototype-call",
 		title: "Function.prototype.call",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -435,7 +435,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-list-format",
 		questionNumber: 21,
-		slug: "list-format",
+		path: "list-format",
 		title: "List Format",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -453,7 +453,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-map-async-limit",
 		questionNumber: 22,
-		slug: "map-async-limit",
+		path: "map-async-limit",
 		title: "Map Async Limit",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -471,7 +471,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-deep-equal",
 		questionNumber: 23,
-		slug: "deep-equal",
+		path: "deep-equal",
 		title: "Deep Equal",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -488,7 +488,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-promise-any",
 		questionNumber: 24,
-		slug: "promise-any",
+		path: "promise-any",
 		title: "Promise.any",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -506,7 +506,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-deep-omit",
 		questionNumber: 25,
-		slug: "deep-omit",
+		path: "deep-omit",
 		title: "Deep Omit",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -524,7 +524,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-promisify",
 		questionNumber: 26,
-		slug: "promisify",
+		path: "promisify",
 		title: "Promisify",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -542,7 +542,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-memoize",
 		questionNumber: 27,
-		slug: "memoize",
+		path: "memoize",
 		title: "Memoize",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -560,7 +560,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-squash-object",
 		questionNumber: 28,
-		slug: "squash-object",
+		path: "squash-object",
 		title: "Squash Object",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -578,7 +578,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-get-elements-by-classname",
 		questionNumber: 29,
-		slug: "get-elements-by-classname",
+		path: "get-elements-by-classname",
 		title: "getElementsByClassName",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -596,7 +596,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-storage-quiz",
 		questionNumber: 30,
-		slug: "cookie-sessionstorage-localstorage",
+		path: "cookie-sessionstorage-localstorage",
 		title: "Cookie vs sessionStorage vs localStorage",
 		track: "gfe75",
 		category: "Quiz",
@@ -617,7 +617,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-script-async-defer",
 		questionNumber: 31,
-		slug: "script-async-defer",
+		path: "script-async-defer",
 		title:
 			"Describe the difference between <script>, <script async> and <script defer>",
 		track: "gfe75",
@@ -636,7 +636,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-hoisting-concept",
 		questionNumber: 32,
-		slug: "hoisting-concept",
+		path: "hoisting-concept",
 		title: "Explain the concept of hoisting in JavaScript",
 		track: "gfe75",
 		category: "Quiz",
@@ -653,7 +653,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-let-var-const-differences",
 		questionNumber: 33,
-		slug: "let-var-const-differences",
+		path: "let-var-const-differences",
 		title: "Differences between let, var and const",
 		track: "gfe75",
 		category: "Quiz",
@@ -671,7 +671,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-closure-concept",
 		questionNumber: 34,
-		slug: "closure-concept",
+		path: "closure-concept",
 		title: "What is a closure in JavaScript?",
 		track: "gfe75",
 		category: "Quiz",
@@ -689,7 +689,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-event-bubbling",
 		questionNumber: 35,
-		slug: "event-bubbling",
+		path: "event-bubbling",
 		title: "Describe event bubbling in JavaScript and browsers",
 		track: "gfe75",
 		category: "Quiz",
@@ -706,7 +706,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-event-delegation",
 		questionNumber: 36,
-		slug: "event-delegation",
+		path: "event-delegation",
 		title: "Explain event delegation in JavaScript",
 		track: "gfe75",
 		category: "Quiz",
@@ -723,7 +723,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-null-undefined-undeclared",
 		questionNumber: 37,
-		slug: "null-undefined-undeclared",
+		path: "null-undefined-undeclared",
 		title: "Difference between null, undefined and undeclared",
 		track: "gfe75",
 		category: "Quiz",
@@ -741,7 +741,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-commonjs-vs-esm",
 		questionNumber: 38,
-		slug: "commonjs-vs-esm",
+		path: "commonjs-vs-esm",
 		title: "Differences between CommonJS and ES modules",
 		track: "gfe75",
 		category: "Quiz",
@@ -759,7 +759,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-event-loop",
 		questionNumber: 39,
-		slug: "event-loop",
+		path: "event-loop",
 		title: "What is the event loop in JavaScript runtimes?",
 		track: "gfe75",
 		category: "Quiz",
@@ -776,7 +776,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-promises-vs-callbacks",
 		questionNumber: 40,
-		slug: "promises-vs-callbacks",
+		path: "promises-vs-callbacks",
 		title: "Pros and cons of Promises vs callbacks",
 		track: "gfe75",
 		category: "Quiz",
@@ -794,7 +794,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-bfc",
 		questionNumber: 41,
-		slug: "block-formatting-context",
+		path: "block-formatting-context",
 		title: "Describe Block Formatting Context (BFC)",
 		track: "gfe75",
 		category: "Quiz",
@@ -811,7 +811,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-z-index-stacking-context",
 		questionNumber: 42,
-		slug: "z-index-stacking-context",
+		path: "z-index-stacking-context",
 		title: "Describe z-index and stacking context",
 		track: "gfe75",
 		category: "Quiz",
@@ -828,7 +828,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-css-selector-matching",
 		questionNumber: 43,
-		slug: "css-selector-matching",
+		path: "css-selector-matching",
 		title: "How browser determines CSS selector matches",
 		track: "gfe75",
 		category: "Quiz",
@@ -846,7 +846,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-box-model",
 		questionNumber: 44,
-		slug: "box-model",
+		path: "box-model",
 		title: "Explain the box model",
 		track: "gfe75",
 		category: "Quiz",
@@ -864,7 +864,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-translate-vs-absolute",
 		questionNumber: 45,
-		slug: "translate-vs-absolute",
+		path: "translate-vs-absolute",
 		title: "translate() vs absolute positioning",
 		track: "gfe75",
 		category: "Quiz",
@@ -882,7 +882,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-box-sizing-border-box",
 		questionNumber: 46,
-		slug: "box-sizing-border-box",
+		path: "box-sizing-border-box",
 		title: "What does * { box-sizing: border-box; } do?",
 		track: "gfe75",
 		category: "Quiz",
@@ -899,7 +899,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-css-display-property",
 		questionNumber: 47,
-		slug: "css-display-property",
+		path: "css-display-property",
 		title: "What is the CSS display property?",
 		track: "gfe75",
 		category: "Quiz",
@@ -917,7 +917,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-position-differences",
 		questionNumber: 48,
-		slug: "position-differences",
+		path: "position-differences",
 		title: "Difference between relative/fixed/absolute/sticky/static",
 		track: "gfe75",
 		category: "Quiz",
@@ -935,7 +935,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-multilingual-sites",
 		questionNumber: 49,
-		slug: "multilingual-sites",
+		path: "multilingual-sites",
 		title: "Things to watch when building multilingual sites",
 		track: "gfe75",
 		category: "Quiz",
@@ -953,7 +953,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-block-inline-inlineblock",
 		questionNumber: 50,
-		slug: "block-inline-inlineblock",
+		path: "block-inline-inlineblock",
 		title: "Difference between block, inline, and inline-block",
 		track: "gfe75",
 		category: "Quiz",
@@ -971,7 +971,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-curry",
 		questionNumber: 51,
-		slug: "curry",
+		path: "curry",
 		title: "Curry",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -989,7 +989,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-html-serializer",
 		questionNumber: 52,
-		slug: "html-serializer",
+		path: "html-serializer",
 		title: "HTML Serializer",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -1007,7 +1007,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-json-stringify",
 		questionNumber: 53,
-		slug: "json-stringify",
+		path: "json-stringify",
 		title: "JSON.stringify",
 		track: "gfe75",
 		category: "JavaScript functions",
@@ -1025,7 +1025,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-star-rating",
 		questionNumber: 54,
-		slug: "star-rating",
+		path: "star-rating",
 		title: "Star Rating",
 		track: "gfe75",
 		category: "UI coding",
@@ -1043,7 +1043,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-image-carousel",
 		questionNumber: 55,
-		slug: "image-carousel",
+		path: "image-carousel",
 		title: "Image Carousel",
 		track: "gfe75",
 		category: "UI coding",
@@ -1060,7 +1060,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-progress-bars",
 		questionNumber: 56,
-		slug: "progress-bars",
+		path: "progress-bars",
 		title: "Progress Bars",
 		track: "gfe75",
 		category: "UI coding",
@@ -1078,7 +1078,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-like-button",
 		questionNumber: 57,
-		slug: "like-button",
+		path: "like-button",
 		title: "Like Button",
 		track: "gfe75",
 		category: "UI coding",
@@ -1096,7 +1096,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-traffic-light",
 		questionNumber: 58,
-		slug: "traffic-light",
+		path: "traffic-light",
 		title: "Traffic Light",
 		track: "gfe75",
 		category: "UI coding",
@@ -1114,7 +1114,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-digital-clock",
 		questionNumber: 59,
-		slug: "digital-clock",
+		path: "digital-clock",
 		title: "Digital Clock",
 		track: "gfe75",
 		category: "UI coding",
@@ -1131,7 +1131,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-stopwatch",
 		questionNumber: 60,
-		slug: "stopwatch",
+		path: "stopwatch",
 		title: "Stopwatch",
 		track: "gfe75",
 		category: "UI coding",
@@ -1149,7 +1149,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-file-explorer",
 		questionNumber: 61,
-		slug: "file-explorer",
+		path: "file-explorer",
 		title: "File Explorer",
 		track: "gfe75",
 		category: "UI coding",
@@ -1167,7 +1167,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-tic-tac-toe",
 		questionNumber: 62,
-		slug: "tic-tac-toe",
+		path: "tic-tac-toe",
 		title: "Tic-tac-toe",
 		track: "gfe75",
 		category: "UI coding",
@@ -1184,7 +1184,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-transfer-list",
 		questionNumber: 63,
-		slug: "transfer-list",
+		path: "transfer-list",
 		title: "Transfer List",
 		track: "gfe75",
 		category: "UI coding",
@@ -1202,7 +1202,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-nested-checkboxes",
 		questionNumber: 64,
-		slug: "nested-checkboxes",
+		path: "nested-checkboxes",
 		title: "Nested Checkboxes",
 		track: "gfe75",
 		category: "UI coding",
@@ -1220,7 +1220,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-modal-dialog",
 		questionNumber: 65,
-		slug: "modal-dialog",
+		path: "modal-dialog",
 		title: "Modal Dialog",
 		track: "gfe75",
 		category: "UI coding",
@@ -1238,7 +1238,7 @@ Interview-ready extensions:
 	{
 		id: "gfe-data-table",
 		questionNumber: 66,
-		slug: "data-table",
+		path: "data-table",
 		title: "Data Table",
 		track: "gfe75",
 		category: "UI coding",
