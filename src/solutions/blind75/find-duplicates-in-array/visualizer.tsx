@@ -14,7 +14,7 @@ import {
 	DUPLICATE_ARRAY_CONSTRAINTS,
 	getDuplicateScanSteps,
 	type DuplicateScanOutcome,
-} from "@/solutions/blind-find-duplicates-in-array/solution";
+} from "@/solutions/blind75/find-duplicates-in-array/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: "export function hasDuplicate(numbers: number[]) {" },

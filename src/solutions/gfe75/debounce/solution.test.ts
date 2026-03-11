@@ -1,4 +1,4 @@
-import { debounce } from "@/solutions/gfe-debounce/solution";
+import { debounce } from "@/solutions/gfe75/debounce/solution";
 
 describe("debounce", () => {
 	beforeEach(() => {

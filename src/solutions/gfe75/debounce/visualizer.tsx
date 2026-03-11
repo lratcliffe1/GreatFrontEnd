@@ -13,7 +13,7 @@ import {
 import {
 	debounce,
 	type DebounceTraceEvent,
-} from "@/solutions/gfe-debounce/solution";
+} from "@/solutions/gfe75/debounce/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: "return (...args) => {" },

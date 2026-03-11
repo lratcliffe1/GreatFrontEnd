@@ -5,7 +5,7 @@ This repository is organized for solving one challenge at a time while keeping t
 ## Recommended workflow
 
 1. Pick the next challenge from `src/content/questions/` (`gfe75.ts` or `blind75.ts`).
-2. Implement solution files under `src/solutions/<id>`.
+2. Implement solution files under `src/solutions/<track>/<path>`.
 3. Update the matching manifest entry in the relevant file in `src/content/questions/`:
    - replace `TODO` fields (`sourceUrl`, `summary`, `approach`, `complexity`)
    - set `status` to `in-progress` or `done` as work advances

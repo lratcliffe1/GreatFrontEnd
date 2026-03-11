@@ -74,7 +74,7 @@ Playwright commands require browsers to be installed once via `npx playwright in
 ## Add a new question
 
 1. Add a new question entry to the matching track file in `src/content/questions/` (`gfe75.ts` or `blind75.ts`).
-2. Create implementation files under `src/solutions/<id>` based on `solutionType`.
+2. Create implementation files under `src/solutions/<track>/<path>` based on `solutionType`.
 3. Run `npm run test` and `npm run lint`. Run `npm run test:e2e` as well if you want full cross-browser coverage.
 
 For a fuller challenge-by-challenge workflow, see `CONTRIBUTING.md`.

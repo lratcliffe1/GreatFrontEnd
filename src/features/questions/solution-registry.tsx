@@ -20,7 +20,7 @@ function SolutionLoadingState() {
 
 const DebounceVisualizer = dynamic(
 	() =>
-		import("@/solutions/gfe-debounce/visualizer").then(
+		import("@/solutions/gfe75/debounce/visualizer").then(
 			(module) => module.DebounceVisualizer,
 		),
 	{
@@ -30,7 +30,7 @@ const DebounceVisualizer = dynamic(
 
 const NewsFeedDemo = dynamic(
 	() =>
-		import("@/solutions/gfe-news-feed/news-feed-demo").then(
+		import("@/solutions/gfe75/news-feed-facebook/news-feed-demo").then(
 			(module) => module.NewsFeedDemo,
 		),
 	{
@@ -40,7 +40,7 @@ const NewsFeedDemo = dynamic(
 
 const StorageComparisonDemo = dynamic(
 	() =>
-		import("@/solutions/gfe-storage-quiz/storage-demo").then(
+		import("@/solutions/gfe75/cookie-sessionstorage-localstorage/storage-demo").then(
 			(module) => module.StorageComparisonDemo,
 		),
 	{
@@ -50,7 +50,7 @@ const StorageComparisonDemo = dynamic(
 
 const BalancedBracketsVisualizer = dynamic(
 	() =>
-		import("@/solutions/blind-balanced-brackets/visualizer").then(
+		import("@/solutions/blind75/balanced-brackets/visualizer").then(
 			(module) => module.BalancedBracketsVisualizer,
 		),
 	{
@@ -60,7 +60,7 @@ const BalancedBracketsVisualizer = dynamic(
 
 const FindDuplicatesInArrayVisualizer = dynamic(
 	() =>
-		import("@/solutions/blind-find-duplicates-in-array/visualizer").then(
+		import("@/solutions/blind75/find-duplicates-in-array/visualizer").then(
 			(module) => module.FindDuplicatesInArrayVisualizer,
 		),
 	{
@@ -70,7 +70,7 @@ const FindDuplicatesInArrayVisualizer = dynamic(
 
 const TodoDemo = dynamic(
 	() =>
-		import("@/solutions/gfe-todo-list/todo-demo").then(
+		import("@/solutions/gfe75/todo-list/todo-demo").then(
 			(module) => module.TodoDemo,
 		),
 	{

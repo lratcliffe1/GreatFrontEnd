@@ -13,7 +13,7 @@ import {
 import {
 	getBalancedBracketInputError,
 	getBalancedBracketSteps,
-} from "@/solutions/blind-balanced-brackets/solution";
+} from "@/solutions/blind75/balanced-brackets/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: 'const OPENING = new Set(["(", "{", "["]);' },

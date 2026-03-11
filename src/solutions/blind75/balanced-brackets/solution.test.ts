@@ -2,7 +2,7 @@ import {
 	getBalancedBracketInputError,
 	getBalancedBracketSteps,
 	isBalancedBrackets,
-} from "@/solutions/blind-balanced-brackets/solution";
+} from "@/solutions/blind75/balanced-brackets/solution";
 
 describe("isBalancedBrackets", () => {
 	it("returns true for balanced input", () => {
