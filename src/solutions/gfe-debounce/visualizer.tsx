@@ -12,16 +12,17 @@ import {
 } from "@/solutions/gfe-debounce/solution";
 
 const CODE_LINES: CodeLine[] = [
-	{ line: 13, code: "return (...args) => {" },
-	{ line: 15, code: "  const hasActiveTimeout = timeoutId !== null;" },
-	{ line: 16, code: "  if (hasActiveTimeout) {" },
-	{ line: 17, code: "    clearTimeout(timeoutId);" },
-	{ line: null, code: "  }" },
-	{ line: 19, code: "  timeoutId = setTimeout(() => {" },
-	{ line: 21, code: "    // timer fired" },
-	{ line: 22, code: "    callback(...args);" },
-	{ line: 20, code: "  }, delayMs);" },
-	{ line: null, code: "};" },
+	{ line: 1, code: "return (...args) => {" },
+	{ line: 2, code: "  const hasActiveTimeout = timeoutId !== null;" },
+	{ line: 3, code: "  if (hasActiveTimeout) {" },
+	{ line: 4, code: "    clearTimeout(timeoutId);" },
+	{ line: 5, code: "  }" },
+	{ line: 6, code: "  timeoutId = setTimeout(() => {" },
+	{ line: 7, code: "    // callback scheduled in delayMs" },
+	{ line: 8, code: "    // timer fired" },
+	{ line: 9, code: "    callback(...args);" },
+	{ line: 10, code: "  }, delayMs);" },
+	{ line: 11, code: "};" },
 ];
 
 type TraceLog = {
