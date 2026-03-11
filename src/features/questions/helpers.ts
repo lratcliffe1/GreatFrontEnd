@@ -21,5 +21,13 @@ export function formatQuestionStatus(status: Question["status"] | "all") {
 }
 
 export function getGraphQlErrorMessage(error: unknown) {
-	return error instanceof Error ? error.message : "Unknown GraphQL error.";
+	if (error instanceof Error) {
+		return error.message;
+	}
+
+	if (error && typeof error === "object" && "message" in error) {
+		return String((error as { message: unknown }).message);
+	}
+
+	return "Unknown GraphQL error.";
 }
