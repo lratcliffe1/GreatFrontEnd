@@ -17,7 +17,7 @@ const QUESTION_FIELDS = /* GraphQL */ `
 `;
 
 export const QUESTIONS_QUERY = /* GraphQL */ `
-	query GetQuestions($track: String!) {
+	query GetQuestions($track: Track!) {
 		questions(track: $track) {
 			${QUESTION_FIELDS}
 		}
@@ -25,7 +25,7 @@ export const QUESTIONS_QUERY = /* GraphQL */ `
 `;
 
 export const QUESTION_QUERY = /* GraphQL */ `
-	query GetQuestion($track: String!, $slug: String!) {
+	query GetQuestion($track: Track!, $slug: String!) {
 		question(track: $track, slug: $slug) {
 			${QUESTION_FIELDS}
 		}

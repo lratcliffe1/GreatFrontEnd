@@ -18,7 +18,7 @@ function renderSolution(question: Question) {
 		return <SolutionRenderer />;
 	}
 
-	if (question.solutionType === "algo-visualizer") {
+	if (question.solutionType === "algo_visualizer") {
 		return (
 			<div
 				className={`rounded-md bg-slate-50 p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}

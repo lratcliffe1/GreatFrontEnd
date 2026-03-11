@@ -5,7 +5,7 @@ export function isHttpUrl(value: string) {
 }
 
 export function formatQuestionStatus(status: Question["status"] | "all") {
-	if (status === "in-progress") {
+	if (status === "in_progress") {
 		return "In progress";
 	}
 

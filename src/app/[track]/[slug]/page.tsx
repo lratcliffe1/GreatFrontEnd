@@ -10,6 +10,17 @@ import { executeGraphQLQuery } from "@/lib/graphql/schema";
 import type { QuestionResponse } from "@/lib/graphql/types";
 import { getTrackLabel, isTrack } from "@/lib/tracks";
 
+function toPlainQuestion(
+	result: ExecutionResult<QuestionResponse>,
+): Question | null {
+	if (result?.data?.question == null) return null;
+
+	return {
+		...result.data.question,
+		tags: [...result.data.question.tags],
+	};
+}
+
 const getQuestionFromGraphQL = cache(
 	async (track: Track, slug: string): Promise<Question | null> => {
 		const result = (await executeGraphQLQuery(QUESTION_QUERY, {
@@ -21,7 +32,7 @@ const getQuestionFromGraphQL = cache(
 			return null;
 		}
 
-		return result.data?.question ?? null;
+		return toPlainQuestion(result);
 	},
 );
 

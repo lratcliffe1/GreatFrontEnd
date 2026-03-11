@@ -89,7 +89,7 @@ const QUESTION_RENDERERS: Partial<Record<Question["id"], SolutionComponent>> = {
 const SOLUTION_TYPE_RENDERERS: Partial<
 	Record<Question["solutionType"], SolutionComponent>
 > = {
-	"ui-demo": TodoDemo,
+	ui_demo: TodoDemo,
 };
 
 export function getSolutionRenderer(

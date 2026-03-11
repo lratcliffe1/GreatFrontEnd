@@ -11,7 +11,7 @@ const mockQuestion: Question = {
 	category: "JavaScript functions",
 	difficulty: "Medium",
 	sourceUrl: "https://www.greatfrontend.com/interviews/debounce",
-	solutionType: "code-and-tests",
+	solutionType: "code_and_tests",
 	status: "done",
 	summary:
 		"Debouncing controls how often a function is allowed to execute over time.",
@@ -89,7 +89,7 @@ describe("QuestionDetailPage", () => {
 		const codeQuestion: Question = {
 			...mockQuestion,
 			id: "gfe-other",
-			solutionType: "code-and-tests",
+			solutionType: "code_and_tests",
 		};
 
 		render(<QuestionDetailPage question={codeQuestion} />);
@@ -105,7 +105,7 @@ describe("QuestionDetailPage", () => {
 			id: "blind-find-duplicates-in-array",
 			track: "blind75",
 			title: "Find Duplicates in Array",
-			solutionType: "algo-visualizer",
+			solutionType: "algo_visualizer",
 		};
 
 		render(<QuestionDetailPage question={duplicateQuestion} />);

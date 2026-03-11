@@ -142,7 +142,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 								<MenuItem key="todo" value="todo">
 									Todo
 								</MenuItem>,
-								<MenuItem key="in-progress" value="in-progress">
+								<MenuItem key="in_progress" value="in_progress">
 									In progress
 								</MenuItem>,
 								<MenuItem key="done" value="done">

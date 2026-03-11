@@ -8,17 +8,41 @@ import {
 } from "@/content/questions";
 
 const schema = buildSchema(`
+	enum Track {
+		gfe75
+		blind75
+	}
+
+	enum Difficulty {
+		Easy
+		Medium
+		Hard
+	}
+
+	enum QuestionStatus {
+		todo
+		in_progress
+		done
+	}
+
+	enum SolutionType {
+		ui_demo
+		algo_visualizer
+		code_and_tests
+		writeup
+	}
+
 	type Question {
 		id: String!
 		questionNumber: Int!
 		slug: String!
 		title: String!
-		track: String!
+		track: Track!
 		category: String!
-		difficulty: String!
+		difficulty: Difficulty!
 		sourceUrl: String!
-		solutionType: String!
-		status: String!
+		solutionType: SolutionType!
+		status: QuestionStatus!
 		summary: String!
 		cardSummary: String!
 		approach: String!
@@ -27,8 +51,8 @@ const schema = buildSchema(`
 	}
 
 	type Query {
-		questions(track: String!): [Question!]!
-		question(track: String!, slug: String!): Question
+		questions(track: Track!): [Question!]!
+		question(track: Track!, slug: String!): Question
 	}
 `);
 

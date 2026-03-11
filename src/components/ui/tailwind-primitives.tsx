@@ -125,19 +125,19 @@ export function DifficultyPill({
 const STATUS_CLASSES = {
 	done: "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400",
 	todo: "bg-sky-50 text-sky-700 dark:bg-sky-500/20 dark:text-sky-400",
-	"in-progress":
+	in_progress:
 		"bg-amber-50 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400",
 } as const;
 
 export function StatusBadge({
 	status,
 }: {
-	status: "done" | "todo" | "in-progress";
+	status: "done" | "todo" | "in_progress";
 }) {
 	const label =
 		status === "todo"
 			? "To do"
-			: status === "in-progress"
+			: status === "in_progress"
 				? "In progress"
 				: "Done";
 	return (

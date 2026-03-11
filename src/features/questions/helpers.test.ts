@@ -26,7 +26,7 @@ describe("helpers", () => {
 	describe("formatQuestionStatus", () => {
 		it("formats status values correctly", () => {
 			expect(formatQuestionStatus("todo")).toBe("To do");
-			expect(formatQuestionStatus("in-progress")).toBe("In progress");
+			expect(formatQuestionStatus("in_progress")).toBe("In progress");
 			expect(formatQuestionStatus("done")).toBe("Done");
 			expect(formatQuestionStatus("all")).toBe("All");
 		});
