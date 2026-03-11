@@ -181,7 +181,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 		});
 	}, [questions, search, category, status, track]);
 
-	const completedCount = questions.filter(
+	const completedCount = filtered.filter(
 		(question) => question.status === "done",
 	).length;
 
@@ -201,7 +201,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 					data-testid="track-progress"
 					className={`basis-full text-xs sm:basis-auto sm:text-sm ${QUESTION_UI_CLASSES.mutedText}`}
 				>
-					{completedCount}/{questions.length} complete
+					{completedCount}/{filtered.length} complete
 				</p>
 				<div className="flex min-w-0 max-w-full basis-full shrink-0 flex-wrap items-end gap-3 min-[1330px]:ml-auto min-[1330px]:basis-auto">
 					{track !== "blind75" && (

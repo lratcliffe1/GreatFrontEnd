@@ -157,6 +157,9 @@ describe("TrackQuestionsPage", () => {
 		expect(
 			screen.queryByText(/Array\.prototype\.reduce/),
 		).not.toBeInTheDocument();
+		expect(screen.getByTestId("track-progress")).toHaveTextContent(
+			"1/1 complete",
+		);
 	});
 
 	it("hydrates filters from URL params", () => {
@@ -177,6 +180,9 @@ describe("TrackQuestionsPage", () => {
 			screen.queryByText(/Debounce/),
 		).not.toBeInTheDocument();
 		expect(screen.getByText(/Array\.prototype\.reduce/)).toBeInTheDocument();
+		expect(screen.getByTestId("track-progress")).toHaveTextContent(
+			"0/1 complete",
+		);
 	});
 
 	it("syncs filter changes back to URL params", async () => {
