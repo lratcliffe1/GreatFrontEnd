@@ -1,10 +1,11 @@
 "use client";
 
+import { useMemo } from "react";
 import { useMediaQuery } from "@mui/material";
 import { Provider } from "react-redux";
 import { ThemeProvider, createTheme } from "@mui/material";
 
-import { store } from "@/lib/store";
+import { makeStore, type AppStore } from "@/lib/store";
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -55,9 +56,16 @@ function ThemeWrapper({ children }: { children: React.ReactNode }) {
 	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 
-export function AppProviders({ children }: { children: React.ReactNode }) {
+type AppProvidersProps = {
+	children: React.ReactNode;
+	store?: AppStore;
+};
+
+export function AppProviders({ children, store }: AppProvidersProps) {
+	const appStore = useMemo(() => store ?? makeStore(), [store]);
+
 	return (
-		<Provider store={store}>
+		<Provider store={appStore}>
 			<ThemeWrapper>{children}</ThemeWrapper>
 		</Provider>
 	);

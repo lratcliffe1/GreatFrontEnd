@@ -3,8 +3,6 @@ import { render, screen, waitFor } from "@/test-utils";
 import { TrackQuestionsPage } from "@/features/questions/track-questions-page";
 import { useQuestionsQuery } from "@/lib/graphql/api";
 import type { Question } from "@/content/questions";
-import { store } from "@/lib/store";
-import { resetFilters } from "@/lib/store/filtersSlice";
 
 const mockUseQuestionsQuery = jest.fn();
 jest.mock("@/lib/graphql/api", () => ({
@@ -51,7 +49,6 @@ const mockQuestions: Question[] = [
 
 describe("TrackQuestionsPage", () => {
 	beforeEach(() => {
-		store.dispatch(resetFilters());
 		window.history.replaceState(window.history.state, "", "/gfe75");
 
 		mockUseQuestionsQuery.mockReturnValue({

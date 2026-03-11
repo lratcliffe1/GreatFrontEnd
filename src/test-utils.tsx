@@ -1,18 +1,25 @@
 import { render, type RenderOptions } from "@testing-library/react";
 
+import { type AppStore, makeStore } from "@/lib/store";
 import { AppProviders } from "@/providers/app-providers";
 
-function AllTheProviders({ children }: { children: React.ReactNode }) {
-	return <AppProviders>{children}</AppProviders>;
-}
+type ExtendedRenderOptions = Omit<RenderOptions, "wrapper"> & {
+	store?: AppStore;
+};
 
 function customRender(
 	ui: React.ReactElement,
-	options?: Omit<RenderOptions, "wrapper">,
+	options: ExtendedRenderOptions = {},
 ) {
+	const { store = makeStore(), ...renderOptions } = options;
+
+	function AllTheProviders({ children }: { children: React.ReactNode }) {
+		return <AppProviders store={store}>{children}</AppProviders>;
+	}
+
 	return render(ui, {
 		wrapper: AllTheProviders,
-		...options,
+		...renderOptions,
 	});
 }
 
