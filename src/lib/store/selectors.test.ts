@@ -12,6 +12,7 @@ import filtersReducer, {
 	setStatus,
 } from "@/lib/store/filtersSlice";
 import todoDemoReducer from "@/lib/store/todoDemoSlice";
+import type { Track } from "@/content/questions";
 
 function getState(filters: ReturnType<typeof filtersReducer>) {
 	return {
@@ -24,42 +25,67 @@ function getState(filters: ReturnType<typeof filtersReducer>) {
 }
 
 describe("selectors", () => {
+	const track: Track = "gfe75";
+
 	it("selectSearch returns search value", () => {
-		const state = getState(filtersReducer(undefined, setSearch("debounce")));
-		expect(selectSearch(state)).toBe("debounce");
+		const state = getState(
+			filtersReducer(undefined, setSearch({ track, value: "debounce" })),
+		);
+		expect(selectSearch(state, track)).toBe("debounce");
 	});
 
 	it("selectCategory returns category value", () => {
 		const state = getState(
-			filtersReducer(undefined, setCategory("JavaScript functions")),
+			filtersReducer(
+				undefined,
+				setCategory({ track, value: "JavaScript functions" }),
+			),
 		);
-		expect(selectCategory(state)).toBe("JavaScript functions");
+		expect(selectCategory(state, track)).toBe("JavaScript functions");
 	});
 
 	it("selectStatus returns status value", () => {
-		const state = getState(filtersReducer(undefined, setStatus("done")));
-		expect(selectStatus(state)).toBe("done");
+		const state = getState(
+			filtersReducer(undefined, setStatus({ track, value: "done" })),
+		);
+		expect(selectStatus(state, track)).toBe("done");
 	});
 
 	it("selectHasActiveFilters returns false when all default", () => {
 		const state = getState(filtersReducer(undefined, { type: "init" }));
-		expect(selectHasActiveFilters(state)).toBe(false);
+		expect(selectHasActiveFilters(state, track)).toBe(false);
 	});
 
 	it("selectHasActiveFilters returns true when search is set", () => {
-		const state = getState(filtersReducer(undefined, setSearch("todo")));
-		expect(selectHasActiveFilters(state)).toBe(true);
+		const state = getState(
+			filtersReducer(undefined, setSearch({ track, value: "todo" })),
+		);
+		expect(selectHasActiveFilters(state, track)).toBe(true);
 	});
 
 	it("selectHasActiveFilters returns true when category is not all", () => {
-		const state = getState(filtersReducer(undefined, setCategory("Quiz")));
-		expect(selectHasActiveFilters(state)).toBe(true);
+		const state = getState(
+			filtersReducer(undefined, setCategory({ track, value: "Quiz" })),
+		);
+		expect(selectHasActiveFilters(state, track)).toBe(true);
 	});
 
 	it("selectHasActiveFilters returns false after resetFilters", () => {
 		const state = getState(
-			filtersReducer(filtersReducer(undefined, setSearch("x")), resetFilters()),
+			filtersReducer(
+				filtersReducer(undefined, setSearch({ track, value: "x" })),
+				resetFilters(),
+			),
 		);
-		expect(selectHasActiveFilters(state)).toBe(false);
+		expect(selectHasActiveFilters(state, track)).toBe(false);
+	});
+
+	it("keeps filters isolated by track", () => {
+		const state = getState(
+			filtersReducer(undefined, setSearch({ track: "blind75", value: "two sum" })),
+		);
+
+		expect(selectSearch(state, "blind75")).toBe("two sum");
+		expect(selectSearch(state, "gfe75")).toBe("");
 	});
 });

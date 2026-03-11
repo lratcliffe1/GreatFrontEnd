@@ -1,8 +1,10 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "@/test-utils";
+import { render, screen, waitFor } from "@/test-utils";
 import { TrackQuestionsPage } from "@/features/questions/track-questions-page";
 import { useQuestionsQuery } from "@/lib/graphql/api";
 import type { Question } from "@/content/questions";
+import { store } from "@/lib/store";
+import { resetFilters } from "@/lib/store/filtersSlice";
 
 const mockUseQuestionsQuery = jest.fn();
 jest.mock("@/lib/graphql/api", () => ({
@@ -49,6 +51,9 @@ const mockQuestions: Question[] = [
 
 describe("TrackQuestionsPage", () => {
 	beforeEach(() => {
+		store.dispatch(resetFilters());
+		window.history.replaceState(window.history.state, "", "/gfe75");
+
 		mockUseQuestionsQuery.mockReturnValue({
 			data: mockQuestions,
 			error: undefined,
@@ -155,5 +160,37 @@ describe("TrackQuestionsPage", () => {
 		expect(
 			screen.queryByText(/Array\.prototype\.reduce/),
 		).not.toBeInTheDocument();
+	});
+
+	it("hydrates filters from URL params", () => {
+		window.history.replaceState(
+			window.history.state,
+			"",
+			"/gfe75?search=reduce&status=todo&category=JavaScript%20functions",
+		);
+
+		render(<TrackQuestionsPage track="gfe75" />);
+
+		expect(screen.getByLabelText("Search questions")).toHaveValue("reduce");
+		expect(screen.getByLabelText("Status")).toHaveTextContent("Todo");
+		expect(screen.getByLabelText("Category")).toHaveTextContent(
+			"JavaScript functions",
+		);
+		expect(
+			screen.queryByText(/Debounce/),
+		).not.toBeInTheDocument();
+		expect(screen.getByText(/Array\.prototype\.reduce/)).toBeInTheDocument();
+	});
+
+	it("syncs filter changes back to URL params", async () => {
+		const user = userEvent.setup();
+		render(<TrackQuestionsPage track="gfe75" />);
+
+		const searchInput = screen.getByLabelText("Search questions");
+		await user.type(searchInput, "Debounce");
+
+		await waitFor(() => {
+			expect(window.location.search).toContain("search=Debounce");
+		});
 	});
 });

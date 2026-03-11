@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
 	Alert,
 	FormControl,
@@ -18,7 +18,12 @@ import {
 	StatusBadge,
 } from "@/components/ui/tailwind-primitives";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import { setCategory, setSearch, setStatus } from "@/lib/store/filtersSlice";
+import {
+	hydrateFiltersFromQuery,
+	setCategory,
+	setSearch,
+	setStatus,
+} from "@/lib/store/filtersSlice";
 import {
 	selectCategory,
 	selectSearch,
@@ -32,6 +37,76 @@ import {
 } from "@/features/questions/question-ui";
 import { useQuestionsQuery } from "@/lib/graphql/api";
 
+type TrackFilterValues = {
+	search: string;
+	category: string;
+	status: Question["status"] | "all";
+};
+
+function isTrackStatus(value: string | null): value is Question["status"] {
+	return value === "todo" || value === "in_progress" || value === "done";
+}
+
+function readFiltersFromUrl(track: Track): TrackFilterValues {
+	if (typeof window === "undefined") {
+		return { search: "", category: "all", status: "all" };
+	}
+
+	const params = new URLSearchParams(window.location.search);
+	const statusParam = params.get("status");
+
+	return {
+		search: params.get("search") ?? "",
+		category: track === "blind75" ? "all" : (params.get("category") ?? "all"),
+		status: isTrackStatus(statusParam) ? statusParam : "all",
+	};
+}
+
+function hasFilterParamsInUrl(track: Track) {
+	if (typeof window === "undefined") {
+		return false;
+	}
+
+	const params = new URLSearchParams(window.location.search);
+	if (params.has("search") || params.has("status")) {
+		return true;
+	}
+
+	return track !== "blind75" && params.has("category");
+}
+
+function syncFiltersToUrl(track: Track, filters: TrackFilterValues) {
+	if (typeof window === "undefined") {
+		return;
+	}
+
+	const params = new URLSearchParams(window.location.search);
+	const normalizedSearch = filters.search.trim();
+	if (normalizedSearch.length > 0) {
+		params.set("search", normalizedSearch);
+	} else {
+		params.delete("search");
+	}
+
+	if (track !== "blind75" && filters.category !== "all") {
+		params.set("category", filters.category);
+	} else {
+		params.delete("category");
+	}
+
+	if (filters.status !== "all") {
+		params.set("status", filters.status);
+	} else {
+		params.delete("status");
+	}
+
+	const nextQuery = params.toString();
+	const nextUrl = nextQuery
+		? `${window.location.pathname}?${nextQuery}`
+		: window.location.pathname;
+	window.history.replaceState(window.history.state, "", nextUrl);
+}
+
 function getUniqueCategories(questions: Question[]) {
 	return Array.from(
 		new Set(questions.map((question) => question.category)),
@@ -40,14 +115,43 @@ function getUniqueCategories(questions: Question[]) {
 
 export function TrackQuestionsPage({ track }: { track: Track }) {
 	const dispatch = useAppDispatch();
-	const search = useAppSelector(selectSearch);
-	const category = useAppSelector(selectCategory);
-	const status = useAppSelector(selectStatus);
+	const skipSyncRef = useRef(true);
+	const search = useAppSelector((state) => selectSearch(state, track));
+	const category = useAppSelector((state) => selectCategory(state, track));
+	const status = useAppSelector((state) => selectStatus(state, track));
 	const {
 		data: questions = [],
 		error,
 		isLoading,
 	} = useQuestionsQuery({ track }, { skip: !track });
+
+	useEffect(() => {
+		skipSyncRef.current = true;
+
+		if (hasFilterParamsInUrl(track)) {
+			const filtersFromUrl = readFiltersFromUrl(track);
+			dispatch(
+				hydrateFiltersFromQuery({
+					track,
+					search: filtersFromUrl.search,
+					category: filtersFromUrl.category,
+					status: filtersFromUrl.status,
+				}),
+			);
+			return;
+		}
+
+		skipSyncRef.current = false;
+	}, [dispatch, track]);
+
+	useEffect(() => {
+		if (skipSyncRef.current) {
+			skipSyncRef.current = false;
+			return;
+		}
+
+		syncFiltersToUrl(track, { search, category, status });
+	}, [track, search, category, status]);
 
 	const errorMessage =
 		error && typeof error === "object" && "message" in error
@@ -108,7 +212,11 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 								labelId="category-label"
 								label="Category"
 								value={isLoading ? "all" : category}
-								onChange={(event) => dispatch(setCategory(event.target.value))}
+								onChange={(event) =>
+									dispatch(
+										setCategory({ track, value: String(event.target.value) }),
+									)
+								}
 							>
 								<MenuItem value="all">All</MenuItem>
 								{!isLoading &&
@@ -133,7 +241,10 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 							value={isLoading ? "all" : status}
 							onChange={(event) =>
 								dispatch(
-									setStatus(event.target.value as Question["status"] | "all"),
+									setStatus({
+										track,
+										value: event.target.value as Question["status"] | "all",
+									}),
 								)
 							}
 						>
@@ -164,7 +275,9 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 							id="search-questions"
 							type="search"
 							value={search}
-							onChange={(event) => dispatch(setSearch(event.target.value))}
+							onChange={(event) =>
+								dispatch(setSearch({ track, value: event.target.value }))
+							}
 							disabled={isLoading}
 							className="w-full min-w-0 max-w-full rounded border border-card-border bg-background px-3 py-2 text-xs text-foreground focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 disabled:opacity-60 dark:focus:border-teal-500 dark:focus:ring-teal-500 sm:text-sm"
 						/>
