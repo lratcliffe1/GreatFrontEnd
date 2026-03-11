@@ -18,15 +18,10 @@ test("filters questions by search", async ({ page }) => {
 test("filters questions by category", async ({ page }) => {
 	await page.goto("/gfe75");
 
-	await page
-		.getByTestId("filter-category")
-		.locator("[role='combobox']")
-		.click();
+	await page.getByTestId("filter-category").locator("[role='combobox']").click();
 	await page.getByRole("option", { name: "Quiz" }).click();
 
-	await expect(
-		page.getByTestId("question-title-cookie-sessionstorage-localstorage"),
-	).toBeVisible();
+	await expect(page.getByTestId("question-title-cookie-sessionstorage-localstorage")).toBeVisible();
 });
 
 test("filters questions by status", async ({ page }) => {
@@ -36,14 +31,10 @@ test("filters questions by status", async ({ page }) => {
 	await page.getByRole("option", { name: "Done" }).click();
 
 	await expect(page.getByTestId("question-title-debounce")).toBeVisible();
-	await expect(
-		page.getByTestId("question-title-array-prototype-reduce"),
-	).toHaveCount(0);
+	await expect(page.getByTestId("question-title-array-prototype-reduce")).toHaveCount(0);
 });
 
-test("keeps filters below the progress summary before the wide breakpoint", async ({
-	page,
-}) => {
+test("keeps filters below the progress summary before the wide breakpoint", async ({ page }) => {
 	await page.setViewportSize({ width: 1270, height: 900 });
 	await page.goto("/gfe75");
 

@@ -23,9 +23,7 @@ export async function POST(request: Request) {
 	}
 
 	if (!body || typeof body !== "object" || Array.isArray(body)) {
-		return graphQlErrorResponse(
-			"GraphQL request body must be a JSON object.",
-		);
+		return graphQlErrorResponse("GraphQL request body must be a JSON object.");
 	}
 
 	if (typeof body.query !== "string" || body.query.trim().length === 0) {

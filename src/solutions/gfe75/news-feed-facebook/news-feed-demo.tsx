@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AppButton } from "@/components/ui/tailwind-primitives";
 
 type ReactionKey = "like" | "haha" | "wow";
@@ -40,10 +34,7 @@ function createSeedPost(index: number): FeedPost {
 		id: `post-${index + 1}`,
 		author: index % 2 === 0 ? "Liam" : "Frontend Friend",
 		content: `Sample post ${index + 1} in the mock feed. This demonstrates cursor pagination, feed composition, and optimistic reactions.`,
-		imageUrl:
-			index % 4 === 0
-				? `https://picsum.photos/seed/news-feed-${index + 1}/720/420`
-				: undefined,
+		imageUrl: index % 4 === 0 ? `https://picsum.photos/seed/news-feed-${index + 1}/720/420` : undefined,
 		createdAt: Date.now() - index * 1000 * 60 * 12,
 		reactions: {
 			like: Math.floor(Math.random() * 40),
@@ -54,9 +45,7 @@ function createSeedPost(index: number): FeedPost {
 	};
 }
 
-let dbPosts: FeedPost[] = Array.from({ length: 30 }).map((_, index) =>
-	createSeedPost(index),
-);
+let dbPosts: FeedPost[] = Array.from({ length: 30 }).map((_, index) => createSeedPost(index));
 
 function wait(ms: number) {
 	return new Promise((resolve) => {
@@ -64,18 +53,12 @@ function wait(ms: number) {
 	});
 }
 
-function applyReactionTransition(
-	post: FeedPost,
-	nextReaction: ReactionKey | null,
-): FeedPost {
+function applyReactionTransition(post: FeedPost, nextReaction: ReactionKey | null): FeedPost {
 	const previousReaction = post.reactionByMe;
 	const nextReactions = { ...post.reactions };
 
 	if (previousReaction) {
-		nextReactions[previousReaction] = Math.max(
-			0,
-			nextReactions[previousReaction] - 1,
-		);
+		nextReactions[previousReaction] = Math.max(0, nextReactions[previousReaction] - 1);
 	}
 	if (nextReaction) {
 		nextReactions[nextReaction] += 1;
@@ -99,17 +82,11 @@ async function fetchFeedPage(cursor: string | null): Promise<FeedPage> {
 
 	const posts = dbPosts.slice(start, start + PAGE_SIZE);
 	const lastVisiblePost = posts[posts.length - 1] ?? null;
-	const nextCursor =
-		start + posts.length < dbPosts.length && lastVisiblePost
-			? lastVisiblePost.id
-			: null;
+	const nextCursor = start + posts.length < dbPosts.length && lastVisiblePost ? lastVisiblePost.id : null;
 	return { posts, nextCursor };
 }
 
-async function createPost(
-	content: string,
-	imageUrl?: string,
-): Promise<FeedPost> {
+async function createPost(content: string, imageUrl?: string): Promise<FeedPost> {
 	await wait(250);
 	const newPost: FeedPost = {
 		id: `post-${Date.now()}`,
@@ -124,10 +101,7 @@ async function createPost(
 	return newPost;
 }
 
-async function persistReaction(
-	postId: string,
-	nextReaction: ReactionKey | null,
-) {
+async function persistReaction(postId: string, nextReaction: ReactionKey | null) {
 	await wait(220);
 	if (Math.random() < 0.15) {
 		throw new Error("Reaction failed on server. Try again.");
@@ -174,17 +148,7 @@ export function NewsFeedDemo() {
 		try {
 			const page = await fetchFeedPage(cursor);
 			setPosts((previous) =>
-				cursor
-					? [
-							...previous,
-							...page.posts.filter(
-								(nextPost) =>
-									!previous.some(
-										(previousPost) => previousPost.id === nextPost.id,
-									),
-							),
-						]
-					: page.posts,
+				cursor ? [...previous, ...page.posts.filter((nextPost) => !previous.some((previousPost) => previousPost.id === nextPost.id))] : page.posts,
 			);
 			setNextCursor(page.nextCursor);
 			setError(null);
@@ -206,11 +170,7 @@ export function NewsFeedDemo() {
 
 		const observer = new IntersectionObserver(
 			(entries) => {
-				if (
-					entries.some((entry) => entry.isIntersecting) &&
-					nextCursor &&
-					!loadingRef.current
-				) {
+				if (entries.some((entry) => entry.isIntersecting) && nextCursor && !loadingRef.current) {
 					void loadPage(nextCursor);
 				}
 			},
@@ -245,40 +205,23 @@ export function NewsFeedDemo() {
 		const current = posts.find((post) => post.id === postId);
 		if (!current) return;
 		const previousReaction = current.reactionByMe;
-		const nextReaction =
-			previousReaction === selectedReaction ? null : selectedReaction;
+		const nextReaction = previousReaction === selectedReaction ? null : selectedReaction;
 
-		setPosts((previous) =>
-			previous.map((post) =>
-				post.id === postId ? applyReactionTransition(post, nextReaction) : post,
-			),
-		);
+		setPosts((previous) => previous.map((post) => (post.id === postId ? applyReactionTransition(post, nextReaction) : post)));
 
 		try {
 			await persistReaction(postId, nextReaction);
 			setError(null);
 		} catch (caught) {
-			setPosts((previous) =>
-				previous.map((post) =>
-					post.id === postId
-						? applyReactionTransition(post, previousReaction)
-						: post,
-				),
-			);
+			setPosts((previous) => previous.map((post) => (post.id === postId ? applyReactionTransition(post, previousReaction) : post)));
 			setError(caught instanceof Error ? caught.message : "Failed to react.");
 		}
 	}
 
 	return (
 		<div className="space-y-5">
-			<form
-				onSubmit={onCreatePost}
-				className="space-y-2 rounded-md border border-card-border p-3 [background:var(--card-bg)]"
-			>
-				<label
-					className="text-sm font-medium text-foreground"
-					htmlFor="new-post"
-				>
+			<form onSubmit={onCreatePost} className="space-y-2 rounded-md border border-card-border p-3 [background:var(--card-bg)]">
+				<label className="text-sm font-medium text-foreground" htmlFor="new-post">
 					Create post
 				</label>
 				<textarea
@@ -296,17 +239,10 @@ export function NewsFeedDemo() {
 					placeholder="Optional image URL"
 				/>
 				<div className="flex flex-wrap items-center gap-2">
-					<AppButton
-						type="submit"
-						disabled={
-							submitting || (!newPostContent.trim() && !newPostImageUrl.trim())
-						}
-					>
+					<AppButton type="submit" disabled={submitting || (!newPostContent.trim() && !newPostImageUrl.trim())}>
 						{submitting ? "Publishing..." : "Publish"}
 					</AppButton>
-					<p className="text-xs text-muted">
-						Supports text-only and text+image posts.
-					</p>
+					<p className="text-xs text-muted">Supports text-only and text+image posts.</p>
 				</div>
 			</form>
 
@@ -328,19 +264,12 @@ export function NewsFeedDemo() {
 							className="rounded-md border border-card-border p-3 [background:var(--card-bg)]"
 						>
 							<div className="mb-2 flex items-center justify-between text-sm text-muted">
-								<span
-									id={`post-author-${post.id}`}
-									className="font-semibold text-foreground"
-								>
+								<span id={`post-author-${post.id}`} className="font-semibold text-foreground">
 									{post.author}
 								</span>
 								<span>{formatRelativeTime(post.createdAt)}</span>
 							</div>
-							{post.content ? (
-								<p className="mb-3 whitespace-pre-line text-foreground">
-									{post.content}
-								</p>
-							) : null}
+							{post.content ? <p className="mb-3 whitespace-pre-line text-foreground">{post.content}</p> : null}
 							{post.imageUrl ? (
 								// eslint-disable-next-line @next/next/no-img-element
 								<img
@@ -360,20 +289,13 @@ export function NewsFeedDemo() {
 											size="xs"
 											aria-pressed={active}
 											onClick={() => reactToPost(post.id, reactionKey)}
-											className={
-												active
-													? "ring-2 ring-teal-300/60 dark:ring-teal-400/60"
-													: undefined
-											}
+											className={active ? "ring-2 ring-teal-300/60 dark:ring-teal-400/60" : undefined}
 										>
-											{REACTION_LABELS[reactionKey]} •{" "}
-											{post.reactions[reactionKey]}
+											{REACTION_LABELS[reactionKey]} • {post.reactions[reactionKey]}
 										</AppButton>
 									);
 								})}
-								<span className="text-xs text-muted">
-									{totalReactions} total reactions
-								</span>
+								<span className="text-xs text-muted">{totalReactions} total reactions</span>
 							</div>
 						</article>
 					);
@@ -382,9 +304,7 @@ export function NewsFeedDemo() {
 
 			<div ref={sentinelRef} className="h-8" />
 			{loading && <p className="text-sm text-muted">Loading more posts...</p>}
-			{!hasMore && !loading && (
-				<p className="text-sm text-muted">No more posts in the mock feed.</p>
-			)}
+			{!hasMore && !loading && <p className="text-sm text-muted">No more posts in the mock feed.</p>}
 		</div>
 	);
 }

@@ -1,8 +1,4 @@
-import {
-	formatQuestionStatus,
-	getGraphQlErrorMessage,
-	isHttpUrl,
-} from "@/features/questions/helpers";
+import { formatQuestionStatus, getGraphQlErrorMessage, isHttpUrl } from "@/features/questions/helpers";
 
 describe("helpers", () => {
 	describe("isHttpUrl", () => {
@@ -34,9 +30,7 @@ describe("helpers", () => {
 
 	describe("getGraphQlErrorMessage", () => {
 		it("returns error message for Error instances", () => {
-			expect(getGraphQlErrorMessage(new Error("Network error"))).toBe(
-				"Network error",
-			);
+			expect(getGraphQlErrorMessage(new Error("Network error"))).toBe("Network error");
 		});
 
 		it("returns fallback for non-Error values", () => {

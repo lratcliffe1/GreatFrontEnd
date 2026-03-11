@@ -1,8 +1,4 @@
-import todoDemoReducer, {
-	addTask,
-	clearTasks,
-	removeTask,
-} from "@/lib/store/todoDemoSlice";
+import todoDemoReducer, { addTask, clearTasks, removeTask } from "@/lib/store/todoDemoSlice";
 
 describe("todoDemoSlice", () => {
 	it("adds trimmed tasks and increments ids", () => {
@@ -24,20 +20,14 @@ describe("todoDemoSlice", () => {
 	});
 
 	it("removes a task by id", () => {
-		const seeded = todoDemoReducer(
-			todoDemoReducer(undefined, addTask("first")),
-			addTask("second"),
-		);
+		const seeded = todoDemoReducer(todoDemoReducer(undefined, addTask("first")), addTask("second"));
 		const state = todoDemoReducer(seeded, removeTask(1));
 
 		expect(state.tasks).toEqual([{ id: 2, label: "second" }]);
 	});
 
 	it("clears all tasks and resets id counter", () => {
-		const seeded = todoDemoReducer(
-			todoDemoReducer(undefined, addTask("first")),
-			addTask("second"),
-		);
+		const seeded = todoDemoReducer(todoDemoReducer(undefined, addTask("first")), addTask("second"));
 		const state = todoDemoReducer(seeded, clearTasks());
 
 		expect(state.tasks).toEqual([]);

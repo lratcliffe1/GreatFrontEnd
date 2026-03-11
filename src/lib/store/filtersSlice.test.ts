@@ -9,18 +9,9 @@ import filtersReducer, {
 
 describe("filtersSlice", () => {
 	it("updates search, category, and status for a single track", () => {
-		const withSearch = filtersReducer(
-			undefined,
-			setSearch({ track: "gfe75", value: "debounce" }),
-		);
-		const withCategory = filtersReducer(
-			withSearch,
-			setCategory({ track: "gfe75", value: "UI coding" }),
-		);
-		const withStatus = filtersReducer(
-			withCategory,
-			setStatus({ track: "gfe75", value: "done" }),
-		);
+		const withSearch = filtersReducer(undefined, setSearch({ track: "gfe75", value: "debounce" }));
+		const withCategory = filtersReducer(withSearch, setCategory({ track: "gfe75", value: "UI coding" }));
+		const withStatus = filtersReducer(withCategory, setStatus({ track: "gfe75", value: "done" }));
 
 		expect(withStatus).toEqual({
 			byTrack: {
@@ -57,10 +48,7 @@ describe("filtersSlice", () => {
 	});
 
 	it("resets one track to defaults", () => {
-		const customized = filtersReducer(
-			undefined,
-			setSearch({ track: "gfe75", value: "todo" }),
-		);
+		const customized = filtersReducer(undefined, setSearch({ track: "gfe75", value: "todo" }));
 		const state = filtersReducer(customized, resetFiltersForTrack("gfe75"));
 
 		expect(state.byTrack.gfe75).toEqual({
@@ -71,14 +59,8 @@ describe("filtersSlice", () => {
 	});
 
 	it("resets all tracks to defaults", () => {
-		const withGfeSearch = filtersReducer(
-			undefined,
-			setSearch({ track: "gfe75", value: "todo" }),
-		);
-		const withBlindStatus = filtersReducer(
-			withGfeSearch,
-			setStatus({ track: "blind75", value: "done" }),
-		);
+		const withGfeSearch = filtersReducer(undefined, setSearch({ track: "gfe75", value: "todo" }));
+		const withBlindStatus = filtersReducer(withGfeSearch, setStatus({ track: "blind75", value: "done" }));
 		const state = filtersReducer(withBlindStatus, resetFilters());
 
 		expect(state).toEqual({

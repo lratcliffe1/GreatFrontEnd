@@ -2,19 +2,9 @@
 
 import { useMemo, useState } from "react";
 
-import {
-	AppButton,
-	EditableFieldPrompt,
-} from "@/components/ui/tailwind-primitives";
-import {
-	StepVisualizerLayout,
-	type CodeLine,
-} from "@/components/visualizer/step-visualizer-layout";
-import {
-	DUPLICATE_ARRAY_CONSTRAINTS,
-	getDuplicateScanSteps,
-	type DuplicateScanOutcome,
-} from "@/solutions/blind75/find-duplicates-in-array/solution";
+import { AppButton, EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
+import { StepVisualizerLayout, type CodeLine } from "@/components/visualizer/step-visualizer-layout";
+import { DUPLICATE_ARRAY_CONSTRAINTS, getDuplicateScanSteps, type DuplicateScanOutcome } from "@/solutions/blind75/find-duplicates-in-array/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: "export function hasDuplicate(numbers: number[]) {" },
@@ -59,21 +49,14 @@ function parseNumbersInput(rawInput: string) {
 		};
 	}
 
-	if (
-		parts.length < DUPLICATE_ARRAY_CONSTRAINTS.minLength ||
-		parts.length > DUPLICATE_ARRAY_CONSTRAINTS.maxLength
-	) {
+	if (parts.length < DUPLICATE_ARRAY_CONSTRAINTS.minLength || parts.length > DUPLICATE_ARRAY_CONSTRAINTS.maxLength) {
 		return {
 			numbers: [],
 			error: `Use between ${DUPLICATE_ARRAY_CONSTRAINTS.minLength} and ${DUPLICATE_ARRAY_CONSTRAINTS.maxLength} integers.`,
 		};
 	}
 
-	const outOfRangeValue = numbers.find(
-		(value) =>
-			value < DUPLICATE_ARRAY_CONSTRAINTS.minValue ||
-			value > DUPLICATE_ARRAY_CONSTRAINTS.maxValue,
-	);
+	const outOfRangeValue = numbers.find((value) => value < DUPLICATE_ARRAY_CONSTRAINTS.minValue || value > DUPLICATE_ARRAY_CONSTRAINTS.maxValue);
 	if (outOfRangeValue !== undefined) {
 		return {
 			numbers: [],
@@ -111,18 +94,12 @@ function getOutcomeClasses(outcome: DuplicateScanOutcome) {
 
 export function FindDuplicatesInArrayVisualizer() {
 	const [input, setInput] = useState(INITIAL_INPUT);
-	const [appliedNumbers, setAppliedNumbers] = useState(
-		parseNumbersInput(INITIAL_INPUT).numbers,
-	);
+	const [appliedNumbers, setAppliedNumbers] = useState(parseNumbersInput(INITIAL_INPUT).numbers);
 	const [stepIndex, setStepIndex] = useState(0);
 
 	const parsedInput = useMemo(() => parseNumbersInput(input), [input]);
-	const steps = useMemo(
-		() => getDuplicateScanSteps(appliedNumbers),
-		[appliedNumbers],
-	);
-	const step =
-		steps[Math.min(stepIndex, Math.max(steps.length - 1, 0))] ?? null;
+	const steps = useMemo(() => getDuplicateScanSteps(appliedNumbers), [appliedNumbers]);
+	const step = steps[Math.min(stepIndex, Math.max(steps.length - 1, 0))] ?? null;
 	const activeLine = step?.line ?? null;
 
 	return (
@@ -166,29 +143,17 @@ export function FindDuplicatesInArrayVisualizer() {
 				stepIndex={stepIndex}
 				totalSteps={steps.length}
 				onPrev={() => setStepIndex((current) => Math.max(current - 1, 0))}
-				onNext={() =>
-					setStepIndex((current) => Math.min(current + 1, steps.length - 1))
-				}
+				onNext={() => setStepIndex((current) => Math.min(current + 1, steps.length - 1))}
 				canPrev={steps.length > 0 && stepIndex > 0}
 				canNext={steps.length > 0 && stepIndex < steps.length - 1}
 			>
 				{step ? (
 					<div className="rounded border border-card-border bg-card-bg p-3">
-						<p className="text-sm text-foreground">
-							Current index: {step.index ?? "(done)"}
-						</p>
-						<p className="text-sm text-foreground">
-							Current value: {step.value ?? "(none)"}
-						</p>
+						<p className="text-sm text-foreground">Current index: {step.index ?? "(done)"}</p>
+						<p className="text-sm text-foreground">Current value: {step.value ?? "(none)"}</p>
 						<p className="text-sm text-foreground">Action: {step.action}</p>
-						<p className="text-sm text-foreground">
-							Seen set: {step.seen.length ? step.seen.join(", ") : "(empty)"}
-						</p>
-						<p
-							className={`text-sm font-semibold ${getOutcomeClasses(step.outcome)}`}
-						>
-							{getOutcomeLabel(step.outcome)}
-						</p>
+						<p className="text-sm text-foreground">Seen set: {step.seen.length ? step.seen.join(", ") : "(empty)"}</p>
+						<p className={`text-sm font-semibold ${getOutcomeClasses(step.outcome)}`}>{getOutcomeLabel(step.outcome)}</p>
 					</div>
 				) : (
 					<p className="text-muted">No steps yet for this input.</p>

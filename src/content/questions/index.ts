@@ -11,9 +11,5 @@ export function getQuestionsByTrack(track: Track): Question[] {
 }
 
 export function getQuestionByPath(track: Track, path: string): Question | null {
-	return (
-		QUESTIONS.find(
-			(question) => question.track === track && question.path === path,
-		) ?? null
-	);
+	return QUESTIONS.find((question) => question.track === track && question.path === path) ?? null;
 }

@@ -1,10 +1,6 @@
 export type Track = "gfe75" | "blind75";
 
-export type SolutionType =
-	| "ui_demo"
-	| "algo_visualizer"
-	| "code_and_tests"
-	| "writeup";
+export type SolutionType = "ui_demo" | "algo_visualizer" | "code_and_tests" | "writeup";
 
 export type QuestionStatus = "todo" | "in_progress" | "done";
 

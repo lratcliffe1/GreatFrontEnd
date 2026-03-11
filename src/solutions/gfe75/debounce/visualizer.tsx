@@ -2,18 +2,9 @@
 
 import { useMemo, useRef, useState } from "react";
 
-import {
-	AppButton,
-	EditableFieldPrompt,
-} from "@/components/ui/tailwind-primitives";
-import {
-	StepVisualizerLayout,
-	type CodeLine,
-} from "@/components/visualizer/step-visualizer-layout";
-import {
-	debounce,
-	type DebounceTraceEvent,
-} from "@/solutions/gfe75/debounce/solution";
+import { AppButton, EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
+import { StepVisualizerLayout, type CodeLine } from "@/components/visualizer/step-visualizer-layout";
+import { debounce, type DebounceTraceEvent } from "@/solutions/gfe75/debounce/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: "return (...args) => {" },
@@ -97,11 +88,7 @@ export function DebounceVisualizer() {
 	return (
 		<div className="space-y-5">
 			<div className="space-y-2">
-				<EditableFieldPrompt
-					htmlFor="delay-ms"
-					label="Delay (ms)"
-					hint="Change the delay to see how debounce timing affects execution."
-				/>
+				<EditableFieldPrompt htmlFor="delay-ms" label="Delay (ms)" hint="Change the delay to see how debounce timing affects execution." />
 				<div className="flex flex-wrap items-center gap-3">
 					<input
 						id="delay-ms"
@@ -129,36 +116,24 @@ export function DebounceVisualizer() {
 				stepIndex={stepIndex}
 				totalSteps={traceLogs.length}
 				onPrev={() => setStepIndex((current) => Math.max(0, current - 1))}
-				onNext={() =>
-					setStepIndex((current) => Math.min(traceLogs.length - 1, current + 1))
-				}
+				onNext={() => setStepIndex((current) => Math.min(traceLogs.length - 1, current + 1))}
 				canPrev={traceLogs.length > 0 && stepIndex > 0}
 				canNext={traceLogs.length > 0 && stepIndex < traceLogs.length - 1}
 			>
 				{currentStep ? (
 					<div className="rounded border border-card-border bg-card-bg p-2 text-sm text-foreground">
-						<span className="mr-2 font-medium text-muted">
-							{currentStep.at}
-						</span>
-						<span className="mr-2 rounded [background:var(--surface)] px-1.5 py-0.5 text-xs text-foreground">
-							line {currentStep.line}
-						</span>
+						<span className="mr-2 font-medium text-muted">{currentStep.at}</span>
+						<span className="mr-2 rounded [background:var(--surface)] px-1.5 py-0.5 text-xs text-foreground">line {currentStep.line}</span>
 						{currentStep.message}
 					</div>
 				) : (
-					<p className="text-sm text-muted">
-						No events yet. Trigger the handler or run the rapid scenario.
-					</p>
+					<p className="text-sm text-muted">No events yet. Trigger the handler or run the rapid scenario.</p>
 				)}
 
 				<div>
-					<p className="text-sm font-semibold text-foreground">
-						Executed payloads
-					</p>
+					<p className="text-sm font-semibold text-foreground">Executed payloads</p>
 					<p className="text-sm text-foreground">
-						{executedPayloads.length
-							? executedPayloads.join(", ")
-							: "None yet (debounce delay has not elapsed)."}
+						{executedPayloads.length ? executedPayloads.join(", ") : "None yet (debounce delay has not elapsed)."}
 					</p>
 				</div>
 			</StepVisualizerLayout>

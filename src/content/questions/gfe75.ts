@@ -11,8 +11,7 @@ export const GFE75_QUESTIONS: Question[] = [
 		track: "gfe75",
 		category: "JavaScript functions",
 		difficulty: "Medium",
-		sourceUrl:
-			"https://www.greatfrontend.com/interviews/study/gfe75/questions/javascript/debounce",
+		sourceUrl: "https://www.greatfrontend.com/interviews/study/gfe75/questions/javascript/debounce",
 		solutionType: "algo_visualizer",
 		status: "done",
 		summary: `Debouncing controls how often a function is allowed to execute over time.
@@ -58,8 +57,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Classnames.",
-		cardSummary:
-			"Implement a function that conditionally joins CSS class names together",
+		cardSummary: "Implement a function that conditionally joins CSS class names together",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -76,8 +74,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Flatten.",
-		cardSummary:
-			"Implement a function that recursively flattens an array into a single level deep",
+		cardSummary: "Implement a function that recursively flattens an array into a single level deep",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -94,8 +91,7 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Throttle.",
-		cardSummary:
-			"Implement a function to control the execution of a function by limiting how many times it can execute over time",
+		cardSummary: "Implement a function to control the execution of a function by limiting how many times it can execute over time",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -108,12 +104,10 @@ Implement a debounce function that accepts a callback and a wait duration, and r
 		track: "gfe75",
 		category: "UI coding",
 		difficulty: "Medium",
-		sourceUrl:
-			"https://www.greatfrontend.com/interviews/study/gfe75/questions/user-interface/todo-list",
+		sourceUrl: "https://www.greatfrontend.com/interviews/study/gfe75/questions/user-interface/todo-list",
 		solutionType: "ui_demo",
 		status: "done",
-		cardSummary:
-			"Build a Todo list that lets users add new tasks and delete existing tasks",
+		cardSummary: "Build a Todo list that lets users add new tasks and delete existing tasks",
 		summary: `You're given existing HTML for a Todo List app.
 
 Implement the following:
@@ -147,8 +141,7 @@ Implementation details:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Contact Form.",
-		cardSummary:
-			"Build a contact form which submits user feedback and contact details to a back end API",
+		cardSummary: "Build a contact form which submits user feedback and contact details to a back end API",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -165,8 +158,7 @@ Implementation details:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Holy Grail.",
-		cardSummary:
-			"Build the famous holy grail layout consisting of a header, 3 columns, and a footer",
+		cardSummary: "Build the famous holy grail layout consisting of a header, 3 columns, and a footer",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -183,8 +175,7 @@ Implementation details:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Tabs.",
-		cardSummary:
-			"Build a tabs component that displays a list of tab elements and one associated panel of content at a time",
+		cardSummary: "Build a tabs component that displays a list of tab elements and one associated panel of content at a time",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -201,8 +192,7 @@ Implementation details:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Job Board.",
-		cardSummary:
-			"Build a job board that displays the latest job postings from Hacker News",
+		cardSummary: "Build a job board that displays the latest job postings from Hacker News",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -233,8 +223,7 @@ Implementation details:
 		track: "gfe75",
 		category: "System design",
 		difficulty: "Medium",
-		sourceUrl:
-			"https://www.greatfrontend.com/interviews/study/gfe75/questions/system-design/news-feed-facebook",
+		sourceUrl: "https://www.greatfrontend.com/interviews/study/gfe75/questions/system-design/news-feed-facebook",
 		solutionType: "ui_demo",
 		status: "done",
 		summary: `Design a news feed UI that supports browsing posts, reacting to posts, and creating/publishing posts.
@@ -245,8 +234,7 @@ Core scope:
 - Post composer for new posts.
 
 Comments and sharing are out of core scope.`,
-		cardSummary:
-			"Design a Facebook-style feed with infinite scroll, reactions, and post creation.",
+		cardSummary: "Design a Facebook-style feed with infinite scroll, reactions, and post creation.",
 		approach: `Architecture and boundaries:
 - The runnable solution keeps orchestration in one controller-style component (NewsFeedDemo) and isolates "server" behavior in async helpers (fetchFeedPage, createPost, persistReaction).
 - A small in-memory dataset (dbPosts) simulates backend reads/writes, latency, and occasional failures so UX/error paths can be demonstrated.
@@ -301,8 +289,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Solve Autocomplete.",
-		cardSummary:
-			"Design an autocomplete component seen on Google and Facebook search",
+		cardSummary: "Design an autocomplete component seen on Google and Facebook search",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -319,8 +306,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Type Utilities II.",
-		cardSummary:
-			"Implement utilities to determine non-primitive variable types in JavaScript",
+		cardSummary: "Implement utilities to determine non-primitive variable types in JavaScript",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -355,8 +341,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Data Merging.",
-		cardSummary:
-			"Implement a function to merge rows of data from the same user",
+		cardSummary: "Implement a function to merge rows of data from the same user",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -390,8 +375,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Event Emitter.",
-		cardSummary:
-			"Implement a class that can subscribe to and emit events that trigger attached callback functions",
+		cardSummary: "Implement a class that can subscribe to and emit events that trigger attached callback functions",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -408,8 +392,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve getElementsByStyle.",
-		cardSummary:
-			"Implement a function to get all DOM elements that are rendered using the specified style",
+		cardSummary: "Implement a function to get all DOM elements that are rendered using the specified style",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -444,8 +427,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve List Format.",
-		cardSummary:
-			"Implement a function that formats a list of items into a single readable string",
+		cardSummary: "Implement a function that formats a list of items into a single readable string",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -497,8 +479,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Promise.any.",
-		cardSummary:
-			"Implement the Promise.any() function that resolves when any of the input elements are resolved",
+		cardSummary: "Implement the Promise.any() function that resolves when any of the input elements are resolved",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -551,8 +532,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Memoize.",
-		cardSummary:
-			"Implement a function that returns a memoized version of a function which accepts a single argument",
+		cardSummary: "Implement a function that returns a memoized version of a function which accepts a single argument",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -569,8 +549,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve Squash Object.",
-		cardSummary:
-			"Implement a function that returns a new object after squashing the input object into a single level of depth",
+		cardSummary: "Implement a function that returns a new object after squashing the input object into a single level of depth",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -587,8 +566,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve getElementsByClassName.",
-		cardSummary:
-			"Implement a function to get all DOM elements that contain the specified classes",
+		cardSummary: "Implement a function to get all DOM elements that contain the specified classes",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -605,10 +583,8 @@ Interview-ready extensions:
 			"https://www.greatfrontend.com/interviews/study/gfe75/questions/quiz/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage",
 		solutionType: "ui_demo",
 		status: "done",
-		summary:
-			"Compare client-side storage options in browsers: cookies, sessionStorage, and localStorage.",
-		cardSummary:
-			"Describe the difference between a cookie, `sessionStorage` and `localStorage` in browsers",
+		summary: "Compare client-side storage options in browsers: cookies, sessionStorage, and localStorage.",
+		cardSummary: "Describe the difference between a cookie, `sessionStorage` and `localStorage` in browsers",
 		approach:
 			"Compare along five axes: initiator, lifetime, request behavior, scope, and security. Emphasize that cookies are automatically included in HTTP requests while Web Storage is not, then map practical use cases: cookie for server session concerns, localStorage for persistent client preferences, sessionStorage for temporary tab-local state.",
 		complexity: "Conceptual question.",
@@ -618,8 +594,7 @@ Interview-ready extensions:
 		id: "gfe-script-async-defer",
 		questionNumber: 31,
 		path: "script-async-defer",
-		title:
-			"Describe the difference between <script>, <script async> and <script defer>",
+		title: "Describe the difference between <script>, <script async> and <script defer>",
 		track: "gfe75",
 		category: "Quiz",
 		difficulty: "Medium",
@@ -627,8 +602,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer script loading differences.",
-		cardSummary:
-			"Describe the difference between `<script>`, `<script async>` and `<script defer>`",
+		cardSummary: "Describe the difference between `<script>`, `<script async>` and `<script defer>`",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -662,8 +636,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer let/var/const differences.",
-		cardSummary:
-			"What are the differences between JavaScript variables created using `let`, `var` or `const`?",
+		cardSummary: "What are the differences between JavaScript variables created using `let`, `var` or `const`?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -680,8 +653,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer closure concept.",
-		cardSummary:
-			"What is a closure in JavaScript, and how/why would you use one?",
+		cardSummary: "What is a closure in JavaScript, and how/why would you use one?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -732,8 +704,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer null/undefined/undeclared differences.",
-		cardSummary:
-			"What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?",
+		cardSummary: "What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -750,8 +721,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer CommonJS vs ES modules.",
-		cardSummary:
-			"Explain the differences between CommonJS modules and ES modules in JavaScript",
+		cardSummary: "Explain the differences between CommonJS modules and ES modules in JavaScript",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -785,8 +755,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer Promises vs callbacks.",
-		cardSummary:
-			"What are the pros and cons of using Promises instead of callbacks in JavaScript?",
+		cardSummary: "What are the pros and cons of using Promises instead of callbacks in JavaScript?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -837,8 +806,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer CSS selector matching.",
-		cardSummary:
-			"Explain how a browser determines what elements match a CSS selector.",
+		cardSummary: "Explain how a browser determines what elements match a CSS selector.",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -873,8 +841,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer translate vs absolute positioning.",
-		cardSummary:
-			"Is there any reason you'd want to use `translate()` instead of `absolute` positioning, or vice-versa? And why?",
+		cardSummary: "Is there any reason you'd want to use `translate()` instead of `absolute` positioning, or vice-versa? And why?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -908,8 +875,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer CSS display property question.",
-		cardSummary:
-			"What is the CSS `display` property and can you give a few examples of its use?",
+		cardSummary: "What is the CSS `display` property and can you give a few examples of its use?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -926,8 +892,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer positioning differences.",
-		cardSummary:
-			"What's the difference between a `relative`, `fixed`, `absolute`, `sticky` and `static`-ally positioned element?",
+		cardSummary: "What's the difference between a `relative`, `fixed`, `absolute`, `sticky` and `static`-ally positioned element?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -944,8 +909,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer multilingual sites question.",
-		cardSummary:
-			"What kind of things must you be wary of when designing or developing for multilingual sites?",
+		cardSummary: "What kind of things must you be wary of when designing or developing for multilingual sites?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -962,8 +926,7 @@ Interview-ready extensions:
 		solutionType: "writeup",
 		status: "todo",
 		summary: "TODO: Answer block/inline/inline-block differences.",
-		cardSummary:
-			"What's the difference between `block`, `inline`, and `inline-block`?",
+		cardSummary: "What's the difference between `block`, `inline`, and `inline-block`?",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -998,8 +961,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve HTML Serializer.",
-		cardSummary:
-			"Implement a function to serialize an object into an HTML string with indentation",
+		cardSummary: "Implement a function to serialize an object into an HTML string with indentation",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1016,8 +978,7 @@ Interview-ready extensions:
 		solutionType: "code_and_tests",
 		status: "todo",
 		summary: "TODO: Solve JSON.stringify.",
-		cardSummary:
-			"Implement a function that converts a JavaScript value into a JSON string",
+		cardSummary: "Implement a function that converts a JavaScript value into a JSON string",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1069,8 +1030,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Progress Bars.",
-		cardSummary:
-			"Build a list of progress bars that fill up gradually when they are added to the page",
+		cardSummary: "Build a list of progress bars that fill up gradually when they are added to the page",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1087,8 +1047,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Like Button.",
-		cardSummary:
-			"Build a Like button that changes appearance based on the states",
+		cardSummary: "Build a Like button that changes appearance based on the states",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1140,8 +1099,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Stopwatch.",
-		cardSummary:
-			"Build a stopwatch widget that can measure how much time has passed",
+		cardSummary: "Build a stopwatch widget that can measure how much time has passed",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1158,8 +1116,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve File Explorer.",
-		cardSummary:
-			"Build a file explorer component to navigate files and directories in a tree-like hierarchical viewer",
+		cardSummary: "Build a file explorer component to navigate files and directories in a tree-like hierarchical viewer",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1193,8 +1150,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Transfer List.",
-		cardSummary:
-			"Build a component that allows transferring of items between two lists",
+		cardSummary: "Build a component that allows transferring of items between two lists",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1211,8 +1167,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Nested Checkboxes.",
-		cardSummary:
-			"Build a nested checkboxes component with parent-child selection logic",
+		cardSummary: "Build a nested checkboxes component with parent-child selection logic",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],
@@ -1229,8 +1184,7 @@ Interview-ready extensions:
 		solutionType: "ui_demo",
 		status: "todo",
 		summary: "TODO: Solve Modal Dialog.",
-		cardSummary:
-			"Build a reusable modal dialog component that can be opened and closed",
+		cardSummary: "Build a reusable modal dialog component that can be opened and closed",
 		approach: "TODO",
 		complexity: "TODO",
 		tags: [],

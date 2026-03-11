@@ -2,39 +2,16 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
-import {
-	Alert,
-	FormControl,
-	InputLabel,
-	MenuItem,
-	Select,
-} from "@mui/material";
+import { Alert, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 import type { Question, Track } from "@/content/questions";
-import {
-	DifficultyPill,
-	ElevatedCard,
-	MutedText,
-	StatusBadge,
-} from "@/components/ui/tailwind-primitives";
+import { DifficultyPill, ElevatedCard, MutedText, StatusBadge } from "@/components/ui/tailwind-primitives";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import {
-	hydrateFiltersFromQuery,
-	setCategory,
-	setSearch,
-	setStatus,
-} from "@/lib/store/filtersSlice";
-import {
-	selectCategory,
-	selectSearch,
-	selectStatus,
-} from "@/lib/store/selectors";
+import { hydrateFiltersFromQuery, setCategory, setSearch, setStatus } from "@/lib/store/filtersSlice";
+import { selectCategory, selectSearch, selectStatus } from "@/lib/store/selectors";
 import { TrackTabs } from "@/components/track-tabs";
 import { getTrackLabel } from "@/lib/tracks";
-import {
-	QUESTION_UI_CLASSES,
-	SourcePromptLink,
-} from "@/features/questions/question-ui";
+import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
 import { useQuestionsQuery } from "@/lib/graphql/api";
 
 type TrackFilterValues = {
@@ -101,16 +78,12 @@ function syncFiltersToUrl(track: Track, filters: TrackFilterValues) {
 	}
 
 	const nextQuery = params.toString();
-	const nextUrl = nextQuery
-		? `${window.location.pathname}?${nextQuery}`
-		: window.location.pathname;
+	const nextUrl = nextQuery ? `${window.location.pathname}?${nextQuery}` : window.location.pathname;
 	window.history.replaceState(window.history.state, "", nextUrl);
 }
 
 function getUniqueCategories(questions: Question[]) {
-	return Array.from(
-		new Set(questions.map((question) => question.category)),
-	).sort();
+	return Array.from(new Set(questions.map((question) => question.category))).sort();
 }
 
 export function TrackQuestionsPage({ track }: { track: Track }) {
@@ -119,11 +92,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 	const search = useAppSelector((state) => selectSearch(state, track));
 	const category = useAppSelector((state) => selectCategory(state, track));
 	const status = useAppSelector((state) => selectStatus(state, track));
-	const {
-		data: questions = [],
-		error,
-		isLoading,
-	} = useQuestionsQuery({ track }, { skip: !track });
+	const { data: questions = [], error, isLoading } = useQuestionsQuery({ track }, { skip: !track });
 
 	useEffect(() => {
 		skipSyncRef.current = true;
@@ -168,39 +137,26 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 				search.length === 0 ||
 				String(question.questionNumber).startsWith(search.trim()) ||
 				question.title.toLowerCase().includes(search.toLowerCase()) ||
-				question.tags.some((tag) =>
-					tag.toLowerCase().includes(search.toLowerCase()),
-				);
-			const matchesCategory =
-				track === "blind75" ||
-				category === "all" ||
-				question.category === category;
+				question.tags.some((tag) => tag.toLowerCase().includes(search.toLowerCase()));
+			const matchesCategory = track === "blind75" || category === "all" || question.category === category;
 			const matchesStatus = status === "all" || question.status === status;
 
 			return matchesSearch && matchesCategory && matchesStatus;
 		});
 	}, [questions, search, category, status, track]);
 
-	const completedCount = filtered.filter(
-		(question) => question.status === "done",
-	).length;
+	const completedCount = filtered.filter((question) => question.status === "done").length;
 
 	return (
 		<section className="min-w-0" data-testid={`track-page-${track}`}>
 			<div className="mb-5 flex min-w-0 flex-wrap items-end gap-3 sm:gap-4">
 				<TrackTabs />
 				<div className="min-w-0">
-					<h2
-						data-testid={`track-heading-${track}`}
-						className="truncate text-lg font-bold text-foreground sm:text-xl md:text-2xl"
-					>
+					<h2 data-testid={`track-heading-${track}`} className="truncate text-lg font-bold text-foreground sm:text-xl md:text-2xl">
 						{getTrackLabel(track)}
 					</h2>
 				</div>
-				<p
-					data-testid="track-progress"
-					className={`basis-full text-xs sm:basis-auto sm:text-sm ${QUESTION_UI_CLASSES.mutedText}`}
-				>
+				<p data-testid="track-progress" className={`basis-full text-xs sm:basis-auto sm:text-sm ${QUESTION_UI_CLASSES.mutedText}`}>
 					{completedCount}/{filtered.length} complete
 				</p>
 				<div className="flex min-w-0 max-w-full basis-full shrink-0 flex-wrap items-end gap-3 min-[1330px]:ml-auto min-[1330px]:basis-auto">
@@ -217,11 +173,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 								labelId="category-label"
 								label="Category"
 								value={isLoading ? "all" : category}
-								onChange={(event) =>
-									dispatch(
-										setCategory({ track, value: String(event.target.value) }),
-									)
-								}
+								onChange={(event) => dispatch(setCategory({ track, value: String(event.target.value) }))}
 							>
 								<MenuItem value="all">All</MenuItem>
 								{!isLoading &&
@@ -282,9 +234,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 							type="search"
 							data-testid="filter-search"
 							value={search}
-							onChange={(event) =>
-								dispatch(setSearch({ track, value: event.target.value }))
-							}
+							onChange={(event) => dispatch(setSearch({ track, value: event.target.value }))}
 							disabled={isLoading}
 							className="w-full min-w-0 max-w-full rounded border border-card-border bg-background px-3 py-2 text-xs text-foreground focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 disabled:opacity-60 dark:focus:border-teal-500 dark:focus:ring-teal-500 sm:text-sm"
 						/>
@@ -297,10 +247,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 			{isLoading ? (
 				<p className={QUESTION_UI_CLASSES.mutedText}>Loading questions...</p>
 			) : (
-				<div
-					className="grid min-w-0 grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2"
-					data-testid="question-grid"
-				>
+				<div className="grid min-w-0 grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2" data-testid="question-grid">
 					{filtered.map((question) => (
 						<ElevatedCard
 							key={question.id}
@@ -316,18 +263,12 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 								</h3>
 								<DifficultyPill difficulty={question.difficulty} />
 							</div>
-							<MutedText className="text-xs wrap-break-word sm:text-sm">
-								{question.cardSummary}
-							</MutedText>
+							<MutedText className="text-xs wrap-break-word sm:text-sm">{question.cardSummary}</MutedText>
 							<div className="mt-auto pt-3 sm:pt-4">
 								<div className="mb-3 flex flex-wrap items-center gap-1.5 text-[10px] sm:mb-4 sm:gap-2 sm:text-xs">
-									<span className={QUESTION_UI_CLASSES.mutedText}>
-										{question.category}
-									</span>
+									<span className={QUESTION_UI_CLASSES.mutedText}>{question.category}</span>
 									<span className={QUESTION_UI_CLASSES.mutedText}>•</span>
-									<span className={QUESTION_UI_CLASSES.mutedText}>
-										{question.solutionType}
-									</span>
+									<span className={QUESTION_UI_CLASSES.mutedText}>{question.solutionType}</span>
 									<span className={QUESTION_UI_CLASSES.mutedText}>•</span>
 									<StatusBadge status={question.status} />
 								</div>

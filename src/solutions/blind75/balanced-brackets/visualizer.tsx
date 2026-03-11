@@ -2,18 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import {
-	AppButton,
-	EditableFieldPrompt,
-} from "@/components/ui/tailwind-primitives";
-import {
-	StepVisualizerLayout,
-	type CodeLine,
-} from "@/components/visualizer/step-visualizer-layout";
-import {
-	getBalancedBracketInputError,
-	getBalancedBracketSteps,
-} from "@/solutions/blind75/balanced-brackets/solution";
+import { AppButton, EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
+import { StepVisualizerLayout, type CodeLine } from "@/components/visualizer/step-visualizer-layout";
+import { getBalancedBracketInputError, getBalancedBracketSteps } from "@/solutions/blind75/balanced-brackets/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: 'const OPENING = new Set(["(", "{", "["]);' },
@@ -51,18 +42,13 @@ const INITIAL_INPUT = "([]){}";
 
 export function BalancedBracketsVisualizer() {
 	const [input, setInput] = useState(INITIAL_INPUT);
-	const [steps, setSteps] = useState(() =>
-		getBalancedBracketSteps(INITIAL_INPUT),
-	);
+	const [steps, setSteps] = useState(() => getBalancedBracketSteps(INITIAL_INPUT));
 	const [stepIndex, setStepIndex] = useState(0);
 	const [isTraceFlashing, setIsTraceFlashing] = useState(false);
 	const traceFlashRafRef = useRef<number | null>(null);
-	const traceFlashEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-		null,
-	);
+	const traceFlashEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const inputError = getBalancedBracketInputError(input);
-	const step =
-		steps[Math.min(stepIndex, Math.max(steps.length - 1, 0))] ?? null;
+	const step = steps[Math.min(stepIndex, Math.max(steps.length - 1, 0))] ?? null;
 	const activeLine = step?.line ?? null;
 
 	function flashExecutionTrace() {
@@ -136,36 +122,20 @@ export function BalancedBracketsVisualizer() {
 				codeLines={CODE_LINES}
 				activeLine={activeLine}
 				traceTitle="Execution trace (step-by-step)"
-				tracePanelClassName={
-					isTraceFlashing
-						? "ring-2 ring-teal-500/70 ring-offset-2 ring-offset-background"
-						: undefined
-				}
+				tracePanelClassName={isTraceFlashing ? "ring-2 ring-teal-500/70 ring-offset-2 ring-offset-background" : undefined}
 				stepIndex={stepIndex}
 				totalSteps={steps.length}
 				onPrev={() => setStepIndex((current) => Math.max(current - 1, 0))}
-				onNext={() =>
-					setStepIndex((current) => Math.min(current + 1, steps.length - 1))
-				}
+				onNext={() => setStepIndex((current) => Math.min(current + 1, steps.length - 1))}
 				canPrev={steps.length > 0 && stepIndex > 0}
 				canNext={steps.length > 0 && stepIndex < steps.length - 1}
 			>
 				{step ? (
 					<div className="rounded border border-card-border bg-card-bg p-3">
-						<p className="text-sm text-foreground">
-							Current token: {step.token}
-						</p>
+						<p className="text-sm text-foreground">Current token: {step.token}</p>
 						<p className="text-sm text-foreground">Action: {step.action}</p>
-						<p className="text-sm text-foreground">
-							Stack: {step.stack.length ? step.stack.join(" ") : "(empty)"}
-						</p>
-						<p
-							className={`text-sm font-semibold ${
-								step.validSoFar
-									? "text-green-700 dark:text-green-400"
-									: "text-red-700 dark:text-red-400"
-							}`}
-						>
+						<p className="text-sm text-foreground">Stack: {step.stack.length ? step.stack.join(" ") : "(empty)"}</p>
+						<p className={`text-sm font-semibold ${step.validSoFar ? "text-green-700 dark:text-green-400" : "text-red-700 dark:text-red-400"}`}>
 							{step.validSoFar ? "Valid so far" : "Invalid"}
 						</p>
 					</div>

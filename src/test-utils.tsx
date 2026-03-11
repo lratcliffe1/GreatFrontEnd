@@ -7,10 +7,7 @@ type ExtendedRenderOptions = Omit<RenderOptions, "wrapper"> & {
 	store?: AppStore;
 };
 
-function customRender(
-	ui: React.ReactElement,
-	options: ExtendedRenderOptions = {},
-) {
+function customRender(ui: React.ReactElement, options: ExtendedRenderOptions = {}) {
 	const { store = makeStore(), ...renderOptions } = options;
 
 	function AllTheProviders({ children }: { children: React.ReactNode }) {

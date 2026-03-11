@@ -31,10 +31,7 @@ export type BracketStep = {
 };
 
 export function getBalancedBracketInputError(input: string) {
-	if (
-		input.length < BRACKET_INPUT_CONSTRAINTS.minLength ||
-		input.length > BRACKET_INPUT_CONSTRAINTS.maxLength
-	) {
+	if (input.length < BRACKET_INPUT_CONSTRAINTS.minLength || input.length > BRACKET_INPUT_CONSTRAINTS.maxLength) {
 		return `Enter between ${BRACKET_INPUT_CONSTRAINTS.minLength} and ${BRACKET_INPUT_CONSTRAINTS.maxLength} bracket characters.`;
 	}
 
@@ -48,12 +45,7 @@ export function getBalancedBracketInputError(input: string) {
 export function getBalancedBracketSteps(input: string): BracketStep[] {
 	const steps: BracketStep[] = [];
 	const stack: OpeningBracket[] = [];
-	const pushStep = (
-		line: BracketStep["line"],
-		token: string,
-		action: string,
-		validSoFar: boolean,
-	) => {
+	const pushStep = (line: BracketStep["line"], token: string, action: string, validSoFar: boolean) => {
 		steps.push({
 			token,
 			stack: [...stack],
@@ -78,28 +70,13 @@ export function getBalancedBracketSteps(input: string): BracketStep[] {
 		const expected = CLOSE_TO_OPEN[token as ClosingBracket];
 		const top = stack[stack.length - 1];
 		const valid = top === expected;
-		pushStep(
-			13,
-			token,
-			`Expected opening for "${token}" is "${expected ?? "?"}".`,
-			true,
-		);
+		pushStep(13, token, `Expected opening for "${token}" is "${expected ?? "?"}".`, true);
 		pushStep(14, token, `Top of stack is "${top ?? "(none)"}".`, true);
 		pushStep(15, token, `top === expected => ${valid}.`, valid);
 
 		if (!valid) {
-			pushStep(
-				16,
-				token,
-				`Mismatch. Expected ${top ? OPEN_TO_CLOSE[top] : "opening bracket"}, got "${token}".`,
-				false,
-			);
-			pushStep(
-				17,
-				token,
-				"Early return due to invalid bracket ordering.",
-				false,
-			);
+			pushStep(16, token, `Mismatch. Expected ${top ? OPEN_TO_CLOSE[top] : "opening bracket"}, got "${token}".`, false);
+			pushStep(17, token, "Early return due to invalid bracket ordering.", false);
 			return steps;
 		}
 
@@ -110,9 +87,7 @@ export function getBalancedBracketSteps(input: string): BracketStep[] {
 	pushStep(
 		23,
 		"end",
-		stack.length === 0
-			? "Return true: all brackets matched."
-			: "Return false: unclosed openings remain.",
+		stack.length === 0 ? "Return true: all brackets matched." : "Return false: unclosed openings remain.",
 		stack.length === 0,
 	);
 

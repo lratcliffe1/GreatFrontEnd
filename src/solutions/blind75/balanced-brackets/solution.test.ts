@@ -1,8 +1,4 @@
-import {
-	getBalancedBracketInputError,
-	getBalancedBracketSteps,
-	isBalancedBrackets,
-} from "@/solutions/blind75/balanced-brackets/solution";
+import { getBalancedBracketInputError, getBalancedBracketSteps, isBalancedBrackets } from "@/solutions/blind75/balanced-brackets/solution";
 
 describe("isBalancedBrackets", () => {
 	it("returns true for balanced input", () => {
@@ -28,15 +24,11 @@ describe("isBalancedBrackets", () => {
 
 describe("getBalancedBracketInputError", () => {
 	it("reports invalid length", () => {
-		expect(getBalancedBracketInputError("")).toMatch(
-			/Enter between 1 and 1000/,
-		);
+		expect(getBalancedBracketInputError("")).toMatch(/Enter between 1 and 1000/);
 	});
 
 	it("reports unsupported characters", () => {
-		expect(getBalancedBracketInputError("([a])")).toMatch(
-			/Use only bracket characters/,
-		);
+		expect(getBalancedBracketInputError("([a])")).toMatch(/Use only bracket characters/);
 	});
 });
 

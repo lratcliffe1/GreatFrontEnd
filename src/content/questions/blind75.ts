@@ -9,8 +9,7 @@ export const BLIND75_QUESTIONS: Question[] = [
 		track: "blind75",
 		category: "Algorithmic coding",
 		difficulty: "Easy",
-		sourceUrl:
-			"https://www.greatfrontend.com/interviews/study/blind75/questions/algo/array-balanced-brackets",
+		sourceUrl: "https://www.greatfrontend.com/interviews/study/blind75/questions/algo/array-balanced-brackets",
 		solutionType: "algo_visualizer",
 		status: "done",
 		summary: `Given a string containing only bracket characters, determine whether it is properly balanced.
@@ -23,8 +22,7 @@ A string is balanced when:
 Constraints:
 - 1 <= str.length <= 1000
 - Characters are limited to (, ), {, }, [ and ].`,
-		cardSummary:
-			"Determine whether a bracket string is properly balanced under matching/order rules.",
+		cardSummary: "Determine whether a bracket string is properly balanced under matching/order rules.",
 		approach:
 			"Validate constraints first (length and supported tokens). Then scan left-to-right with a stack: push opening brackets; for closing brackets, ensure the top is the matching opener before popping. Return false on any mismatch and true only if the stack is empty at the end.",
 		complexity: "Time: O(n), Space: O(n).",
@@ -38,8 +36,7 @@ Constraints:
 		track: "blind75",
 		category: "Algorithmic coding",
 		difficulty: "Easy",
-		sourceUrl:
-			"https://www.greatfrontend.com/interviews/study/blind75/questions/algo/array-find-duplicate",
+		sourceUrl: "https://www.greatfrontend.com/interviews/study/blind75/questions/algo/array-find-duplicate",
 		solutionType: "algo_visualizer",
 		status: "done",
 		summary: `Given an array of integers numbers, determine whether the array contains any duplicate values. A duplicate is defined as any number that appears more than once in the array.
@@ -52,8 +49,7 @@ Examples:
 Constraints:
 - 1 <= numbers.length <= 10,000
 - -1,000,000 <= numbers[i] <= 1,000,000`,
-		cardSummary:
-			"Detect whether any integer appears more than once in an array.",
+		cardSummary: "Detect whether any integer appears more than once in an array.",
 		approach:
 			"Scan the array once while storing seen values in a Set. For each number, return true immediately if it is already in the Set; otherwise add it and continue. If the loop finishes, every value was unique so return false.",
 		complexity: "Time: O(n), Space: O(n).",
@@ -342,8 +338,7 @@ Constraints:
 		sourceUrl: "https://www.greatfrontend.com/interviews/blind75",
 		solutionType: "code_and_tests",
 		status: "todo",
-		summary:
-			"TODO: Solve Binary Tree Rebuilding from Preorder and Inorder Traversals.",
+		summary: "TODO: Solve Binary Tree Rebuilding from Preorder and Inorder Traversals.",
 		cardSummary: "TODO: Add concise card summary.",
 		approach: "TODO",
 		complexity: "TODO",

@@ -154,35 +154,21 @@ describe("TrackQuestionsPage", () => {
 		await user.type(searchInput, "Debounce");
 
 		expect(screen.getByText(/Debounce/)).toBeInTheDocument();
-		expect(
-			screen.queryByText(/Array\.prototype\.reduce/),
-		).not.toBeInTheDocument();
-		expect(screen.getByTestId("track-progress")).toHaveTextContent(
-			"1/1 complete",
-		);
+		expect(screen.queryByText(/Array\.prototype\.reduce/)).not.toBeInTheDocument();
+		expect(screen.getByTestId("track-progress")).toHaveTextContent("1/1 complete");
 	});
 
 	it("hydrates filters from URL params", () => {
-		window.history.replaceState(
-			window.history.state,
-			"",
-			"/gfe75?search=reduce&status=todo&category=JavaScript%20functions",
-		);
+		window.history.replaceState(window.history.state, "", "/gfe75?search=reduce&status=todo&category=JavaScript%20functions");
 
 		render(<TrackQuestionsPage track="gfe75" />);
 
 		expect(screen.getByLabelText("Search questions")).toHaveValue("reduce");
 		expect(screen.getByLabelText("Status")).toHaveTextContent("Todo");
-		expect(screen.getByLabelText("Category")).toHaveTextContent(
-			"JavaScript functions",
-		);
-		expect(
-			screen.queryByText(/Debounce/),
-		).not.toBeInTheDocument();
+		expect(screen.getByLabelText("Category")).toHaveTextContent("JavaScript functions");
+		expect(screen.queryByText(/Debounce/)).not.toBeInTheDocument();
 		expect(screen.getByText(/Array\.prototype\.reduce/)).toBeInTheDocument();
-		expect(screen.getByTestId("track-progress")).toHaveTextContent(
-			"0/1 complete",
-		);
+		expect(screen.getByTestId("track-progress")).toHaveTextContent("0/1 complete");
 	});
 
 	it("syncs filter changes back to URL params", async () => {

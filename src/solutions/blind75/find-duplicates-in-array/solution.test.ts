@@ -1,7 +1,4 @@
-import {
-	getDuplicateScanSteps,
-	hasDuplicate,
-} from "@/solutions/blind75/find-duplicates-in-array/solution";
+import { getDuplicateScanSteps, hasDuplicate } from "@/solutions/blind75/find-duplicates-in-array/solution";
 
 describe("hasDuplicate", () => {
 	it("returns false when all numbers are unique", () => {

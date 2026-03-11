@@ -10,9 +10,7 @@ import { executeGraphQLQuery } from "@/lib/graphql/schema";
 import type { QuestionResponse } from "@/lib/graphql/types";
 import { getTrackLabel, isTrack } from "@/lib/tracks";
 
-function toPlainQuestion(
-	result: ExecutionResult<QuestionResponse>,
-): Question | null {
+function toPlainQuestion(result: ExecutionResult<QuestionResponse>): Question | null {
 	if (result?.data?.question == null) return null;
 
 	return {
@@ -21,26 +19,20 @@ function toPlainQuestion(
 	};
 }
 
-const getQuestionFromGraphQL = cache(
-	async (track: Track, path: string): Promise<Question | null> => {
-		const result = (await executeGraphQLQuery(QUESTION_QUERY, {
-			track,
-			path,
-		})) as ExecutionResult<QuestionResponse>;
+const getQuestionFromGraphQL = cache(async (track: Track, path: string): Promise<Question | null> => {
+	const result = (await executeGraphQLQuery(QUESTION_QUERY, {
+		track,
+		path,
+	})) as ExecutionResult<QuestionResponse>;
 
-		if (result.errors?.length) {
-			return null;
-		}
+	if (result.errors?.length) {
+		return null;
+	}
 
-		return toPlainQuestion(result);
-	},
-);
+	return toPlainQuestion(result);
+});
 
-export async function generateMetadata({
-	params,
-}: {
-	params: Promise<{ track: string; path: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ track: string; path: string }> }): Promise<Metadata> {
 	const { track, path } = await params;
 	if (!isTrack(track)) {
 		return { title: "Not Found" };
@@ -56,11 +48,7 @@ export async function generateMetadata({
 	};
 }
 
-export default async function QuestionPage({
-	params,
-}: {
-	params: Promise<{ track: string; path: string }>;
-}) {
+export default async function QuestionPage({ params }: { params: Promise<{ track: string; path: string }> }) {
 	const { track, path } = await params;
 
 	if (!isTrack(track)) {

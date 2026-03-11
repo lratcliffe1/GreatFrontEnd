@@ -52,8 +52,6 @@ describe("GraphQL schema integration", () => {
 			errors?: Array<{ message: string }>;
 		};
 
-		expect(payload.errors?.[0]?.message).toContain(
-			'Cannot query field "missingField" on type "Query".',
-		);
+		expect(payload.errors?.[0]?.message).toContain('Cannot query field "missingField" on type "Query".');
 	});
 });

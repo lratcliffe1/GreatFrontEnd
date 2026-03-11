@@ -20,13 +20,7 @@ export function getDuplicateScanSteps(numbers: number[]): DuplicateScanStep[] {
 	const steps: DuplicateScanStep[] = [];
 	const seen = new Set<number>();
 
-	const pushStep = (
-		line: DuplicateScanStep["line"],
-		index: number | null,
-		value: number | null,
-		action: string,
-		outcome: DuplicateScanOutcome,
-	) => {
+	const pushStep = (line: DuplicateScanStep["line"], index: number | null, value: number | null, action: string, outcome: DuplicateScanOutcome) => {
 		steps.push({
 			index,
 			value,
@@ -40,30 +34,12 @@ export function getDuplicateScanSteps(numbers: number[]): DuplicateScanStep[] {
 	pushStep(2, null, null, "Initialize an empty seen set.", "scanning");
 
 	for (const [index, value] of numbers.entries()) {
-		pushStep(
-			3,
-			index,
-			value,
-			`Inspect numbers[${index}] = ${value}.`,
-			"scanning",
-		);
+		pushStep(3, index, value, `Inspect numbers[${index}] = ${value}.`, "scanning");
 
 		const alreadySeen = seen.has(value);
-		pushStep(
-			4,
-			index,
-			value,
-			`seen.has(${value}) => ${alreadySeen}.`,
-			alreadySeen ? "duplicate" : "scanning",
-		);
+		pushStep(4, index, value, `seen.has(${value}) => ${alreadySeen}.`, alreadySeen ? "duplicate" : "scanning");
 		if (alreadySeen) {
-			pushStep(
-				5,
-				index,
-				value,
-				`Return true: ${value} was seen earlier.`,
-				"duplicate",
-			);
+			pushStep(5, index, value, `Return true: ${value} was seen earlier.`, "duplicate");
 			return steps;
 		}
 

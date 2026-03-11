@@ -6,11 +6,7 @@ test("question detail page loads and shows content", async ({ page }) => {
 
 	await expect(page).toHaveURL(/\/gfe75\/debounce$/);
 	await expect(page.getByTestId("question-detail-title")).toBeVisible();
-	await expect(
-		page.getByText(
-			"Debouncing controls how often a function is allowed to execute over time.",
-		),
-	).toBeVisible();
+	await expect(page.getByText("Debouncing controls how often a function is allowed to execute over time.")).toBeVisible();
 	await expect(page.getByTestId("question-summary-panel")).toBeVisible();
 });
 

@@ -6,8 +6,7 @@ import { AppProviders } from "@/providers/app-providers";
 
 export const metadata: Metadata = {
 	title: "GreatFrontEnd Portfolio",
-	description:
-		"Interview solutions for GFE75 and Blind75 in React + TypeScript",
+	description: "Interview solutions for GFE75 and Blind75 in React + TypeScript",
 };
 
 export default function RootLayout({

@@ -2,14 +2,8 @@
 
 import Link from "next/link";
 import type { Question } from "@/content/questions";
-import {
-	DifficultyPill,
-	SurfacePanel,
-} from "@/components/ui/tailwind-primitives";
-import {
-	QUESTION_UI_CLASSES,
-	SourcePromptLink,
-} from "@/features/questions/question-ui";
+import { DifficultyPill, SurfacePanel } from "@/components/ui/tailwind-primitives";
+import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
 import { getSolutionRenderer } from "@/features/questions/solution-registry";
 
 function renderSolution(question: Question) {
@@ -20,9 +14,7 @@ function renderSolution(question: Question) {
 
 	if (question.solutionType === "algo_visualizer") {
 		return (
-			<div
-				className={`rounded-md bg-slate-50 p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}
-			>
+			<div className={`rounded-md bg-slate-50 p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}>
 				<p>Interactive algorithm walkthrough is pending for this question.</p>
 			</div>
 		);
@@ -32,27 +24,18 @@ function renderSolution(question: Question) {
 		return (
 			<div className={`space-y-2 text-sm ${QUESTION_UI_CLASSES.bodyText}`}>
 				<p>{question.approach}</p>
-				<p>
-					This writeup follows the guidance from the source prompt and captures
-					practical tradeoffs for interview discussion.
-				</p>
+				<p>This writeup follows the guidance from the source prompt and captures practical tradeoffs for interview discussion.</p>
 			</div>
 		);
 	}
 
 	return (
-		<div
-			className={`rounded-md bg-slate-50 p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}
-		>
+		<div className={`rounded-md bg-slate-50 p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}>
 			<p>
 				Code-first solution is implemented with unit tests. Open
-				<code className="mx-1 rounded bg-slate-200 px-1 py-0.5">
-					src/solutions
-				</code>
+				<code className="mx-1 rounded bg-slate-200 px-1 py-0.5">src/solutions</code>
 				and
-				<code className="mx-1 rounded bg-slate-200 px-1 py-0.5">
-					src/solutions/**/*.test.ts
-				</code>
+				<code className="mx-1 rounded bg-slate-200 px-1 py-0.5">src/solutions/**/*.test.ts</code>
 				for details.
 			</p>
 		</div>
@@ -62,10 +45,7 @@ function renderSolution(question: Question) {
 function shouldShowComplexity(complexity: string) {
 	const normalized = complexity.trim().toLowerCase();
 	if (!normalized || normalized === "todo") return false;
-	if (
-		normalized === "conceptual question." ||
-		normalized === "conceptual question"
-	) {
+	if (normalized === "conceptual question." || normalized === "conceptual question") {
 		return false;
 	}
 	return true;
@@ -79,17 +59,12 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 			<div className="flex flex-wrap items-start justify-between gap-4">
 				<div className="min-w-0 space-y-1">
 					<div className="flex flex-wrap items-center gap-2">
-						<span className="inline-flex items-center text-sm font-semibold leading-none text-link">
-							{question.category}
-						</span>
+						<span className="inline-flex items-center text-sm font-semibold leading-none text-link">{question.category}</span>
 						<span className="inline-flex items-center">
 							<DifficultyPill difficulty={question.difficulty} />
 						</span>
 					</div>
-					<h2
-						className="text-3xl font-bold text-foreground"
-						data-testid="question-detail-title"
-					>
+					<h2 className="text-3xl font-bold text-foreground" data-testid="question-detail-title">
 						#{question.questionNumber} {question.title}
 					</h2>
 				</div>
@@ -104,20 +79,12 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 
 			<SurfacePanel className="space-y-2" data-testid="question-summary-panel">
 				<h3 className={QUESTION_UI_CLASSES.panelHeading}>Problem summary</h3>
-				<p
-					className={`${QUESTION_UI_CLASSES.bodyText} text-[8px] leading-relaxed whitespace-pre-line sm:text-xs`}
-				>
-					{question.summary}
-				</p>
+				<p className={`${QUESTION_UI_CLASSES.bodyText} text-[8px] leading-relaxed whitespace-pre-line sm:text-xs`}>{question.summary}</p>
 			</SurfacePanel>
 
 			<SurfacePanel className="space-y-2">
 				<h3 className={QUESTION_UI_CLASSES.panelHeading}>Approach</h3>
-				<p
-					className={`${QUESTION_UI_CLASSES.bodyText} text-[8px] leading-relaxed whitespace-pre-line sm:text-xs`}
-				>
-					{question.approach}
-				</p>
+				<p className={`${QUESTION_UI_CLASSES.bodyText} text-[8px] leading-relaxed whitespace-pre-line sm:text-xs`}>{question.approach}</p>
 			</SurfacePanel>
 
 			<SurfacePanel className="space-y-2">
@@ -127,9 +94,7 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 
 			{showComplexity ? (
 				<SurfacePanel className="space-y-2">
-					<h3 className={QUESTION_UI_CLASSES.panelHeading}>
-						Complexity / tradeoffs
-					</h3>
+					<h3 className={QUESTION_UI_CLASSES.panelHeading}>Complexity / tradeoffs</h3>
 					<p className={QUESTION_UI_CLASSES.bodyText}>{question.complexity}</p>
 				</SurfacePanel>
 			) : null}

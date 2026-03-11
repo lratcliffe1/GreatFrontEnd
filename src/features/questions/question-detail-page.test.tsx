@@ -13,12 +13,10 @@ const mockQuestion: Question = {
 	sourceUrl: "https://www.greatfrontend.com/interviews/debounce",
 	solutionType: "code_and_tests",
 	status: "done",
-	summary:
-		"Debouncing controls how often a function is allowed to execute over time.",
+	summary: "Debouncing controls how often a function is allowed to execute over time.",
 	cardSummary:
 		"Implement a function to limit how many times a function can be executed by delaying the execution of the function until after a specified time after its last execution attempt",
-	approach:
-		"Store a timeout id in closure state. On each invocation, clear the previous timeout and schedule a new one for `wait` ms.",
+	approach: "Store a timeout id in closure state. On each invocation, clear the previous timeout and schedule a new one for `wait` ms.",
 	complexity: "Time: O(1) per call, Space: O(1).",
 	tags: ["timers", "closures"],
 };
@@ -27,25 +25,17 @@ describe("QuestionDetailPage", () => {
 	it("renders question details", () => {
 		render(<QuestionDetailPage question={mockQuestion} />);
 
-		expect(
-			screen.getByRole("heading", { name: /Debounce/ }),
-		).toBeInTheDocument();
+		expect(screen.getByRole("heading", { name: /Debounce/ })).toBeInTheDocument();
 		expect(screen.getByText("JavaScript functions")).toBeInTheDocument();
 		expect(screen.getByText("Medium")).toBeInTheDocument();
 		expect(screen.queryByText("Done")).not.toBeInTheDocument();
-		expect(
-			screen.getByText(
-				"Debouncing controls how often a function is allowed to execute over time.",
-			),
-		).toBeInTheDocument();
+		expect(screen.getByText("Debouncing controls how often a function is allowed to execute over time.")).toBeInTheDocument();
 		expect(
 			screen.getByText(
 				"Store a timeout id in closure state. On each invocation, clear the previous timeout and schedule a new one for `wait` ms.",
 			),
 		).toBeInTheDocument();
-		expect(
-			screen.getByText("Time: O(1) per call, Space: O(1)."),
-		).toBeInTheDocument();
+		expect(screen.getByText("Time: O(1) per call, Space: O(1).")).toBeInTheDocument();
 	});
 
 	it("renders section headings", () => {
@@ -66,9 +56,7 @@ describe("QuestionDetailPage", () => {
 
 		render(<QuestionDetailPage question={conceptualQuestion} />);
 
-		expect(
-			screen.queryByText("Complexity / tradeoffs"),
-		).not.toBeInTheDocument();
+		expect(screen.queryByText("Complexity / tradeoffs")).not.toBeInTheDocument();
 	});
 
 	it("renders writeup solution type", () => {
@@ -80,9 +68,7 @@ describe("QuestionDetailPage", () => {
 
 		render(<QuestionDetailPage question={writeupQuestion} />);
 
-		expect(
-			screen.getByText(/This writeup follows the guidance/),
-		).toBeInTheDocument();
+		expect(screen.getByText(/This writeup follows the guidance/)).toBeInTheDocument();
 	});
 
 	it("renders code-and-tests fallback", () => {
@@ -94,9 +80,7 @@ describe("QuestionDetailPage", () => {
 
 		render(<QuestionDetailPage question={codeQuestion} />);
 
-		expect(
-			screen.getByText(/Code-first solution is implemented with unit tests/),
-		).toBeInTheDocument();
+		expect(screen.getByText(/Code-first solution is implemented with unit tests/)).toBeInTheDocument();
 	});
 
 	it("renders the find-duplicates visualizer for the blind75 question id", async () => {
@@ -112,8 +96,6 @@ describe("QuestionDetailPage", () => {
 		render(<QuestionDetailPage question={duplicateQuestion} />);
 
 		expect(await screen.findByLabelText("Numbers input")).toBeInTheDocument();
-		expect(
-			await screen.findByText("Find Duplicates in Array implementation"),
-		).toBeInTheDocument();
+		expect(await screen.findByText("Find Duplicates in Array implementation")).toBeInTheDocument();
 	});
 });

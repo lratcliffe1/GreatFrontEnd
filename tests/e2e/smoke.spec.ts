@@ -7,7 +7,5 @@ test("track tabs and question cards render", async ({ page }) => {
 
 	await page.getByTestId("track-tab-blind75").click();
 	await expect(page).toHaveURL(/\/blind75$/);
-	await expect(
-		page.getByTestId("question-title-balanced-brackets"),
-	).toBeVisible();
+	await expect(page.getByTestId("question-title-balanced-brackets")).toBeVisible();
 });

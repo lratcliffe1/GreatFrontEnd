@@ -5,11 +5,7 @@ import { Suspense } from "react";
 import { TrackQuestionsPage } from "@/features/questions/track-questions-page";
 import { getTrackLabel, isTrack } from "@/lib/tracks";
 
-export async function generateMetadata({
-	params,
-}: {
-	params: Promise<{ track: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ track: string }> }): Promise<Metadata> {
 	const { track } = await params;
 	if (!isTrack(track)) {
 		return { title: "Not Found" };
@@ -21,11 +17,7 @@ export async function generateMetadata({
 	};
 }
 
-export default async function TrackPage({
-	params,
-}: {
-	params: Promise<{ track: string }>;
-}) {
+export default async function TrackPage({ params }: { params: Promise<{ track: string }> }) {
 	const { track } = await params;
 
 	if (!isTrack(track)) {

@@ -1,11 +1,6 @@
 import { buildSchema, graphql } from "graphql";
 
-import {
-	getQuestionByPath,
-	getQuestionsByTrack,
-	type Question,
-	type Track,
-} from "@/content/questions";
+import { getQuestionByPath, getQuestionsByTrack, type Question, type Track } from "@/content/questions";
 
 const schema = buildSchema(`
 	enum Track {
@@ -57,21 +52,11 @@ const schema = buildSchema(`
 `);
 
 const root = {
-	questions: ({ track }: { track: Track }): Question[] =>
-		getQuestionsByTrack(track),
-	question: ({
-		track,
-		path,
-	}: {
-		track: Track;
-		path: string;
-	}): Question | null => getQuestionByPath(track, path),
+	questions: ({ track }: { track: Track }): Question[] => getQuestionsByTrack(track),
+	question: ({ track, path }: { track: Track; path: string }): Question | null => getQuestionByPath(track, path),
 };
 
-export async function executeGraphQLQuery(
-	query: string,
-	variables?: Record<string, unknown>,
-) {
+export async function executeGraphQLQuery(query: string, variables?: Record<string, unknown>) {
 	return graphql({
 		schema,
 		source: query,

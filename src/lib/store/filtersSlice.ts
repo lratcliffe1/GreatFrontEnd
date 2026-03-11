@@ -42,10 +42,7 @@ const filtersSlice = createSlice({
 		setCategory(state, action: PayloadAction<TrackScopedPayload<string>>) {
 			state.byTrack[action.payload.track].category = action.payload.value;
 		},
-		setStatus(
-			state,
-			action: PayloadAction<TrackScopedPayload<QuestionStatus | "all">>,
-		) {
+		setStatus(state, action: PayloadAction<TrackScopedPayload<QuestionStatus | "all">>) {
 			state.byTrack[action.payload.track].status = action.payload.value;
 		},
 		hydrateFiltersFromQuery(
@@ -74,13 +71,6 @@ const filtersSlice = createSlice({
 	},
 });
 
-export const {
-	setSearch,
-	setCategory,
-	setStatus,
-	hydrateFiltersFromQuery,
-	resetFilters,
-	resetFiltersForTrack,
-} = filtersSlice.actions;
+export const { setSearch, setCategory, setStatus, hydrateFiltersFromQuery, resetFilters, resetFiltersForTrack } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

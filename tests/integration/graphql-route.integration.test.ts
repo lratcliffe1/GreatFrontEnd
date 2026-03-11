@@ -7,9 +7,7 @@ jest.mock("@/lib/graphql/schema", () => ({
 	executeGraphQLQuery: jest.fn(),
 }));
 
-const mockExecuteGraphQLQuery = executeGraphQLQuery as jest.MockedFunction<
-	typeof executeGraphQLQuery
->;
+const mockExecuteGraphQLQuery = executeGraphQLQuery as jest.MockedFunction<typeof executeGraphQLQuery>;
 
 describe("GraphQL route integration", () => {
 	beforeEach(() => {
@@ -77,8 +75,7 @@ describe("GraphQL route integration", () => {
 			method: "POST",
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
-				query:
-					"query Questions($track: Track!) { questions(track: $track) { id } }",
+				query: "query Questions($track: Track!) { questions(track: $track) { id } }",
 				variables: { track: "gfe75" },
 			}),
 		});
@@ -90,10 +87,7 @@ describe("GraphQL route integration", () => {
 			data: null,
 			errors: [{ message: "Validation error." }],
 		});
-		expect(mockExecuteGraphQLQuery).toHaveBeenCalledWith(
-			"query Questions($track: Track!) { questions(track: $track) { id } }",
-			{ track: "gfe75" },
-		);
+		expect(mockExecuteGraphQLQuery).toHaveBeenCalledWith("query Questions($track: Track!) { questions(track: $track) { id } }", { track: "gfe75" });
 	});
 
 	it("returns data payload when execution succeeds", async () => {
@@ -105,8 +99,7 @@ describe("GraphQL route integration", () => {
 			method: "POST",
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
-				query:
-					"query Questions($track: Track!) { questions(track: $track) { id } }",
+				query: "query Questions($track: Track!) { questions(track: $track) { id } }",
 				variables: { track: "gfe75" },
 			}),
 		});
@@ -117,9 +110,6 @@ describe("GraphQL route integration", () => {
 		await expect(response.json()).resolves.toEqual({
 			data: { questions: [] },
 		});
-		expect(mockExecuteGraphQLQuery).toHaveBeenCalledWith(
-			"query Questions($track: Track!) { questions(track: $track) { id } }",
-			{ track: "gfe75" },
-		);
+		expect(mockExecuteGraphQLQuery).toHaveBeenCalledWith("query Questions($track: Track!) { questions(track: $track) { id } }", { track: "gfe75" });
 	});
 });

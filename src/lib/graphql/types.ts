@@ -28,6 +28,4 @@ export type GraphQLErrorResponse = {
 	errors: GraphQLError[];
 };
 
-export type GraphQLResponse<T> =
-	| GraphQLSuccessResponse<T>
-	| GraphQLErrorResponse;
+export type GraphQLResponse<T> = GraphQLSuccessResponse<T> | GraphQLErrorResponse;

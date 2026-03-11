@@ -1,9 +1,5 @@
 import type { ReactNode } from "react";
-import {
-	CodePanel,
-	StepControlButton,
-	TracePanel,
-} from "@/components/ui/tailwind-primitives";
+import { CodePanel, StepControlButton, TracePanel } from "@/components/ui/tailwind-primitives";
 
 export type CodeLine = {
 	line: number | null;
@@ -50,13 +46,9 @@ export function StepVisualizerLayout({
 					return (
 						<div
 							key={`${entry.line ?? "none"}-${index}`}
-							className={`rounded px-2 py-1 whitespace-pre-wrap wrap-break-word ${
-								isActive ? "bg-teal-800 text-white" : "text-slate-200"
-							}`}
+							className={`rounded px-2 py-1 whitespace-pre-wrap wrap-break-word ${isActive ? "bg-teal-800 text-white" : "text-slate-200"}`}
 						>
-							<span className="mr-3 inline-block w-8 text-slate-500">
-								{entry.line ?? ""}
-							</span>
+							<span className="mr-3 inline-block w-8 text-slate-500">{entry.line ?? ""}</span>
 							<code>{entry.code}</code>
 						</div>
 					);

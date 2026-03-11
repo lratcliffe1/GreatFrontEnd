@@ -15,8 +15,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 export const makeStore = (preloadedState?: RootState) =>
 	configureStore({
 		reducer: rootReducer,
-		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware().concat(graphqlApi.middleware),
+		middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(graphqlApi.middleware),
 		preloadedState,
 	});
 
