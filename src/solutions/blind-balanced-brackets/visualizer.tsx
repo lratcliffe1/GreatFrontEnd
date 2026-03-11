@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
 	AppButton,
@@ -55,10 +55,47 @@ export function BalancedBracketsVisualizer() {
 		getBalancedBracketSteps(INITIAL_INPUT),
 	);
 	const [stepIndex, setStepIndex] = useState(0);
+	const [isTraceFlashing, setIsTraceFlashing] = useState(false);
+	const traceFlashRafRef = useRef<number | null>(null);
+	const traceFlashEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+		null,
+	);
 	const inputError = getBalancedBracketInputError(input);
 	const step =
 		steps[Math.min(stepIndex, Math.max(steps.length - 1, 0))] ?? null;
 	const activeLine = step?.line ?? null;
+
+	function flashExecutionTrace() {
+		if (traceFlashRafRef.current !== null) {
+			cancelAnimationFrame(traceFlashRafRef.current);
+			traceFlashRafRef.current = null;
+		}
+		if (traceFlashEndTimeoutRef.current !== null) {
+			clearTimeout(traceFlashEndTimeoutRef.current);
+			traceFlashEndTimeoutRef.current = null;
+		}
+
+		setIsTraceFlashing(false);
+		traceFlashRafRef.current = requestAnimationFrame(() => {
+			setIsTraceFlashing(true);
+			traceFlashEndTimeoutRef.current = setTimeout(() => {
+				setIsTraceFlashing(false);
+				traceFlashEndTimeoutRef.current = null;
+			}, 720);
+			traceFlashRafRef.current = null;
+		});
+	}
+
+	useEffect(() => {
+		return () => {
+			if (traceFlashRafRef.current !== null) {
+				cancelAnimationFrame(traceFlashRafRef.current);
+			}
+			if (traceFlashEndTimeoutRef.current !== null) {
+				clearTimeout(traceFlashEndTimeoutRef.current);
+			}
+		};
+	}, []);
 
 	return (
 		<div className="space-y-4">
@@ -85,6 +122,7 @@ export function BalancedBracketsVisualizer() {
 							if (inputError) return;
 							setSteps(getBalancedBracketSteps(input));
 							setStepIndex(0);
+							flashExecutionTrace();
 						}}
 						disabled={Boolean(inputError)}
 					>
@@ -98,6 +136,11 @@ export function BalancedBracketsVisualizer() {
 				codeLines={CODE_LINES}
 				activeLine={activeLine}
 				traceTitle="Execution trace (step-by-step)"
+				tracePanelClassName={
+					isTraceFlashing
+						? "ring-2 ring-teal-500/70 ring-offset-2 ring-offset-background"
+						: undefined
+				}
 				stepIndex={stepIndex}
 				totalSteps={steps.length}
 				onPrev={() => setStepIndex((current) => Math.max(current - 1, 0))}

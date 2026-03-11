@@ -15,6 +15,7 @@ type StepVisualizerLayoutProps = {
 	codeLines: CodeLine[];
 	activeLine: number | null;
 	traceTitle: string;
+	tracePanelClassName?: string;
 	stepIndex: number;
 	totalSteps: number;
 	onPrev: () => void;
@@ -30,6 +31,7 @@ export function StepVisualizerLayout({
 	codeLines,
 	activeLine,
 	traceTitle,
+	tracePanelClassName,
 	stepIndex,
 	totalSteps,
 	onPrev,
@@ -61,7 +63,7 @@ export function StepVisualizerLayout({
 				})}
 			</CodePanel>
 
-			<TracePanel>
+			<TracePanel className={tracePanelClassName}>
 				<h4 className="font-semibold text-foreground">{traceTitle}</h4>
 				{summary}
 				<div className="flex items-center gap-2">
