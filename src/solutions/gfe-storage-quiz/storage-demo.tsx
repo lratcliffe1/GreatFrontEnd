@@ -124,7 +124,7 @@ export function StorageComparisonDemo() {
 				</table>
 			</div>
 
-			<p className="text-sm [color:var(--muted)]">
+			<p className="text-sm text-muted">
 				Set values and refresh/reopen tabs to observe persistence differences.
 			</p>
 

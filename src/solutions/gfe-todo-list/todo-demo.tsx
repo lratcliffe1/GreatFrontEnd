@@ -83,7 +83,7 @@ export function TodoDemo() {
 							key={task.id}
 							className="flex items-center justify-between gap-3 rounded-md border border-slate-200 px-3 py-2"
 						>
-							<span className="break-words">{task.label}</span>
+							<span className="wrap-break-word">{task.label}</span>
 							<AppButton
 								type="button"
 								variant="dangerSubtle"

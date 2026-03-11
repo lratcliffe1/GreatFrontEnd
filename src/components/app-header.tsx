@@ -3,7 +3,7 @@ import Link from "next/link";
 export function AppHeader() {
 	return (
 		<header className="border-b [background:var(--card-bg)] border-card-border">
-			<div className="flex w-full flex-col gap-4 px-10 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-14 md:px-20 lg:px-24 xl:px-32">
+			<div className="flex w-full flex-col gap-4 px-8 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-12 md:px-16 lg:px-20 xl:px-24">
 				<div className="min-w-0 shrink-0">
 					<p className="text-sm font-semibold text-link">
 						Liam&apos;s Portfolio

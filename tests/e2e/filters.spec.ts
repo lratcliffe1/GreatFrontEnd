@@ -38,3 +38,41 @@ test("filters questions by status", async ({ page }) => {
 		page.getByRole("heading", { name: /Array\.prototype\.reduce/ }),
 	).not.toBeVisible();
 });
+
+test("keeps filters below the progress summary before the wide breakpoint", async ({
+	page,
+}) => {
+	await page.setViewportSize({ width: 1270, height: 900 });
+	await page.goto("/gfe75");
+
+	await expect(page.getByText(/Debounce/).first()).toBeVisible();
+
+	const progress = page.getByText(/\d+\/\d+ complete/);
+	const categorySelect = page.getByLabel("Category");
+	const statusSelect = page.getByLabel("Status");
+	const searchInput = page.getByLabel("Search questions");
+
+	await expect(progress).toBeVisible();
+	await expect(categorySelect).toBeVisible();
+	await expect(statusSelect).toBeVisible();
+	await expect(searchInput).toBeVisible();
+
+	const progressBox = await progress.boundingBox();
+	const categoryBox = await categorySelect.boundingBox();
+	const statusBox = await statusSelect.boundingBox();
+	const searchBox = await searchInput.boundingBox();
+
+	expect(progressBox).not.toBeNull();
+	expect(categoryBox).not.toBeNull();
+	expect(statusBox).not.toBeNull();
+	expect(searchBox).not.toBeNull();
+
+	const progressBottom = progressBox!.y + progressBox!.height;
+	const firstFilterTop = Math.min(
+		categoryBox!.y,
+		statusBox!.y,
+		searchBox!.y,
+	);
+
+	expect(firstFilterTop).toBeGreaterThan(progressBottom + 4);
+});
