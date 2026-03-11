@@ -1,4 +1,5 @@
 import {
+	getBalancedBracketInputError,
 	getBalancedBracketSteps,
 	isBalancedBrackets,
 } from "@/solutions/blind-balanced-brackets/solution";
@@ -25,19 +26,28 @@ describe("isBalancedBrackets", () => {
 	});
 });
 
+describe("getBalancedBracketInputError", () => {
+	it("reports invalid length", () => {
+		expect(getBalancedBracketInputError("")).toMatch(
+			/Enter between 1 and 1000/,
+		);
+	});
+
+	it("reports unsupported characters", () => {
+		expect(getBalancedBracketInputError("([a])")).toMatch(
+			/Use only bracket characters/,
+		);
+	});
+});
+
 describe("getBalancedBracketSteps", () => {
 	it("includes end step", () => {
 		const steps = getBalancedBracketSteps("[]");
 		expect(steps[steps.length - 1]?.token).toBe("end");
 	});
 
-	it("ends early for invalid length", () => {
-		const steps = getBalancedBracketSteps("");
-		expect(steps[steps.length - 1]?.validSoFar).toBe(false);
-	});
-
-	it("ends early for unsupported characters", () => {
-		const steps = getBalancedBracketSteps("a");
+	it("ends early for invalid ordering", () => {
+		const steps = getBalancedBracketSteps("([)]");
 		expect(steps[steps.length - 1]?.validSoFar).toBe(false);
 	});
 });

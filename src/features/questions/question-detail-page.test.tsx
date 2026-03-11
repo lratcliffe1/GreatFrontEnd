@@ -98,4 +98,20 @@ describe("QuestionDetailPage", () => {
 			screen.getByText(/Code-first solution is implemented with unit tests/),
 		).toBeInTheDocument();
 	});
+
+	it("renders the find-duplicates visualizer for the blind75 question id", () => {
+		const duplicateQuestion: Question = {
+			...mockQuestion,
+			id: "blind-find-duplicates-in-array",
+			track: "blind75",
+			title: "Find Duplicates in Array",
+		};
+
+		render(<QuestionDetailPage question={duplicateQuestion} />);
+
+		expect(screen.getByLabelText("Numbers input")).toBeInTheDocument();
+		expect(
+			screen.getByText("Find Duplicates in Array implementation"),
+		).toBeInTheDocument();
+	});
 });

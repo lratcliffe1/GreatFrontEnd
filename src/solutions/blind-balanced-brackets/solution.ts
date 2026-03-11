@@ -1,6 +1,11 @@
 type OpeningBracket = "(" | "{" | "[";
 type ClosingBracket = ")" | "}" | "]";
 
+export const BRACKET_INPUT_CONSTRAINTS = {
+	minLength: 1,
+	maxLength: 1000,
+} as const;
+
 const OPENING = new Set<string>(["(", "{", "["]);
 
 const CLOSE_TO_OPEN: Record<ClosingBracket, OpeningBracket> = {
@@ -15,33 +20,30 @@ const OPEN_TO_CLOSE: Record<OpeningBracket, ClosingBracket> = {
 	"[": "]",
 };
 
-const VALID_TOKENS = new Set<string>([
-	...OPENING,
-	...Object.keys(CLOSE_TO_OPEN),
-]);
+const VALID_TOKENS = /^[()[\]{}]+$/;
 
 export type BracketStep = {
 	token: string;
 	stack: string[];
 	action: string;
 	validSoFar: boolean;
-	line:
-		| 10
-		| 11
-		| 12
-		| 14
-		| 15
-		| 16
-		| 17
-		| 18
-		| 20
-		| 21
-		| 22
-		| 23
-		| 24
-		| 26
-		| 30;
+	line: 9 | 10 | 11 | 13 | 14 | 15 | 16 | 17 | 19 | 23;
 };
+
+export function getBalancedBracketInputError(input: string) {
+	if (
+		input.length < BRACKET_INPUT_CONSTRAINTS.minLength ||
+		input.length > BRACKET_INPUT_CONSTRAINTS.maxLength
+	) {
+		return `Enter between ${BRACKET_INPUT_CONSTRAINTS.minLength} and ${BRACKET_INPUT_CONSTRAINTS.maxLength} bracket characters.`;
+	}
+
+	if (!VALID_TOKENS.test(input)) {
+		return "Use only bracket characters: (), {}, and [].";
+	}
+
+	return null;
+}
 
 export function getBalancedBracketSteps(input: string): BracketStep[] {
 	const steps: BracketStep[] = [];
@@ -61,39 +63,15 @@ export function getBalancedBracketSteps(input: string): BracketStep[] {
 		});
 	};
 
-	const withinLength = input.length >= 1 && input.length <= 1000;
-	pushStep(10, "input", `Input length is ${input.length}.`, withinLength);
-	pushStep(
-		11,
-		"input",
-		`Length within [1, 1000] => ${withinLength}.`,
-		withinLength,
-	);
-	if (!withinLength) {
-		pushStep(12, "input", "Early return due to invalid input length.", false);
-		return steps;
-	}
-
 	for (const token of input) {
-		pushStep(14, token, `Iterating token "${token}".`, true);
-		const isValidToken = VALID_TOKENS.has(token);
-		pushStep(
-			15,
-			token,
-			`Supported bracket token => ${isValidToken}.`,
-			isValidToken,
-		);
-		if (!isValidToken) {
-			pushStep(16, token, "Early return due to unsupported character.", false);
-			return steps;
-		}
+		pushStep(9, token, `Iterating token "${token}".`, true);
 
 		const isOpening = OPENING.has(token);
-		pushStep(17, token, `OPENING.has("${token}") => ${isOpening}.`, true);
+		pushStep(10, token, `OPENING.has("${token}") => ${isOpening}.`, true);
 
 		if (isOpening) {
 			stack.push(token as OpeningBracket);
-			pushStep(18, token, `Push "${token}" to stack.`, true);
+			pushStep(11, token, `Push "${token}" to stack.`, true);
 			continue;
 		}
 
@@ -101,23 +79,23 @@ export function getBalancedBracketSteps(input: string): BracketStep[] {
 		const top = stack[stack.length - 1];
 		const valid = top === expected;
 		pushStep(
-			20,
+			13,
 			token,
 			`Expected opening for "${token}" is "${expected ?? "?"}".`,
 			true,
 		);
-		pushStep(21, token, `Top of stack is "${top ?? "(none)"}".`, true);
-		pushStep(22, token, `top === expected => ${valid}.`, valid);
+		pushStep(14, token, `Top of stack is "${top ?? "(none)"}".`, true);
+		pushStep(15, token, `top === expected => ${valid}.`, valid);
 
 		if (!valid) {
 			pushStep(
-				23,
+				16,
 				token,
 				`Mismatch. Expected ${top ? OPEN_TO_CLOSE[top] : "opening bracket"}, got "${token}".`,
 				false,
 			);
 			pushStep(
-				24,
+				17,
 				token,
 				"Early return due to invalid bracket ordering.",
 				false,
@@ -126,11 +104,11 @@ export function getBalancedBracketSteps(input: string): BracketStep[] {
 		}
 
 		stack.pop();
-		pushStep(26, token, `Pop stack for closing token "${token}".`, true);
+		pushStep(19, token, `Pop stack for closing token "${token}".`, true);
 	}
 
 	pushStep(
-		30,
+		23,
 		"end",
 		stack.length === 0
 			? "Return true: all brackets matched."
@@ -142,6 +120,10 @@ export function getBalancedBracketSteps(input: string): BracketStep[] {
 }
 
 export function isBalancedBrackets(input: string) {
+	if (getBalancedBracketInputError(input)) {
+		return false;
+	}
+
 	const steps = getBalancedBracketSteps(input);
 	return steps[steps.length - 1]?.validSoFar ?? false;
 }

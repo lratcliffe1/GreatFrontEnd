@@ -1,63 +1,61 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import { EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
+import {
+	AppButton,
+	EditableFieldPrompt,
+} from "@/components/ui/tailwind-primitives";
 import {
 	StepVisualizerLayout,
 	type CodeLine,
 } from "@/components/visualizer/step-visualizer-layout";
-import { getBalancedBracketSteps } from "@/solutions/blind-balanced-brackets/solution";
+import {
+	getBalancedBracketInputError,
+	getBalancedBracketSteps,
+} from "@/solutions/blind-balanced-brackets/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: 'const OPENING = new Set(["(", "{", "["]);' },
 	{ line: 2, code: "const CLOSE_TO_OPEN = { ')': '(', '}': '{', ']': '[' };" },
 	{ line: 3, code: "const OPEN_TO_CLOSE = { '(': ')', '{': '}', '[': ']' };" },
+	{ line: 4, code: "" },
 	{
-		line: 4,
-		code: "const VALID_TOKENS = new Set([...OPENING, ...Object.keys(CLOSE_TO_OPEN)]);",
-	},
-	{ line: 5, code: "" },
-	{
-		line: 6,
+		line: 5,
 		code: "export function getBalancedBracketSteps(input: string) {",
 	},
-	{ line: 7, code: "  const steps: BracketStep[] = [];" },
-	{ line: 8, code: "  const stack: string[] = [];" },
-	{ line: 9, code: "" },
+	{ line: 6, code: "  const steps: BracketStep[] = [];" },
+	{ line: 7, code: "  const stack: string[] = [];" },
+	{ line: 8, code: "" },
+	{ line: 9, code: "  for (const token of input) {" },
+	{ line: 10, code: "    const isOpening = OPENING.has(token);" },
+	{ line: 11, code: "    if (isOpening) { stack.push(token); continue; }" },
+	{ line: 12, code: "" },
+	{ line: 13, code: "    const expected = CLOSE_TO_OPEN[token];" },
+	{ line: 14, code: "    const top = stack[stack.length - 1];" },
+	{ line: 15, code: "    const valid = top === expected;" },
+	{ line: 16, code: "    if (!valid) {" },
 	{
-		line: 10,
-		code: "  const withinLength = input.length >= 1 && input.length <= 1000;",
-	},
-	{ line: 11, code: "  if (!withinLength) return false;" },
-	{ line: 13, code: "" },
-	{ line: 14, code: "  for (const token of input) {" },
-	{ line: 15, code: "    const isValidToken = VALID_TOKENS.has(token);" },
-	{ line: 16, code: "    if (!isValidToken) return false;" },
-	{ line: 17, code: "    const isOpening = OPENING.has(token);" },
-	{ line: 18, code: "    if (isOpening) { stack.push(token); continue; }" },
-	{ line: 19, code: "" },
-	{ line: 20, code: "    const expected = CLOSE_TO_OPEN[token];" },
-	{ line: 21, code: "    const top = stack[stack.length - 1];" },
-	{ line: 22, code: "    const valid = top === expected;" },
-	{ line: 23, code: "    if (!valid) {" },
-	{
-		line: 24,
+		line: 17,
 		code: '      const expectedClose = top ? OPEN_TO_CLOSE[top] : "opening bracket"; return false;',
 	},
-	{ line: 25, code: "    }" },
-	{ line: 26, code: "    stack.pop();" },
-	{ line: 27, code: "  }" },
-	{ line: 28, code: "" },
-	{ line: 30, code: "  return stack.length === 0;" },
-	{ line: 31, code: "}" },
+	{ line: 18, code: "    }" },
+	{ line: 19, code: "    stack.pop();" },
+	{ line: 20, code: "  }" },
+	{ line: 21, code: "" },
+	{ line: 23, code: "  return stack.length === 0;" },
+	{ line: 24, code: "}" },
 ];
 
-export function BalancedBracketsVisualizer() {
-	const [input, setInput] = useState("([]){}");
-	const [stepIndex, setStepIndex] = useState(0);
+const INITIAL_INPUT = "([]){}";
 
-	const steps = useMemo(() => getBalancedBracketSteps(input), [input]);
+export function BalancedBracketsVisualizer() {
+	const [input, setInput] = useState(INITIAL_INPUT);
+	const [steps, setSteps] = useState(() =>
+		getBalancedBracketSteps(INITIAL_INPUT),
+	);
+	const [stepIndex, setStepIndex] = useState(0);
+	const inputError = getBalancedBracketInputError(input);
 	const step =
 		steps[Math.min(stepIndex, Math.max(steps.length - 1, 0))] ?? null;
 	const activeLine = step?.line ?? null;
@@ -68,18 +66,31 @@ export function BalancedBracketsVisualizer() {
 				<EditableFieldPrompt
 					htmlFor="bracket-input"
 					label="Bracket input"
-					hint="Type any bracket sequence here to see the algorithm step through your input."
+					hint="Use bracket characters. Only valid inputs within the problem constraints can be applied."
 				/>
-				<input
-					id="bracket-input"
-					className="w-full rounded-md border border-card-border bg-background px-3 py-2 text-foreground"
-					value={input}
-					placeholder="Try: ([]){}, ([)], or ((("
-					onChange={(event) => {
-						setInput(event.target.value);
-						setStepIndex(0);
-					}}
-				/>
+				<div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+					<input
+						id="bracket-input"
+						className="w-full rounded-md border border-card-border bg-background px-3 py-2 text-foreground sm:flex-1"
+						aria-invalid={Boolean(inputError)}
+						value={input}
+						placeholder="Try: ([]){}, ([)], or ((("
+						onChange={(event) => {
+							setInput(event.target.value);
+						}}
+					/>
+					<AppButton
+						type="button"
+						onClick={() => {
+							if (inputError) return;
+							setSteps(getBalancedBracketSteps(input));
+							setStepIndex(0);
+						}}
+						disabled={Boolean(inputError)}
+					>
+						Apply input
+					</AppButton>
+				</div>
 			</div>
 
 			<StepVisualizerLayout

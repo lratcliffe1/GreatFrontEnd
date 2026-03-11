@@ -7,6 +7,7 @@ import {
 	SurfacePanel,
 } from "@/components/ui/tailwind-primitives";
 import { BalancedBracketsVisualizer } from "@/solutions/blind-balanced-brackets/visualizer";
+import { FindDuplicatesInArrayVisualizer } from "@/solutions/blind-find-duplicates-in-array/visualizer";
 import { DebounceVisualizer } from "@/solutions/gfe-debounce/visualizer";
 import { NewsFeedDemo } from "@/solutions/gfe-news-feed/news-feed-demo";
 import { StorageComparisonDemo } from "@/solutions/gfe-storage-quiz/storage-demo";
@@ -29,12 +30,26 @@ function renderSolution(question: Question) {
 		return <StorageComparisonDemo />;
 	}
 
+	if (question.id === "blind-balanced-brackets") {
+		return <BalancedBracketsVisualizer />;
+	}
+
+	if (question.id === "blind-find-duplicates-in-array") {
+		return <FindDuplicatesInArrayVisualizer />;
+	}
+
 	if (question.solutionType === "ui-demo") {
 		return <TodoDemo />;
 	}
 
 	if (question.solutionType === "algo-visualizer") {
-		return <BalancedBracketsVisualizer />;
+		return (
+			<div
+				className={`rounded-md bg-slate-50 p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}
+			>
+				<p>Interactive algorithm walkthrough is pending for this question.</p>
+			</div>
+		);
 	}
 
 	if (question.solutionType === "writeup") {
