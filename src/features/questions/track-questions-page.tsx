@@ -181,7 +181,7 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 					{filtered.map((question) => (
 						<ElevatedCard
 							key={question.id}
-							className="min-w-0 overflow-hidden p-3 sm:p-4"
+							className="flex h-full min-w-0 flex-col overflow-hidden p-3 sm:p-4"
 						>
 							<div className="mb-1.5 flex min-w-0 items-start justify-between gap-2 sm:mb-2 sm:gap-3">
 								<h3 className="min-w-0 wrap-break-word text-sm font-semibold text-foreground sm:text-base">
@@ -189,43 +189,45 @@ export function TrackQuestionsPage({ track }: { track: Track }) {
 								</h3>
 								<DifficultyPill difficulty={question.difficulty} />
 							</div>
-							<MutedText className="mb-2 text-xs wrap-break-word sm:mb-3 sm:text-sm">
-								{question.summary}
+							<MutedText className="text-xs wrap-break-word sm:text-sm">
+								{question.cardSummary}
 							</MutedText>
-							<div className="mb-3 flex flex-wrap items-center gap-1.5 text-[10px] sm:mb-4 sm:gap-2 sm:text-xs">
-								<span className={QUESTION_UI_CLASSES.mutedText}>
-									{question.category}
-								</span>
-								<span className={QUESTION_UI_CLASSES.mutedText}>•</span>
-								<span className={QUESTION_UI_CLASSES.mutedText}>
-									{question.solutionType}
-								</span>
-								<span className={QUESTION_UI_CLASSES.mutedText}>•</span>
-								<StatusBadge status={question.status} />
-							</div>
-							<div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
-								{question.status === "done" ? (
-									<Link
-										href={`/${track}/${question.slug}`}
-										className="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400 sm:px-3 sm:py-1.5"
-									>
-										Open solution
-									</Link>
-								) : (
-									<span
-										className="inline-flex cursor-not-allowed items-center rounded-md border border-card-border px-2.5 py-1 font-semibold opacity-50 [background:var(--card-bg)] text-muted sm:px-3 sm:py-1.5"
-										aria-disabled="true"
-									>
-										Open solution
+							<div className="mt-auto pt-3 sm:pt-4">
+								<div className="mb-3 flex flex-wrap items-center gap-1.5 text-[10px] sm:mb-4 sm:gap-2 sm:text-xs">
+									<span className={QUESTION_UI_CLASSES.mutedText}>
+										{question.category}
 									</span>
-								)}
-								<SourcePromptLink
-									sourceUrl={question.sourceUrl}
-									linkLabel="Original prompt"
-									pendingLabel="Prompt link pending"
-									linkClassName={QUESTION_UI_CLASSES.primaryLink}
-									pendingClassName={QUESTION_UI_CLASSES.mutedText}
-								/>
+									<span className={QUESTION_UI_CLASSES.mutedText}>•</span>
+									<span className={QUESTION_UI_CLASSES.mutedText}>
+										{question.solutionType}
+									</span>
+									<span className={QUESTION_UI_CLASSES.mutedText}>•</span>
+									<StatusBadge status={question.status} />
+								</div>
+								<div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
+									{question.status === "done" ? (
+										<Link
+											href={`/${track}/${question.slug}`}
+											className="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400 sm:px-3 sm:py-1.5"
+										>
+											Open solution
+										</Link>
+									) : (
+										<span
+											className="inline-flex cursor-not-allowed items-center rounded-md border border-card-border px-2.5 py-1 font-semibold opacity-50 [background:var(--card-bg)] text-muted sm:px-3 sm:py-1.5"
+											aria-disabled="true"
+										>
+											Open solution
+										</span>
+									)}
+									<SourcePromptLink
+										sourceUrl={question.sourceUrl}
+										linkLabel="Original prompt"
+										pendingLabel="Prompt link pending"
+										linkClassName={QUESTION_UI_CLASSES.primaryLink}
+										pendingClassName={QUESTION_UI_CLASSES.mutedText}
+									/>
+								</div>
 							</div>
 						</ElevatedCard>
 					))}

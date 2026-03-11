@@ -27,6 +27,7 @@ const QUESTIONS_QUERY = /* GraphQL */ `
 			solutionType
 			status
 			summary
+			cardSummary
 			approach
 			complexity
 			tags
@@ -48,6 +49,7 @@ const QUESTION_QUERY = /* GraphQL */ `
 			solutionType
 			status
 			summary
+			cardSummary
 			approach
 			complexity
 			tags

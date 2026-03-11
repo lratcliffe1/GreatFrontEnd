@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import type { Question } from "@/content/questions";
-import { MutedText, SurfacePanel } from "@/components/ui/tailwind-primitives";
+import {
+	DifficultyPill,
+	SurfacePanel,
+} from "@/components/ui/tailwind-primitives";
 import { BalancedBracketsVisualizer } from "@/solutions/blind-balanced-brackets/visualizer";
 import { DebounceVisualizer } from "@/solutions/gfe-debounce/visualizer";
 import { NewsFeedDemo } from "@/solutions/gfe-news-feed/news-feed-demo";
 import { StorageComparisonDemo } from "@/solutions/gfe-storage-quiz/storage-demo";
 import { TodoDemo } from "@/solutions/gfe-todo-list/todo-demo";
-import { formatQuestionStatus } from "@/features/questions/helpers";
 import {
 	QUESTION_UI_CLASSES,
 	SourcePromptLink,
@@ -66,19 +68,36 @@ function renderSolution(question: Question) {
 	);
 }
 
+function shouldShowComplexity(complexity: string) {
+	const normalized = complexity.trim().toLowerCase();
+	if (!normalized || normalized === "todo") return false;
+	if (
+		normalized === "conceptual question." ||
+		normalized === "conceptual question"
+	) {
+		return false;
+	}
+	return true;
+}
+
 export function QuestionDetailPage({ question }: { question: Question }) {
+	const showComplexity = shouldShowComplexity(question.complexity);
+
 	return (
 		<article className="space-y-6">
 			<div className="flex flex-wrap items-start justify-between gap-4">
 				<div className="min-w-0 space-y-1">
-					<p className="text-sm font-semibold text-link">{question.category}</p>
+					<div className="flex flex-wrap items-center gap-2">
+						<span className="inline-flex items-center text-sm font-semibold leading-none text-link">
+							{question.category}
+						</span>
+						<span className="inline-flex items-center">
+							<DifficultyPill difficulty={question.difficulty} />
+						</span>
+					</div>
 					<h2 className="text-3xl font-bold text-foreground">
 						#{question.questionNumber} {question.title}
 					</h2>
-					<MutedText>
-						Difficulty: {question.difficulty} • Status:{" "}
-						{formatQuestionStatus(question.status)}
-					</MutedText>
 				</div>
 				<Link
 					href={`/${question.track}`}
@@ -90,12 +109,20 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 
 			<SurfacePanel className="space-y-2">
 				<h3 className={QUESTION_UI_CLASSES.panelHeading}>Problem summary</h3>
-				<p className={QUESTION_UI_CLASSES.bodyText}>{question.summary}</p>
+				<p
+					className={`${QUESTION_UI_CLASSES.bodyText} text-[8px] leading-relaxed whitespace-pre-line sm:text-xs`}
+				>
+					{question.summary}
+				</p>
 			</SurfacePanel>
 
 			<SurfacePanel className="space-y-2">
 				<h3 className={QUESTION_UI_CLASSES.panelHeading}>Approach</h3>
-				<p className={QUESTION_UI_CLASSES.bodyText}>{question.approach}</p>
+				<p
+					className={`${QUESTION_UI_CLASSES.bodyText} text-[8px] leading-relaxed whitespace-pre-line sm:text-xs`}
+				>
+					{question.approach}
+				</p>
 			</SurfacePanel>
 
 			<SurfacePanel className="space-y-2">
@@ -103,12 +130,14 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 				{renderSolution(question)}
 			</SurfacePanel>
 
-			<SurfacePanel className="space-y-2">
-				<h3 className={QUESTION_UI_CLASSES.panelHeading}>
-					Complexity / tradeoffs
-				</h3>
-				<p className={QUESTION_UI_CLASSES.bodyText}>{question.complexity}</p>
-			</SurfacePanel>
+			{showComplexity ? (
+				<SurfacePanel className="space-y-2">
+					<h3 className={QUESTION_UI_CLASSES.panelHeading}>
+						Complexity / tradeoffs
+					</h3>
+					<p className={QUESTION_UI_CLASSES.bodyText}>{question.complexity}</p>
+				</SurfacePanel>
+			) : null}
 
 			<SourcePromptLink
 				sourceUrl={question.sourceUrl}

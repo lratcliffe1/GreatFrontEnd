@@ -27,6 +27,7 @@ describe("useQuestions", () => {
 				solutionType: "algo-visualizer" as const,
 				status: "done" as const,
 				summary: "Summary",
+				cardSummary: "Summary",
 				approach: "Approach",
 				complexity: "O(1)",
 				tags: [],

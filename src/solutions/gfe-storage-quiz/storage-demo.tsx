@@ -7,6 +7,52 @@ const COOKIE_KEY = "gfe_cookie_demo";
 const SESSION_KEY = "gfe_session_demo";
 const LOCAL_KEY = "gfe_local_demo";
 
+type ComparisonRow = {
+	property: string;
+	cookie: string;
+	localStorage: string;
+	sessionStorage: string;
+};
+
+const COMPARISON_ROWS: ComparisonRow[] = [
+	{
+		property: "Initiator",
+		cookie: "Client or server (Set-Cookie)",
+		localStorage: "Client JavaScript",
+		sessionStorage: "Client JavaScript",
+	},
+	{
+		property: "Lifespan",
+		cookie: "Session or explicit expiry",
+		localStorage: "Until removed",
+		sessionStorage: "Until tab/session closes",
+	},
+	{
+		property: "Sent with HTTP requests",
+		cookie: "Yes",
+		localStorage: "No",
+		sessionStorage: "No",
+	},
+	{
+		property: "Typical capacity",
+		cookie: "~4KB",
+		localStorage: "~5MB per origin",
+		sessionStorage: "~5MB per origin",
+	},
+	{
+		property: "Access scope",
+		cookie: "Domain/path rules",
+		localStorage: "Across same-origin tabs/windows",
+		sessionStorage: "Current tab only",
+	},
+	{
+		property: "Security highlight",
+		cookie: "Can be HttpOnly/Secure/SameSite",
+		localStorage: "JS-readable",
+		sessionStorage: "JS-readable",
+	},
+];
+
 function readCookie(name: string) {
 	const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 	const match = document.cookie.match(new RegExp(`(?:^|; )${escaped}=([^;]*)`));
@@ -44,21 +90,54 @@ export function StorageComparisonDemo() {
 
 	return (
 		<div className="space-y-5">
-			<p className="text-sm text-slate-700">
-				Click each button to store demo data in your browser, then compare
-				behavior.
+			<p className="text-sm text-foreground">
+				Cookies, <code>localStorage</code>, and <code>sessionStorage</code> all
+				store client-side string key/value data, but differ in request behavior,
+				scope, lifetime, and security characteristics.
+			</p>
+			<p className="mt-2 text-xs text-muted">
+				Use the table for interview framing, then try the live controls below.
+			</p>
+
+			<div className="overflow-x-auto rounded-md border border-card-border">
+				<table className="min-w-190 w-full text-left text-xs sm:text-sm">
+					<thead className="[background:var(--surface)]">
+						<tr className="text-foreground">
+							<th className="px-3 py-2 font-semibold">Property</th>
+							<th className="px-3 py-2 font-semibold">Cookie</th>
+							<th className="px-3 py-2 font-semibold">localStorage</th>
+							<th className="px-3 py-2 font-semibold">sessionStorage</th>
+						</tr>
+					</thead>
+					<tbody>
+						{COMPARISON_ROWS.map((row) => (
+							<tr key={row.property} className="border-t border-card-border">
+								<th className="px-3 py-2 font-medium text-foreground">
+									{row.property}
+								</th>
+								<td className="px-3 py-2 text-muted">{row.cookie}</td>
+								<td className="px-3 py-2 text-muted">{row.localStorage}</td>
+								<td className="px-3 py-2 text-muted">{row.sessionStorage}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<p className="text-sm [color:var(--muted)]">
+				Set values and refresh/reopen tabs to observe persistence differences.
 			</p>
 
 			<div className="grid gap-4 md:grid-cols-3">
-				<section className="rounded-md border border-slate-200 bg-white p-3">
-					<h4 className="font-semibold text-slate-900">Cookie</h4>
-					<p className="mt-1 text-sm text-slate-700">
+				<section className="rounded-md border border-card-border p-3 [background:var(--card-bg)]">
+					<h4 className="font-semibold text-foreground">Cookie</h4>
+					<p className="mt-1 text-sm text-muted">
 						Sent with HTTP requests to matching domain/path.
 					</p>
-					<p className="mt-2 text-xs text-slate-500">
+					<p className="mt-2 text-xs text-muted">
 						Current: {cookieValue ?? "(empty)"}
 					</p>
-					<div className="mt-3 flex gap-2">
+					<div className="mt-3 flex flex-wrap gap-2">
 						<AppButton
 							type="button"
 							size="xs"
@@ -72,6 +151,8 @@ export function StorageComparisonDemo() {
 						<AppButton
 							type="button"
 							size="xs"
+							variant="dangerSubtle"
+							className="dark:bg-red-500/20 dark:text-red-300 dark:hover:bg-red-500/30"
 							onClick={() => {
 								clearCookie(COOKIE_KEY);
 								refreshValues();
@@ -82,15 +163,15 @@ export function StorageComparisonDemo() {
 					</div>
 				</section>
 
-				<section className="rounded-md border border-slate-200 bg-white p-3">
-					<h4 className="font-semibold text-slate-900">sessionStorage</h4>
-					<p className="mt-1 text-sm text-slate-700">
+				<section className="rounded-md border border-card-border p-3 [background:var(--card-bg)]">
+					<h4 className="font-semibold text-foreground">sessionStorage</h4>
+					<p className="mt-1 text-sm text-muted">
 						Tab-scoped storage; cleared when tab/session ends.
 					</p>
-					<p className="mt-2 text-xs text-slate-500">
+					<p className="mt-2 text-xs text-muted">
 						Current: {sessionValue ?? "(empty)"}
 					</p>
-					<div className="mt-3 flex gap-2">
+					<div className="mt-3 flex flex-wrap gap-2">
 						<AppButton
 							type="button"
 							size="xs"
@@ -104,6 +185,8 @@ export function StorageComparisonDemo() {
 						<AppButton
 							type="button"
 							size="xs"
+							variant="dangerSubtle"
+							className="dark:bg-red-500/20 dark:text-red-300 dark:hover:bg-red-500/30"
 							onClick={() => {
 								sessionStorage.removeItem(SESSION_KEY);
 								refreshValues();
@@ -114,15 +197,15 @@ export function StorageComparisonDemo() {
 					</div>
 				</section>
 
-				<section className="rounded-md border border-slate-200 bg-white p-3">
-					<h4 className="font-semibold text-slate-900">localStorage</h4>
-					<p className="mt-1 text-sm text-slate-700">
+				<section className="rounded-md border border-card-border p-3 [background:var(--card-bg)]">
+					<h4 className="font-semibold text-foreground">localStorage</h4>
+					<p className="mt-1 text-sm text-muted">
 						Persistent browser storage (until manually cleared).
 					</p>
-					<p className="mt-2 text-xs text-slate-500">
+					<p className="mt-2 text-xs text-muted">
 						Current: {localValue ?? "(empty)"}
 					</p>
-					<div className="mt-3 flex gap-2">
+					<div className="mt-3 flex flex-wrap gap-2">
 						<AppButton
 							type="button"
 							size="xs"
@@ -136,6 +219,8 @@ export function StorageComparisonDemo() {
 						<AppButton
 							type="button"
 							size="xs"
+							variant="dangerSubtle"
+							className="dark:bg-red-500/20 dark:text-red-300 dark:hover:bg-red-500/30"
 							onClick={() => {
 								localStorage.removeItem(LOCAL_KEY);
 								refreshValues();
@@ -147,20 +232,25 @@ export function StorageComparisonDemo() {
 				</section>
 			</div>
 
-			<div className="rounded-md border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-				<p className="font-semibold text-slate-900">Pros and cons</p>
-				<ul className="mt-2 space-y-1">
-					<li>
-						Cookies: useful for server-aware sessions, but small and auto-sent
-						on requests.
-					</li>
-					<li>sessionStorage: good for tab-local ephemeral state.</li>
-					<li>
-						localStorage: good for persisted client preferences, but
-						JS-readable.
-					</li>
-				</ul>
-			</div>
+			<p className="font-semibold text-foreground pt-4">Practical guidance</p>
+			<ul className="mt-2 space-y-1 text-muted">
+				<li>
+					Cookies are best for small server-relevant values (session IDs,
+					server-read flags) and can use HttpOnly/Secure/SameSite attributes.
+				</li>
+				<li>
+					localStorage fits persistent client preferences such as theme and
+					layout state.
+				</li>
+				<li>
+					sessionStorage fits temporary tab-local state such as in-progress form
+					data.
+				</li>
+				<li>
+					Both Web Storage APIs are JavaScript-accessible, so avoid storing
+					highly sensitive secrets there.
+				</li>
+			</ul>
 		</div>
 	);
 }

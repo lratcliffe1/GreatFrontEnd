@@ -8,27 +8,28 @@ import {
 } from "@/content/questions";
 
 const schema = buildSchema(`
-  type Question {
-    id: String!
-    questionNumber: Int!
-    slug: String!
-    title: String!
-    track: String!
-    category: String!
-    difficulty: String!
-    sourceUrl: String!
-    solutionType: String!
-    status: String!
-    summary: String!
-    approach: String!
-    complexity: String!
-    tags: [String!]!
-  }
+	type Question {
+		id: String!
+		questionNumber: Int!
+		slug: String!
+		title: String!
+		track: String!
+		category: String!
+		difficulty: String!
+		sourceUrl: String!
+		solutionType: String!
+		status: String!
+		summary: String!
+		cardSummary: String!
+		approach: String!
+		complexity: String!
+		tags: [String!]!
+	}
 
-  type Query {
-    questions(track: String!): [Question!]!
-    question(track: String!, slug: String!): Question
-  }
+	type Query {
+		questions(track: String!): [Question!]!
+		question(track: String!, slug: String!): Question
+	}
 `);
 
 const root = {
