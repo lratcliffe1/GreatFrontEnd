@@ -6,7 +6,9 @@ test("question detail page loads and shows content", async ({ page }) => {
 
 	await expect(page).toHaveURL(/\/gfe75\/debounce$/);
 	await expect(page.getByRole("heading", { name: /Debounce/ })).toBeVisible();
-	await expect(page.getByText("Delay function execution until calls settle.")).toBeVisible();
+	await expect(
+		page.getByText("Delay function execution until calls settle."),
+	).toBeVisible();
 	await expect(page.getByText("Problem summary")).toBeVisible();
 });
 

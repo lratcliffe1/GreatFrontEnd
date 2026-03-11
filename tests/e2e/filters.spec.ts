@@ -22,7 +22,9 @@ test("filters questions by category", async ({ page }) => {
 	await page.getByLabel("Category").click();
 	await page.getByRole("option", { name: "Quiz" }).click();
 
-	await expect(page.getByText("Cookie vs sessionStorage vs localStorage")).toBeVisible();
+	await expect(
+		page.getByText("Cookie vs sessionStorage vs localStorage"),
+	).toBeVisible();
 });
 
 test("filters questions by status", async ({ page }) => {

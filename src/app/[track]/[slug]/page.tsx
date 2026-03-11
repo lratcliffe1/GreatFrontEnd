@@ -41,7 +41,5 @@ export default async function QuestionPage({
 		notFound();
 	}
 
-	return (
-		<QuestionDetailPage question={question} />
-	);
+	return <QuestionDetailPage question={question} />;
 }

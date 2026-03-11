@@ -52,11 +52,7 @@ function ThemeWrapper({ children }: { children: React.ReactNode }) {
 		},
 	});
 
-	return (
-		<ThemeProvider theme={theme}>
-			{children}
-		</ThemeProvider>
-	);
+	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 
 export function AppProviders({ children }: { children: React.ReactNode }) {

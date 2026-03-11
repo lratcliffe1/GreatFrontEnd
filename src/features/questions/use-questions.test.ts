@@ -4,7 +4,9 @@ import { fetchQuestions } from "@/lib/graphql/client";
 
 jest.mock("@/lib/graphql/client");
 
-const mockFetchQuestions = fetchQuestions as jest.MockedFunction<typeof fetchQuestions>;
+const mockFetchQuestions = fetchQuestions as jest.MockedFunction<
+	typeof fetchQuestions
+>;
 
 describe("useQuestions", () => {
 	beforeEach(() => {

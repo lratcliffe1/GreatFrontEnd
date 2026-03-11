@@ -2,11 +2,8 @@
 
 import { GraphQLClient } from "graphql-request";
 
-import type { Question, Track } from "@/content/questions";
-import type {
-	QuestionResponse,
-	QuestionsResponse,
-} from "@/lib/graphql/types";
+import type { Track } from "@/content/questions";
+import type { QuestionResponse, QuestionsResponse } from "@/lib/graphql/types";
 
 function getClient() {
 	const endpoint =
@@ -17,45 +14,45 @@ function getClient() {
 }
 
 const QUESTIONS_QUERY = /* GraphQL */ `
-  query GetQuestions($track: String!) {
-    questions(track: $track) {
-      id
-      questionNumber
-      slug
-      title
-      track
-      category
-      difficulty
-      sourceUrl
-      solutionType
-      status
-      summary
-      approach
-      complexity
-      tags
-    }
-  }
+	query GetQuestions($track: String!) {
+		questions(track: $track) {
+			id
+			questionNumber
+			slug
+			title
+			track
+			category
+			difficulty
+			sourceUrl
+			solutionType
+			status
+			summary
+			approach
+			complexity
+			tags
+		}
+	}
 `;
 
 const QUESTION_QUERY = /* GraphQL */ `
-  query GetQuestion($track: String!, $slug: String!) {
-    question(track: $track, slug: $slug) {
-      id
-      questionNumber
-      slug
-      title
-      track
-      category
-      difficulty
-      sourceUrl
-      solutionType
-      status
-      summary
-      approach
-      complexity
-      tags
-    }
-  }
+	query GetQuestion($track: String!, $slug: String!) {
+		question(track: $track, slug: $slug) {
+			id
+			questionNumber
+			slug
+			title
+			track
+			category
+			difficulty
+			sourceUrl
+			solutionType
+			status
+			summary
+			approach
+			complexity
+			tags
+		}
+	}
 `;
 
 export async function fetchQuestions(track: Track) {
@@ -67,9 +64,9 @@ export async function fetchQuestions(track: Track) {
 }
 
 export async function fetchQuestion(track: Track, slug: string) {
-	const response = await getClient().request<QuestionResponse>(
-		QUESTION_QUERY,
-		{ track, slug },
-	);
+	const response = await getClient().request<QuestionResponse>(QUESTION_QUERY, {
+		track,
+		slug,
+	});
 	return response.question;
 }

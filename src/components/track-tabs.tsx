@@ -23,7 +23,7 @@ export function TrackTabs() {
 						className={`rounded-md px-4 py-2 text-sm font-semibold transition ${
 							active
 								? "bg-teal-600 text-white hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400"
-								: "[background:var(--card-bg)] [color:var(--foreground)] hover:[background:var(--surface)]"
+								: "[background:var(--card-bg)] text-foreground hover:[background:var(--surface)]"
 						}`}
 					>
 						{getTrackLabel(track)}

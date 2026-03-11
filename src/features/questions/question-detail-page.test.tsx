@@ -23,11 +23,19 @@ describe("QuestionDetailPage", () => {
 	it("renders question details", () => {
 		render(<QuestionDetailPage question={mockQuestion} />);
 
-		expect(screen.getByRole("heading", { name: /Debounce/ })).toBeInTheDocument();
+		expect(
+			screen.getByRole("heading", { name: /Debounce/ }),
+		).toBeInTheDocument();
 		expect(screen.getByText("JavaScript functions")).toBeInTheDocument();
-		expect(screen.getByText("Delay function execution until calls settle.")).toBeInTheDocument();
-		expect(screen.getByText("Use a closure over a timer id.")).toBeInTheDocument();
-		expect(screen.getByText("Time: O(1) per call, Space: O(1).")).toBeInTheDocument();
+		expect(
+			screen.getByText("Delay function execution until calls settle."),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText("Use a closure over a timer id."),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText("Time: O(1) per call, Space: O(1)."),
+		).toBeInTheDocument();
 	});
 
 	it("renders section headings", () => {
@@ -48,7 +56,9 @@ describe("QuestionDetailPage", () => {
 
 		render(<QuestionDetailPage question={writeupQuestion} />);
 
-		expect(screen.getByText(/This writeup follows the guidance/)).toBeInTheDocument();
+		expect(
+			screen.getByText(/This writeup follows the guidance/),
+		).toBeInTheDocument();
 	});
 
 	it("renders code-and-tests fallback", () => {
@@ -60,6 +70,8 @@ describe("QuestionDetailPage", () => {
 
 		render(<QuestionDetailPage question={codeQuestion} />);
 
-		expect(screen.getByText(/Code-first solution is implemented with unit tests/)).toBeInTheDocument();
+		expect(
+			screen.getByText(/Code-first solution is implemented with unit tests/),
+		).toBeInTheDocument();
 	});
 });

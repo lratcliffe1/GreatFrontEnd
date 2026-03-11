@@ -12,9 +12,7 @@ export async function POST(request: Request) {
 	const body = (await request.json()) as GraphQLRequestBody;
 
 	if (!body.query) {
-		const errors: GraphQLError[] = [
-			{ message: "GraphQL query is required." },
-		];
+		const errors: GraphQLError[] = [{ message: "GraphQL query is required." }];
 		return NextResponse.json({ errors }, { status: 400 });
 	}
 

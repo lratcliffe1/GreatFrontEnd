@@ -91,8 +91,7 @@ export function MetaPill({ children }: { children: ReactNode }) {
 
 const DIFFICULTY_CLASSES = {
 	Easy: "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400",
-	Medium:
-		"bg-amber-50 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400",
+	Medium: "bg-amber-50 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400",
 	Hard: "bg-rose-50 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400",
 } as const;
 

@@ -17,45 +17,45 @@ function getGraphQLEndpoint() {
 const client = new GraphQLClient(getGraphQLEndpoint());
 
 const QUESTIONS_QUERY = /* GraphQL */ `
-  query GetQuestions($track: String!) {
-    questions(track: $track) {
-      id
-      questionNumber
-      slug
-      title
-      track
-      category
-      difficulty
-      sourceUrl
-      solutionType
-      status
-      summary
-      approach
-      complexity
-      tags
-    }
-  }
+	query GetQuestions($track: String!) {
+		questions(track: $track) {
+			id
+			questionNumber
+			slug
+			title
+			track
+			category
+			difficulty
+			sourceUrl
+			solutionType
+			status
+			summary
+			approach
+			complexity
+			tags
+		}
+	}
 `;
 
 const QUESTION_QUERY = /* GraphQL */ `
-  query GetQuestion($track: String!, $slug: String!) {
-    question(track: $track, slug: $slug) {
-      id
-      questionNumber
-      slug
-      title
-      track
-      category
-      difficulty
-      sourceUrl
-      solutionType
-      status
-      summary
-      approach
-      complexity
-      tags
-    }
-  }
+	query GetQuestion($track: String!, $slug: String!) {
+		question(track: $track, slug: $slug) {
+			id
+			questionNumber
+			slug
+			title
+			track
+			category
+			difficulty
+			sourceUrl
+			solutionType
+			status
+			summary
+			approach
+			complexity
+			tags
+		}
+	}
 `;
 
 export const graphqlApi = createApi({
