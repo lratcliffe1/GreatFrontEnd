@@ -10,7 +10,8 @@
 		"typecheck": "tsc --noEmit",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test",
+		"test:e2e:chromium": "playwright test --project=chromium"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",
