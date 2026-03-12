@@ -16,8 +16,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className="bg-background">
-			<head />
+		<html lang="en" className="bg-background" suppressHydrationWarning>
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `(function(){var p=localStorage.getItem("theme-preference");if(p==="dark"||p==="light")document.documentElement.setAttribute("data-theme",p);})();`,
+					}}
+				/>
+			</head>
 			<body className="flex min-h-screen flex-col bg-background antialiased">
 				<AppProviders>
 					<div className="flex min-h-screen flex-1 flex-col">

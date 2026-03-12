@@ -27,8 +27,9 @@
 	--font-mono: var(--font-geist-mono);
 }
 
+/* System preference: dark */
 @media (prefers-color-scheme: dark) {
-	:root {
+	:root:not([data-theme="light"]) {
 		--background: #0a0a0a;
 		--foreground: #f1f5f9;
 		--card-bg: #1e293b;
@@ -39,6 +40,32 @@
 		--link: #2dd4bf;
 		--link-hover: #5eead4;
 	}
+}
+
+/* User override: dark */
+[data-theme="dark"] {
+	--background: #0a0a0a;
+	--foreground: #f1f5f9;
+	--card-bg: #1e293b;
+	--card-border: #334155;
+	--input-bg: var(--background);
+	--muted: #cbd5e1;
+	--surface: #0f172a;
+	--link: #2dd4bf;
+	--link-hover: #5eead4;
+}
+
+/* User override: light */
+[data-theme="light"] {
+	--background: #ffffff;
+	--foreground: #171717;
+	--card-bg: #f8fafc;
+	--card-border: #e2e8f0;
+	--input-bg: var(--background);
+	--muted: #64748b;
+	--surface: #f8fafc;
+	--link: #0f766e;
+	--link-hover: #0d6461;
 }
 
 html {

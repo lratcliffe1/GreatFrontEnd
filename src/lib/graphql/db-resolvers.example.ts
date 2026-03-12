@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars -- example file with mock signatures */
 /**
  * Example: DB-backed resolvers. Same Query/Mutation shape as demo-resolvers.
  *

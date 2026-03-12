@@ -2,12 +2,14 @@
 
 import { useMemo } from "react";
 import { Provider } from "react-redux";
-import { ThemeProvider, createTheme, useMediaQuery } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 import { makeStore, type AppStore } from "@/lib/store";
+import { ThemeProvider as AppThemeProvider, useTheme } from "@/lib/theme-context";
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
-	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+	const { resolvedMode } = useTheme();
+	const prefersDarkMode = resolvedMode === "dark";
 	const muiPalette = useMemo(
 		() =>
 			prefersDarkMode
@@ -92,7 +94,9 @@ export function AppProviders({ children, store }: AppProvidersProps) {
 
 	return (
 		<Provider store={appStore}>
-			<ThemeWrapper>{children}</ThemeWrapper>
+			<AppThemeProvider>
+				<ThemeWrapper>{children}</ThemeWrapper>
+			</AppThemeProvider>
 		</Provider>
 	);
 }

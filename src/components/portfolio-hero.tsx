@@ -21,7 +21,7 @@ export function PortfolioHero() {
 			<p className="mt-3 text-muted leading-7">
 				This portfolio showcases my solutions to <ExternalLink href="https://www.greatfrontend.com/interviews/gfe75">GFE 75</ExternalLink> and{" "}
 				<ExternalLink href="https://www.greatfrontend.com/interviews/blind75">Blind 75</ExternalLink>, along with notes, tests, and interactive
-				visualizers built with React, TypeScript, Redux, GraphQL, Tailwind, MUI, Jest, and Playwright. The original prompts come from{" "}
+				visualizers built with Next.js, React, TypeScript, Redux, GraphQL, Tailwind, MUI, Jest, and Playwright. The original prompts come from{" "}
 				<ExternalLink href="https://www.greatfrontend.com">GreatFrontEnd</ExternalLink>, and the full source code is available on{" "}
 				<ExternalLink href="https://github.com/lratcliffe1/greatfrontend">GitHub</ExternalLink>.
 			</p>

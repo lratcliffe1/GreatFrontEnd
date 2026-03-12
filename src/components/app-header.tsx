@@ -1,8 +1,13 @@
 import Link from "next/link";
 
 import type { Track } from "@/content/questions";
+import { GitHubIcon, GlobeIcon } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { PRIMARY_BUTTON_SM_CLASSES } from "@/components/ui/tailwind-primitives";
 import { getTrackLabel } from "@/lib/tracks";
+
+const iconLinkClass =
+	"rounded-md p-2 text-muted transition hover:bg-card-border hover:text-foreground focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-background";
 
 export function AppHeader() {
 	const tracks: Track[] = ["gfe75", "blind75"];
@@ -23,6 +28,25 @@ export function AppHeader() {
 							</Link>
 						);
 					})}
+					<a
+						href="https://github.com/lratcliffe1/greatfrontend"
+						target="_blank"
+						rel="noopener noreferrer"
+						className={iconLinkClass}
+						aria-label="View source on GitHub"
+					>
+						<GitHubIcon className="size-5" />
+					</a>
+					<a
+						href="https://www.greatfrontend.com"
+						target="_blank"
+						rel="noopener noreferrer"
+						className={iconLinkClass}
+						aria-label="Visit GreatFrontEnd"
+					>
+						<GlobeIcon className="size-5" />
+					</a>
+					<ThemeToggle />
 				</nav>
 			</div>
 		</header>
