@@ -1,4 +1,4 @@
-import { getSolutionRenderer } from "@/features/questions/solution-registry";
+import { getSolutionRenderer, prefetchSolutionRenderer } from "@/features/questions/solution-registry";
 import { createMockQuestion } from "@/fixtures/questions";
 
 describe("getSolutionRenderer", () => {
@@ -37,5 +37,32 @@ describe("getSolutionRenderer", () => {
 		const renderer = getSolutionRenderer(question);
 		expect(renderer).not.toBeNull();
 		expect(renderer).toBeDefined();
+	});
+});
+
+describe("prefetchSolutionRenderer", () => {
+	it("does not throw for runnable question with loader", () => {
+		const question = createMockQuestion({
+			track: "gfe75",
+			path: "debounce",
+			solutionType: "algo_visualizer",
+			status: "done",
+		});
+		expect(() => prefetchSolutionRenderer(question)).not.toThrow();
+	});
+
+	it("does not throw for non-runnable question", () => {
+		const question = createMockQuestion({ solutionType: "code_and_tests", status: "done" });
+		expect(() => prefetchSolutionRenderer(question)).not.toThrow();
+	});
+
+	it("does not throw when status is not done", () => {
+		const question = createMockQuestion({
+			track: "gfe75",
+			path: "debounce",
+			solutionType: "algo_visualizer",
+			status: "todo",
+		});
+		expect(() => prefetchSolutionRenderer(question)).not.toThrow();
 	});
 });

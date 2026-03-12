@@ -50,3 +50,23 @@ export function getSolutionRenderer(question: Question): SolutionComponent | nul
 
 	return renderer;
 }
+
+/** True when connection is fast enough for prefetching; false for slow/metered. Unknown = allow. */
+function shouldPrefetch(): boolean {
+	if (typeof navigator === "undefined" || !("connection" in navigator)) return true;
+	const conn = navigator.connection as { effectiveType?: string; saveData?: boolean } | undefined;
+	if (!conn) return true;
+	if (conn.saveData) return false;
+	const slow = ["slow-2g", "2g"];
+	return !conn.effectiveType || !slow.includes(conn.effectiveType);
+}
+
+/** Prefetch the solution renderer chunk on hover so it loads faster when the user clicks. Skips on slow/metered connections. */
+export function prefetchSolutionRenderer(question: Question): void {
+	if (!shouldPrefetch()) return;
+	if (!isRunnableSolutionType(question.solutionType) || question.status !== "done") return;
+	const rendererKey = `${question.track}/${question.path}`;
+	const loader =
+		rendererKey in SOLUTION_RENDERER_LOADERS ? SOLUTION_RENDERER_LOADERS[rendererKey as keyof typeof SOLUTION_RENDERER_LOADERS] : undefined;
+	if (loader) loader();
+}

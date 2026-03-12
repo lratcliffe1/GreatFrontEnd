@@ -10,6 +10,7 @@ import { useAppDispatch } from "@/lib/store/hooks";
 import { setCategory, setSearch, setStatus } from "@/lib/store/filtersSlice";
 import { TrackTabs } from "@/components/track-tabs";
 import { getTrackLabel } from "@/lib/tracks";
+import { prefetchSolutionRenderer } from "@/features/questions/solution-registry";
 import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
 import { useFilterSync } from "@/features/questions/use-url-filters";
 
@@ -69,6 +70,12 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 	}, [effectiveCategory, effectiveSearch, effectiveStatus, questions, track]);
 
 	const completedCount = filtered.filter((question) => question.status === "done").length;
+
+	// Prefetch first runnable solution on mount to warm shared chunks (reduces load time when user opens any solution)
+	useEffect(() => {
+		const firstRunnable = filtered.find((q) => q.status === "done" && (q.solutionType === "algo_visualizer" || q.solutionType === "ui_demo"));
+		if (firstRunnable) prefetchSolutionRenderer(firstRunnable);
+	}, [filtered]);
 
 	return (
 		<section className="min-w-0" data-testid={`track-page-${track}`}>
@@ -155,6 +162,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 						key={question.id}
 						data-testid={`question-card-${question.path}`}
 						className="flex h-full min-w-0 flex-col overflow-hidden p-3 sm:p-4"
+						onMouseEnter={() => prefetchSolutionRenderer(question)}
 					>
 						<div className="mb-1.5 flex min-w-0 items-start justify-between gap-2 sm:mb-2 sm:gap-3">
 							<h3
