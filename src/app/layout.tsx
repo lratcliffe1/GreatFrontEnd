@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { AppHeader } from "@/components/app-header";
 import { ErrorBoundary } from "@/components/error-boundary";
+import { analyticsBeforeSend } from "@/lib/analytics";
 import { AppProviders } from "@/providers/app-providers";
 
 export const metadata: Metadata = {
@@ -36,6 +38,7 @@ export default function RootLayout({
 						</div>
 					</div>
 				</AppProviders>
+				<Analytics beforeSend={analyticsBeforeSend} />
 			</body>
 		</html>
 	);
