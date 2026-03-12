@@ -26,7 +26,13 @@ export function TodoDemo() {
 		try {
 			await addTask({ label: trimmedInput }).unwrap();
 			setInput("");
-			inputRef.current?.focus();
+			const nativeEvent = event.nativeEvent as SubmitEvent | Event;
+			if ("submitter" in nativeEvent && nativeEvent.submitter instanceof HTMLElement) {
+				nativeEvent.submitter.blur();
+			}
+			setTimeout(() => {
+				inputRef.current?.focus();
+			}, 0);
 		} catch {
 			/* RTK Query surfaces errors via mutation state */
 		}
@@ -43,7 +49,7 @@ export function TodoDemo() {
 	async function removeAllTasks() {
 		try {
 			await clearTasks().unwrap();
-			inputRef.current?.focus();
+			setTimeout(() => inputRef.current?.focus(), 0);
 		} catch {
 			/* RTK Query surfaces errors via mutation state */
 		}
