@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
+import { PortfolioHero } from "@/components/portfolio-hero";
 import { TrackQuestionsPage } from "@/features/questions/track-questions-page";
 import { getTrackLabel, isTrack } from "@/lib/tracks";
 
@@ -25,7 +26,8 @@ export default async function TrackPage({ params }: { params: Promise<{ track: s
 	}
 
 	return (
-		<div>
+		<div className="space-y-6">
+			<PortfolioHero />
 			<Suspense
 				fallback={
 					<div className="animate-pulse space-y-4">
