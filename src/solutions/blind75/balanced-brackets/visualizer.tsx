@@ -118,6 +118,13 @@ export function BalancedBracketsVisualizer() {
 						Apply input
 					</AppButton>
 				</div>
+				<div className="min-h-10">
+					{inputError && (
+						<p className="text-sm text-amber-600 dark:text-amber-400" role="alert">
+							{inputError}
+						</p>
+					)}
+				</div>
 			</div>
 
 			<StepVisualizerLayout

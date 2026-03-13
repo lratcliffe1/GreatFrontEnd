@@ -136,6 +136,13 @@ export function FindDuplicatesInArrayVisualizer() {
 						Apply input
 					</AppButton>
 				</div>
+				<div className="min-h-10">
+					{parsedInput.error && (
+						<p className="text-sm text-amber-600 dark:text-amber-400" role="alert">
+							{parsedInput.error}
+						</p>
+					)}
+				</div>
 			</div>
 
 			<StepVisualizerLayout
