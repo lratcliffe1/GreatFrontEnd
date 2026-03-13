@@ -1,25 +1,47 @@
 "use client";
 
 import Link from "next/link";
+import type { ComponentType } from "react";
+import { useEffect, useState } from "react";
+
 import type { Question } from "@/content/questions";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { DifficultyPill, PRIMARY_BUTTON_CLASSES, SurfacePanel } from "@/components/ui/tailwind-primitives";
 import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
-import { getSolutionRenderer } from "@/features/questions/solution-registry";
+import { getSolutionRenderer, hasSolutionRenderer } from "@/features/questions/solution-registry";
 
-function renderSolution(question: Question) {
-	const SolutionRenderer = getSolutionRenderer(question);
-	if (SolutionRenderer) {
+const FALLBACK_CLASS = `rounded-md bg-card-bg p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`;
+
+function LazySolutionRenderer({ question }: { question: Question }) {
+	const [Renderer, setRenderer] = useState<ComponentType | null>(null);
+
+	useEffect(() => {
+		const component = getSolutionRenderer(question);
+		if (component) {
+			const id = setTimeout(() => setRenderer(() => component), 0);
+			return () => clearTimeout(id);
+		}
+	}, [question]);
+
+	if (!Renderer) {
 		return (
-			<ErrorBoundary>
-				<SolutionRenderer />
-			</ErrorBoundary>
+			<div className={FALLBACK_CLASS}>
+				<p>Loading solution component...</p>
+			</div>
 		);
 	}
 
+	return (
+		<ErrorBoundary>
+			<Renderer />
+		</ErrorBoundary>
+	);
+}
+
+function SolutionFallback({ question }: { question: Question }) {
 	if (question.solutionType === "algo_visualizer") {
 		return (
-			<div className={`rounded-md bg-card-bg p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}>
+			<div className={FALLBACK_CLASS}>
 				<p>Interactive algorithm walkthrough is pending for this question.</p>
 			</div>
 		);
@@ -35,7 +57,7 @@ function renderSolution(question: Question) {
 	}
 
 	return (
-		<div className={`rounded-md bg-card-bg p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`}>
+		<div className={FALLBACK_CLASS}>
 			<p>
 				Code-first solution is implemented with unit tests. Open
 				<code className="mx-1 rounded bg-surface px-1 py-0.5">src/solutions</code>
@@ -90,7 +112,7 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 
 			<SurfacePanel className="space-y-2">
 				<h3 className={QUESTION_UI_CLASSES.panelHeading}>Runnable solution</h3>
-				{renderSolution(question)}
+				{hasSolutionRenderer(question) ? <LazySolutionRenderer question={question} /> : <SolutionFallback question={question} />}
 			</SurfacePanel>
 
 			{showComplexity ? (

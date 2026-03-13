@@ -71,12 +71,6 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 
 	const completedCount = filtered.filter((question) => question.status === "done").length;
 
-	// Prefetch first runnable solution on mount to warm shared chunks (reduces load time when user opens any solution)
-	useEffect(() => {
-		const firstRunnable = filtered.find((q) => q.status === "done" && (q.solutionType === "algo_visualizer" || q.solutionType === "ui_demo"));
-		if (firstRunnable) prefetchSolutionRenderer(firstRunnable);
-	}, [filtered]);
-
 	return (
 		<section className="min-w-0" data-testid={`track-page-${track}`}>
 			<div className="mb-5 flex min-w-0 flex-wrap items-end gap-3 sm:gap-4">
