@@ -24,7 +24,7 @@ export const PRIMARY_BUTTON_SM_CLASSES =
 
 const BUTTON_VARIANT_CLASSES = {
 	primary:
-		"bg-teal-600 text-white hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:border disabled:border-card-border disabled:[background:var(--card-bg)] disabled:text-muted disabled:hover:[background:var(--card-bg)] disabled:hover:text-muted dark:bg-teal-500 dark:hover:bg-teal-400 dark:disabled:[background:var(--card-bg)]",
+		"border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:border-card-border disabled:[background:var(--card-bg)] disabled:text-muted disabled:hover:[background:var(--card-bg)] disabled:hover:text-muted dark:bg-teal-500 dark:hover:bg-teal-400 dark:disabled:[background:var(--card-bg)]",
 	danger: "bg-red-600 text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-red-600",
 	dangerSubtle: "bg-red-50 text-red-700 hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-red-50",
 } as const;
