@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { Provider } from "react-redux";
 
 import { makeStore, type AppStore } from "@/lib/store";
-import { ThemeProvider as AppThemeProvider } from "@/lib/theme-context";
+import { ThemeProvider as AppThemeProvider } from "@/lib/context/theme-context";
 
 type AppProvidersProps = {
 	children: React.ReactNode;

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getQuestionByPath, QUESTIONS } from "@/content/questions";
-import { QuestionDetailPage } from "@/features/questions/question-detail-page";
-import { getTrackLabel, isTrack } from "@/lib/tracks";
+import { QuestionDetailPage } from "@/questions/detail/detail-page";
+import { getTrackLabel, isTrack } from "@/lib/constants";
 
 export const dynamicParams = false;
 

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AnalyticsProvider } from "@/components/analytics-provider";
-import { AppHeader } from "@/components/app-header";
-import { ErrorBoundary } from "@/components/error-boundary";
-import { AppProviders } from "@/providers/app-providers";
+import { AppHeader } from "@/components/layout/app-header";
+import { ErrorBoundary } from "@/components/error/error-boundary";
+import { AnalyticsProvider, AppProviders } from "@/lib/providers";
 
 export const metadata: Metadata = {
 	title: "GreatFrontEnd Portfolio",

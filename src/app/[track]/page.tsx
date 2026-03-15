@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PortfolioHero } from "@/components/portfolio-hero";
+import { PortfolioHero } from "@/components/layout/portfolio-hero";
 import { getQuestionsByTrack } from "@/content/questions";
-import { TrackQuestionsPageClient } from "@/features/questions/track-questions-page-client";
-import { getTrackLabel, isTrack, TRACKS } from "@/lib/tracks";
+import { TrackQuestionsPageClient } from "@/questions/list/track-page-client";
+import { getTrackLabel, isTrack, TRACKS } from "@/lib/constants";
 
 export const dynamicParams = false;
 

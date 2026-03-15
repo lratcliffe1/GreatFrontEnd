@@ -1,6 +1,6 @@
 import { QuestionStatus, SolutionType, Track } from "@/content/questions";
-import { getSolutionRenderer, prefetchSolutionRenderer } from "@/features/questions/solution-registry";
-import { createMockQuestion } from "@/fixtures/questions";
+import { getSolutionRenderer, prefetchSolutionRenderer } from "@/questions/solution-registry";
+import { createMockQuestion } from "@/questions/mock-questions";
 
 describe("getSolutionRenderer", () => {
 	it("returns null for code_and_tests solution type", () => {

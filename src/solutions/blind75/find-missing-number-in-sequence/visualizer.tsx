@@ -13,7 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
-import { parseCommaSeparatedIntegers } from "@/lib/parse-comma-separated-integers";
+import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-comma-separated-integers";
 import {
 	MISSING_NUMBER_CONSTRAINTS,
 	getMissingNumberInputError,

@@ -1,4 +1,4 @@
-import { parseCommaSeparatedIntegers } from "./parse-comma-separated-integers";
+import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-comma-separated-integers";
 
 const CONSTRAINTS = { minLength: 1, maxLength: 5, minValue: 0, maxValue: 10 };
 

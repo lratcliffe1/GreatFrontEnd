@@ -18,9 +18,10 @@ const config: Config = {
 		"!src/**/*.test.{ts,tsx}",
 		"!src/**/index.ts",
 		"!src/app/**",
-		"!src/providers/**",
 		"!src/solutions/**/visualizer*.tsx",
 		"!src/solutions/**/*-demo.tsx",
+		"!src/**/*.example.{ts,tsx}",
+		"!src/**/test-utils.{ts,tsx}",
 	],
 	coverageThreshold: {
 		global: {

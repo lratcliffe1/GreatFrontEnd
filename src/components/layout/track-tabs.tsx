@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { PRIMARY_BUTTON_CLASSES } from "@/components/ui/tailwind-primitives";
-import { getTrackLabel, TRACKS } from "@/lib/tracks";
+import { getTrackLabel, TRACKS } from "@/lib/constants";
 
 export function TrackTabs() {
 	const searchParams = useSearchParams();

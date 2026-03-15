@@ -1,5 +1,5 @@
 import { MUTED_TEXT_CLASS } from "@/components/ui/tailwind-primitives";
-import { isHttpUrl } from "@/features/questions/helpers";
+import { isHttpUrl } from "@/lib/utils/is-http-url";
 
 export const QUESTION_UI_CLASSES = {
 	bodyText: "[color:var(--foreground)]",

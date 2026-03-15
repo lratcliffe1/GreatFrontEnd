@@ -9,15 +9,14 @@ import { FilterSelect } from "@/components/ui/filter-select";
 import { DifficultyPill, ElevatedCard, MutedText, StatusBadge } from "@/components/ui/tailwind-primitives";
 import { useAppDispatch } from "@/lib/store/hooks";
 import { setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
-import { TrackTabs } from "@/components/track-tabs";
-import { getTrackLabel } from "@/lib/tracks";
-import { getUniqueCategories } from "@/features/questions/helpers";
-import { prefetchSolutionRenderer } from "@/features/questions/solution-registry";
-import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
-import { useFilterSync } from "@/features/questions/use-url-filters";
+import { TrackTabs } from "@/components/layout/track-tabs";
+import { getTrackLabel } from "@/lib/constants";
+import { getUniqueCategories } from "@/questions/helpers";
+import { prefetchSolutionRenderer } from "@/questions/solution-registry";
+import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/questions/ui/question-ui";
+import { useFilterSync } from "@/questions/hooks/use-url-filters";
 import { DIFFICULTY_OPTIONS, STATUS_OPTIONS } from "@/lib/constants/filters";
-
-const SEARCH_DEBOUNCE_MS = 150;
+import { SEARCH_DEBOUNCE_MS } from "@/lib/constants/ui";
 
 export function TrackQuestionsPage({ track, questions }: { track: Track; questions: Question[] }) {
 	const router = useRouter();

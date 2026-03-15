@@ -1,5 +1,5 @@
 import type { BeforeSendEvent } from "@vercel/analytics/next";
-import { analyticsBeforeSend } from "@/lib/analytics";
+import { analyticsBeforeSend } from "@/lib/tracking/analytics";
 
 describe("analyticsBeforeSend", () => {
 	it("returns event when URL is valid", () => {

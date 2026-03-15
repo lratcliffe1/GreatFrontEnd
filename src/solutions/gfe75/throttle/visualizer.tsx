@@ -13,7 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
-import { toClockTime } from "@/lib/to-clock-time";
+import { toClockTime } from "@/lib/utils/to-clock-time";
 import { throttle, type ThrottleTraceEvent } from "@/solutions/gfe75/throttle/solution";
 
 const CODE_LINES: CodeLine[] = [

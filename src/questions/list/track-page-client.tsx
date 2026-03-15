@@ -9,7 +9,7 @@ type TrackQuestionsPageProps = {
 	questions: Question[];
 };
 
-const TrackQuestionsPageNoSSR = dynamic(() => import("@/features/questions/track-questions-page").then((mod) => mod.TrackQuestionsPage), {
+const TrackQuestionsPageNoSSR = dynamic(() => import("@/questions/list/track-page").then((mod) => mod.TrackQuestionsPage), {
 	ssr: false,
 	loading: () => <div className="text-sm text-muted">Loading...</div>,
 });

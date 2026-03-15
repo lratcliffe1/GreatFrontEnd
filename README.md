@@ -55,8 +55,8 @@ Playwright commands require browsers to be installed once via `npx playwright in
 
 - `src/app`: routes and API handlers
 - `src/content/questions/`: typed question manifests (`gfe75.ts`, `blind75.ts`) and shared types
-- `src/features/questions`: grid/detail pages and renderer logic
-- `src/fixtures`: shared test fixtures (e.g. mock questions)
+- `src/questions`: grid/detail pages and renderer logic
+- `src/questions/mock-questions.ts`: mock question data for tests
 - `src/solutions`: solution implementations and visualizers
 - `tests/e2e`: Playwright tests
 - `tests/integration`: integration tests

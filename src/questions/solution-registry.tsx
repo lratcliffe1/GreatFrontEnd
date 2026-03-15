@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 
 import { QuestionStatus, SolutionType, type Question } from "@/content/questions";
-import { QUESTION_UI_CLASSES } from "@/features/questions/question-ui";
+import { QUESTION_UI_CLASSES } from "@/questions/ui/question-ui";
 import { SOLUTION_RENDERER_LOADERS } from "@/solutions/renderer-loaders";
 
 type SolutionComponent = ComponentType;

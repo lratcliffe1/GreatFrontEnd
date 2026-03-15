@@ -5,10 +5,10 @@ import type { ComponentType } from "react";
 import { startTransition, useEffect, useState } from "react";
 
 import { SolutionType, type Question } from "@/content/questions";
-import { ErrorBoundary } from "@/components/error-boundary";
+import { ErrorBoundary } from "@/components/error/error-boundary";
 import { DifficultyPill, PRIMARY_BUTTON_CLASSES, SurfacePanel } from "@/components/ui/tailwind-primitives";
-import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
-import { getSolutionRenderer, hasSolutionRenderer } from "@/features/questions/solution-registry";
+import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/questions/ui/question-ui";
+import { getSolutionRenderer, hasSolutionRenderer } from "@/questions/solution-registry";
 
 const FALLBACK_CLASS = `rounded-md bg-card-bg p-3 text-sm ${QUESTION_UI_CLASSES.bodyText}`;
 

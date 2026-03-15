@@ -1,7 +1,7 @@
 import { render, type RenderOptions } from "@testing-library/react";
 
 import { type AppStore, makeStore } from "@/lib/store";
-import { AppProviders } from "@/providers/app-providers";
+import { AppProviders } from "@/lib/providers/app-providers";
 
 type ExtendedRenderOptions = Omit<RenderOptions, "wrapper"> & {
 	store?: AppStore;

@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { analyticsBeforeSend } from "@/lib/analytics";
-import { reportWebVitals } from "@/lib/web-vitals-report";
+import { analyticsBeforeSend } from "@/lib/tracking/analytics";
+import { reportWebVitals } from "@/lib/tracking/web-vitals-report";
 
 export function AnalyticsProvider() {
 	useEffect(() => {
