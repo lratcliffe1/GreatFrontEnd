@@ -4,19 +4,15 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { graphqlRequestBaseQuery } from "@rtk-query/graphql-request-base-query";
 import { GraphQLClient } from "graphql-request";
 
-import type { Question, Track } from "@/content/questions";
 import {
 	ADD_TASK_MUTATION,
 	CLEAR_TASKS_MUTATION,
 	CREATE_POST_MUTATION,
 	FEED_PAGE_QUERY,
-	QUESTION_QUERY,
-	QUESTIONS_QUERY,
 	REACT_TO_POST_MUTATION,
 	REMOVE_TASK_MUTATION,
 	TASKS_QUERY,
 } from "@/lib/graphql/documents";
-import type { QuestionResponse, QuestionsResponse } from "@/lib/graphql/types";
 
 export type TodoTask = { id: number; label: string };
 export type ReactionKey = "like" | "haha" | "wow";
@@ -45,20 +41,6 @@ export const graphqlApi = createApi({
 	baseQuery: graphqlRequestBaseQuery({ client }),
 	tagTypes: ["Tasks", "Feed"],
 	endpoints: (builder) => ({
-		questions: builder.query<Question[], { track: Track }>({
-			query: ({ track }) => ({
-				document: QUESTIONS_QUERY,
-				variables: { track },
-			}),
-			transformResponse: (response: QuestionsResponse) => response.questions,
-		}),
-		question: builder.query<Question | null, { track: Track; path: string }>({
-			query: ({ track, path }) => ({
-				document: QUESTION_QUERY,
-				variables: { track, path },
-			}),
-			transformResponse: (response: QuestionResponse) => response.question,
-		}),
 		tasks: builder.query<TodoTask[], void>({
 			query: () => ({ document: TASKS_QUERY }),
 			transformResponse: (res: { tasks: TodoTask[] }) => res.tasks,
@@ -109,8 +91,6 @@ export const graphqlApi = createApi({
 });
 
 export const {
-	useQuestionsQuery,
-	useQuestionQuery,
 	useTasksQuery,
 	useAddTaskMutation,
 	useRemoveTaskMutation,

@@ -1,7 +1,7 @@
 import { Difficulty, QuestionStatus, Track } from "@/content/questions";
-import { selectCategory, selectDifficulty, selectHasActiveFilters, selectSearch, selectStatus } from "@/lib/store/selectors";
+import { selectCategory, selectDifficulty, selectSearch, selectStatus } from "@/lib/store/selectors";
 import { graphqlApi } from "@/lib/graphql/api";
-import filtersReducer, { resetFilters, setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
+import filtersReducer, { setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
 
 function getState(filters: ReturnType<typeof filtersReducer>) {
 	return {
@@ -31,31 +31,6 @@ describe("selectors", () => {
 	it("selectDifficulty returns difficulty value", () => {
 		const state = getState(filtersReducer(undefined, setDifficulty({ track, value: Difficulty.Hard })));
 		expect(selectDifficulty(state, track)).toBe(Difficulty.Hard);
-	});
-
-	it("selectHasActiveFilters returns true when difficulty is not all", () => {
-		const state = getState(filtersReducer(undefined, setDifficulty({ track, value: Difficulty.Easy })));
-		expect(selectHasActiveFilters(state, track)).toBe(true);
-	});
-
-	it("selectHasActiveFilters returns false when all default", () => {
-		const state = getState(filtersReducer(undefined, { type: "init" }));
-		expect(selectHasActiveFilters(state, track)).toBe(false);
-	});
-
-	it("selectHasActiveFilters returns true when search is set", () => {
-		const state = getState(filtersReducer(undefined, setSearch({ track, value: "todo" })));
-		expect(selectHasActiveFilters(state, track)).toBe(true);
-	});
-
-	it("selectHasActiveFilters returns true when category is not all", () => {
-		const state = getState(filtersReducer(undefined, setCategory({ track, value: "Quiz" })));
-		expect(selectHasActiveFilters(state, track)).toBe(true);
-	});
-
-	it("selectHasActiveFilters returns false after resetFilters", () => {
-		const state = getState(filtersReducer(filtersReducer(undefined, setSearch({ track, value: "x" })), resetFilters()));
-		expect(selectHasActiveFilters(state, track)).toBe(false);
 	});
 
 	it("keeps filters isolated by track", () => {

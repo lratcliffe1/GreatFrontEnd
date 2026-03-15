@@ -1,5 +1,4 @@
-import { QuestionStatus } from "@/content/questions";
-import { formatQuestionStatus, getGraphQlErrorMessage, isHttpUrl } from "@/features/questions/helpers";
+import { isHttpUrl } from "@/features/questions/helpers";
 
 describe("helpers", () => {
 	describe("isHttpUrl", () => {
@@ -17,26 +16,6 @@ describe("helpers", () => {
 			expect(isHttpUrl("")).toBe(false);
 			expect(isHttpUrl("not a url")).toBe(false);
 			expect(isHttpUrl("ftp://example.com")).toBe(false);
-		});
-	});
-
-	describe("formatQuestionStatus", () => {
-		it("formats status values correctly", () => {
-			expect(formatQuestionStatus(QuestionStatus.Todo)).toBe("To do");
-			expect(formatQuestionStatus(QuestionStatus.InProgress)).toBe("In progress");
-			expect(formatQuestionStatus(QuestionStatus.Done)).toBe("Done");
-			expect(formatQuestionStatus("all")).toBe("All");
-		});
-	});
-
-	describe("getGraphQlErrorMessage", () => {
-		it("returns error message for Error instances", () => {
-			expect(getGraphQlErrorMessage(new Error("Network error"))).toBe("Network error");
-		});
-
-		it("returns fallback for non-Error values", () => {
-			expect(getGraphQlErrorMessage("string")).toBe("Unknown GraphQL error.");
-			expect(getGraphQlErrorMessage(null)).toBe("Unknown GraphQL error.");
 		});
 	});
 });

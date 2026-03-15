@@ -13,8 +13,3 @@ export const selectCategory = createSelector(selectTrackFilters, (filters) => fi
 export const selectStatus = createSelector(selectTrackFilters, (filters) => filters.status);
 
 export const selectDifficulty = createSelector(selectTrackFilters, (filters) => filters.difficulty ?? "all");
-
-export const selectHasActiveFilters = createSelector(
-	selectTrackFilters,
-	(filters) => filters.search !== "" || filters.category !== "all" || filters.status !== "all" || filters.difficulty !== "all",
-);
