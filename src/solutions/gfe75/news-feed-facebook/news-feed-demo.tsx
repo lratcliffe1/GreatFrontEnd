@@ -93,26 +93,30 @@ export function NewsFeedDemo() {
 		return () => observer.disconnect();
 	}, [hasMore, loadMore]);
 
-	async function onCreatePost(event: React.FormEvent<HTMLFormElement>) {
+	function onCreatePost(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		const content = newPostContent.trim();
 		const imageUrl = newPostImageUrl.trim();
 		if (!content && !imageUrl) return;
 		setError(null);
-		try {
-			const created = await createPost({
+		setNewPostContent("");
+		setNewPostImageUrl("");
+		queueMicrotask(() => {
+			createPost({
 				content: content || undefined,
 				imageUrl: imageUrl || undefined,
-			}).unwrap();
-			setPosts((prev) => [created, ...prev]);
-			setNewPostContent("");
-			setNewPostImageUrl("");
-		} catch {
-			setError("Failed to create post.");
-		}
+			})
+				.unwrap()
+				.then((created) => {
+					setPosts((prev) => [created, ...prev]);
+				})
+				.catch(() => {
+					setError("Failed to create post.");
+				});
+		});
 	}
 
-	async function onReactToPost(postId: string, selectedReaction: ReactionKey) {
+	function onReactToPost(postId: string, selectedReaction: ReactionKey) {
 		const current = posts.find((p) => p.id === postId);
 		if (!current) return;
 		const previousReaction = current.reactionByMe;
@@ -120,12 +124,14 @@ export function NewsFeedDemo() {
 
 		setPosts((prev) => prev.map((p) => (p.id === postId ? applyReactionTransition(p, nextReaction) : p)));
 		setError(null);
-		try {
-			await reactToPost({ postId, reaction: nextReaction }).unwrap();
-		} catch (caught) {
-			setPosts((prev) => prev.map((p) => (p.id === postId ? applyReactionTransition(p, previousReaction) : p)));
-			setError(caught instanceof Error ? caught.message : "Failed to react.");
-		}
+		queueMicrotask(() => {
+			reactToPost({ postId, reaction: nextReaction })
+				.unwrap()
+				.catch((caught) => {
+					setPosts((prev) => prev.map((p) => (p.id === postId ? applyReactionTransition(p, previousReaction) : p)));
+					setError(caught instanceof Error ? caught.message : "Failed to react.");
+				});
+		});
 	}
 
 	if (isLoadingInitial) {

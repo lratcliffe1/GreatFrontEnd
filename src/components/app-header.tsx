@@ -7,7 +7,7 @@ import { PRIMARY_BUTTON_SM_CLASSES } from "@/components/ui/tailwind-primitives";
 import { getTrackLabel } from "@/lib/tracks";
 
 const iconLinkClass =
-	"rounded-md p-2 text-muted transition hover:bg-card-border hover:text-foreground focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-background";
+	"rounded-md p-2 text-muted transition hover:bg-card-border hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function AppHeader() {
 	const tracks: Track[] = ["gfe75", "blind75"];

@@ -3,6 +3,14 @@ import { render, screen, waitFor, within } from "@/test-utils";
 import { TrackQuestionsPage } from "@/features/questions/track-questions-page";
 import { mockQuestions } from "@/fixtures/questions";
 
+jest.mock("next/navigation", () => {
+	const actual = jest.requireActual<typeof import("next/navigation")>("next/navigation");
+	return {
+		...actual,
+		useRouter: () => ({ prefetch: () => {} }),
+	};
+});
+
 describe("TrackQuestionsPage", () => {
 	beforeEach(() => {
 		window.history.replaceState(window.history.state, "", "/gfe75");
@@ -24,7 +32,7 @@ describe("TrackQuestionsPage", () => {
 		const user = userEvent.setup();
 		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
 
-		const searchInput = screen.getByLabelText("Search questions");
+		const searchInput = screen.getByTestId("filter-search");
 		await user.type(searchInput, "Debounce");
 
 		// Search is debounced; wait for filter to apply
@@ -40,7 +48,7 @@ describe("TrackQuestionsPage", () => {
 
 		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
 
-		expect(screen.getByLabelText("Search questions")).toHaveValue("reduce");
+		expect(screen.getByTestId("filter-search")).toHaveValue("reduce");
 		expect(within(screen.getByTestId("filter-status")).getByRole("combobox")).toHaveTextContent("Todo");
 		expect(within(screen.getByTestId("filter-category")).getByRole("combobox")).toHaveTextContent("JavaScript functions");
 		expect(screen.queryByText(/Debounce/)).not.toBeInTheDocument();
@@ -52,7 +60,7 @@ describe("TrackQuestionsPage", () => {
 		const user = userEvent.setup();
 		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
 
-		const searchInput = screen.getByLabelText("Search questions");
+		const searchInput = screen.getByTestId("filter-search");
 		await user.type(searchInput, "Debounce");
 
 		// Search is debounced; URL updates after debounce

@@ -14,11 +14,6 @@
 		"test:e2e:chromium": "playwright test --project=chromium"
 	},
 	"dependencies": {
-		"@emotion/cache": "^11.14.0",
-		"@emotion/react": "^11.14.0",
-		"@emotion/styled": "^11.14.1",
-		"@mui/material": "^7.3.9",
-		"@mui/material-nextjs": "^7.3.9",
 		"@reduxjs/toolkit": "^2.11.2",
 		"@rtk-query/graphql-request-base-query": "^2.3.2",
 		"@vercel/analytics": "^2.0.0",

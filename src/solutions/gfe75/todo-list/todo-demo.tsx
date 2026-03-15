@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { ChangeEvent, useEffect, useRef, useState, type FormEvent } from "react";
 import { AppButton, MutedText } from "@/components/ui/tailwind-primitives";
 import { useAddTaskMutation, useClearTasksMutation, useRemoveTaskMutation, useTasksQuery } from "@/lib/graphql/api";
 
@@ -20,39 +20,44 @@ export function TodoDemo() {
 		inputRef.current?.focus();
 	}, []);
 
-	async function onSubmit(event: FormEvent<HTMLFormElement>) {
+	function onSubmit(event: ChangeEvent<HTMLFormElement>) {
 		event.preventDefault();
 		if (!trimmedInput) return;
-		try {
-			await addTask({ label: trimmedInput }).unwrap();
-			setInput("");
-			const nativeEvent = event.nativeEvent as SubmitEvent | Event;
-			if ("submitter" in nativeEvent && nativeEvent.submitter instanceof HTMLElement) {
-				nativeEvent.submitter.blur();
-			}
-			setTimeout(() => {
-				inputRef.current?.focus();
-			}, 0);
-		} catch {
-			/* RTK Query surfaces errors via mutation state */
+		const label = trimmedInput;
+		setInput("");
+		const nativeEvent = event.nativeEvent as SubmitEvent | Event;
+		if ("submitter" in nativeEvent && nativeEvent.submitter instanceof HTMLElement) {
+			nativeEvent.submitter.blur();
 		}
+		setTimeout(() => inputRef.current?.focus(), 0);
+		queueMicrotask(() => {
+			addTask({ label })
+				.unwrap()
+				.catch(() => {
+					/* RTK Query surfaces errors via mutation state */
+				});
+		});
 	}
 
-	async function deleteTask(taskId: number) {
-		try {
-			await removeTask({ id: taskId }).unwrap();
-		} catch {
-			/* RTK Query surfaces errors via mutation state */
-		}
+	function deleteTask(taskId: number) {
+		queueMicrotask(() => {
+			removeTask({ id: taskId })
+				.unwrap()
+				.catch(() => {
+					/* RTK Query surfaces errors via mutation state */
+				});
+		});
 	}
 
-	async function removeAllTasks() {
-		try {
-			await clearTasks().unwrap();
-			setTimeout(() => inputRef.current?.focus(), 0);
-		} catch {
-			/* RTK Query surfaces errors via mutation state */
-		}
+	function removeAllTasks() {
+		setTimeout(() => inputRef.current?.focus(), 0);
+		queueMicrotask(() => {
+			clearTasks()
+				.unwrap()
+				.catch(() => {
+					/* RTK Query surfaces errors via mutation state */
+				});
+		});
 	}
 
 	if (isLoading) {

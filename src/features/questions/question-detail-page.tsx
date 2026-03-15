@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ComponentType } from "react";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 
 import type { Question } from "@/content/questions";
 import { ErrorBoundary } from "@/components/error-boundary";
@@ -18,8 +18,10 @@ function LazySolutionRenderer({ question }: { question: Question }) {
 	useEffect(() => {
 		const component = getSolutionRenderer(question);
 		if (component) {
-			const id = setTimeout(() => setRenderer(() => component), 0);
-			return () => clearTimeout(id);
+			const id = requestAnimationFrame(() => {
+				startTransition(() => setRenderer(() => component));
+			});
+			return () => cancelAnimationFrame(id);
 		}
 	}, [question]);
 

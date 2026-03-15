@@ -17,7 +17,7 @@ The app includes two track tabs, question grids, and detail pages that can rende
 - React + Next.js (App Router) + TypeScript
 - Redux (currently used for shared question filter state)
 - GraphQL (`/api/graphql`) + RTK Query for optional client-side data fetching; pages use SSG with content for optimal performance. Todo and News Feed demos use in-memory data through GraphQL; the persistence layer is isolated so a database can be swapped in later (see [GraphQL & data](#graphql--data)).
-- Tailwind CSS + MUI
+- Tailwind CSS
 - Jest (unit testing)
 - Playwright (integration testing)
 - ESLint

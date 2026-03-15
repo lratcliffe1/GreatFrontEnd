@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { startTransition, useEffect, useMemo, useRef, useState } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 import type { Question, Track } from "@/content/questions";
 import { DifficultyPill, ElevatedCard, MutedText, StatusBadge } from "@/components/ui/tailwind-primitives";
@@ -27,6 +27,7 @@ function getUniqueCategories(questions: Question[]) {
 }
 
 export function TrackQuestionsPage({ track, questions }: { track: Track; questions: Question[] }) {
+	const router = useRouter();
 	const dispatch = useAppDispatch();
 	const { effectiveSearch, effectiveCategory, effectiveStatus } = useFilterSync(track);
 
@@ -80,37 +81,56 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 						{getTrackLabel(track)}
 					</h2>
 				</div>
-				<p data-testid="track-progress" className={`basis-full text-xs sm:basis-auto sm:text-sm ${QUESTION_UI_CLASSES.mutedText}`}>
+				<p
+					data-testid="track-progress"
+					className={`basis-full text-xs sm:basis-auto sm:text-sm ${QUESTION_UI_CLASSES.mutedText}`}
+					aria-live="polite"
+					aria-atomic="true"
+				>
 					{completedCount}/{filtered.length} complete
 				</p>
 				<div className="flex min-w-0 max-w-full basis-full shrink-0 flex-wrap items-end gap-3 min-[1330px]:ml-auto min-[1330px]:basis-auto">
 					{track !== "blind75" && (
-						<FormControl size="small" fullWidth data-testid="filter-category" className="order-1 min-[1330px]:order-2 sm:w-auto sm:min-w-35">
-							<InputLabel id="category-label">Category</InputLabel>
-							<Select
-								labelId="category-label"
-								label="Category"
+						<div
+							data-testid="filter-category"
+							className="order-1 min-w-0 min-[1330px]:order-2 sm:w-auto sm:min-w-35"
+							role="group"
+							aria-labelledby="category-label-heading"
+						>
+							<label id="category-label-heading" htmlFor="category-label" className="mb-1 block text-xs text-muted">
+								Category
+							</label>
+							<select
+								id="category-label"
 								value={effectiveCategory}
 								onChange={(event) => {
 									startTransition(() => {
 										dispatch(setCategory({ track, value: String(event.target.value) }));
 									});
 								}}
+								aria-label="Filter by category"
+								className="h-10 w-full min-w-0 appearance-none rounded border border-card-border bg-background bg-size-[1.25rem] bg-position-[right_0.5rem_center] bg-no-repeat px-3 py-2 pr-8 text-xs text-foreground focus:border-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:focus:border-teal-500 dark:focus-visible:ring-teal-500 sm:text-sm bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%2394a3b8%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E')]"
 							>
-								<MenuItem value="all">All</MenuItem>
+								<option value="all">All</option>
 								{categories.map((cat) => (
-									<MenuItem key={cat} value={cat}>
+									<option key={cat} value={cat}>
 										{cat}
-									</MenuItem>
+									</option>
 								))}
-							</Select>
-						</FormControl>
+							</select>
+						</div>
 					)}
-					<FormControl size="small" fullWidth data-testid="filter-status" className="order-2 min-[1330px]:order-3 sm:w-auto sm:min-w-30">
-						<InputLabel id="status-label">Status</InputLabel>
-						<Select
-							labelId="status-label"
-							label="Status"
+					<div
+						data-testid="filter-status"
+						className="order-2 min-w-0 min-[1330px]:order-3 sm:w-auto sm:min-w-30"
+						role="group"
+						aria-labelledby="status-label-heading"
+					>
+						<label id="status-label-heading" htmlFor="status-label" className="mb-1 block text-xs text-muted">
+							Status
+						</label>
+						<select
+							id="status-label"
 							value={effectiveStatus}
 							onChange={(event) => {
 								const value = event.target.value;
@@ -120,18 +140,25 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 									});
 								}
 							}}
+							aria-label="Filter by status"
+							className="h-10 w-full min-w-0 appearance-none rounded border border-card-border bg-background bg-size-[1.25rem] bg-position-[right_0.5rem_center] bg-no-repeat px-3 py-2 pr-8 text-xs text-foreground focus:border-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:focus:border-teal-500 dark:focus-visible:ring-teal-500 sm:text-sm bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%2394a3b8%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E')]"
 						>
-							<MenuItem value="all">All</MenuItem>
+							<option value="all">All</option>
 							{STATUS_OPTIONS.map(({ value, label }) => (
-								<MenuItem key={value} value={value}>
+								<option key={value} value={value}>
 									{label}
-								</MenuItem>
+								</option>
 							))}
-						</Select>
-					</FormControl>
-					<div className="group order-3 min-w-0 max-w-65 basis-full min-[1330px]:order-1 min-[1330px]:max-w-none min-[1330px]:basis-auto min-[1330px]:min-w-45">
-						<div className="relative w-fit px-1 translate-x-2.5 translate-y-3 bg-background">
+						</select>
+					</div>
+					<div
+						className="group order-3 min-w-0 max-w-65 basis-full min-[1330px]:order-1 min-[1330px]:max-w-none min-[1330px]:basis-auto min-[1330px]:min-w-45"
+						role="search"
+						aria-labelledby="search-questions-label"
+					>
+						<div className="w-fit px-1 bg-background">
 							<label
+								id="search-questions-label"
 								htmlFor="search-questions"
 								className="mb-1 block text-xs text-muted group-focus-within:text-teal-600 dark:group-focus-within:text-teal-400"
 							>
@@ -144,7 +171,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 							data-testid="filter-search"
 							value={searchInput}
 							onChange={(event) => handleSearchChange(event.target.value)}
-							className="w-full min-w-0 max-w-full rounded border border-card-border bg-background px-3 py-2 text-xs text-foreground focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:focus:border-teal-500 dark:focus:ring-teal-500 sm:text-sm"
+							className="w-full min-w-0 max-w-full rounded border border-card-border bg-background px-3 py-2 text-xs text-foreground focus:border-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:focus:border-teal-500 dark:focus-visible:ring-teal-500 sm:text-sm"
 						/>
 					</div>
 				</div>
@@ -156,7 +183,12 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 						key={question.id}
 						data-testid={`question-card-${question.path}`}
 						className="flex h-full min-w-0 flex-col overflow-hidden p-3 sm:p-4"
-						onMouseEnter={() => prefetchSolutionRenderer(question)}
+						onMouseEnter={() => {
+							prefetchSolutionRenderer(question);
+							if (question.status === "done") {
+								router.prefetch(`/${track}/${question.path}`);
+							}
+						}}
 					>
 						<div className="mb-1.5 flex min-w-0 items-start justify-between gap-2 sm:mb-2 sm:gap-3">
 							<h3
@@ -181,7 +213,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 									<Link
 										href={`/${track}/${question.path}`}
 										data-testid={`open-solution-${question.path}`}
-										className="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400 sm:px-3 sm:py-1.5"
+										className="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-500 dark:hover:bg-teal-400 dark:focus-visible:ring-teal-400 sm:px-3 sm:py-1.5"
 									>
 										Open solution
 									</Link>
