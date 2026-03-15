@@ -89,11 +89,11 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 				>
 					{completedCount}/{filtered.length} complete
 				</p>
-				<div className="flex min-w-0 max-w-full basis-full shrink-0 flex-wrap items-end gap-3 min-[1330px]:ml-auto min-[1330px]:basis-auto">
+				<div className="flex min-w-0 max-w-full basis-full shrink-0 flex-wrap items-end gap-3 min-[712px]:ml-auto min-[712px]:basis-auto">
 					{track !== "blind75" && (
 						<div
 							data-testid="filter-category"
-							className="order-1 min-w-0 min-[1330px]:order-2 sm:w-auto sm:min-w-35"
+							className="order-1 min-w-0 w-48 basis-full min-[712px]:basis-auto"
 							role="group"
 							aria-labelledby="category-label-heading"
 						>
@@ -122,7 +122,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 					)}
 					<div
 						data-testid="filter-status"
-						className="order-2 min-w-0 min-[1330px]:order-3 sm:w-auto sm:min-w-30"
+						className="order-2 min-w-0 w-48 basis-full min-[712px]:basis-auto"
 						role="group"
 						aria-labelledby="status-label-heading"
 					>
@@ -152,7 +152,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 						</select>
 					</div>
 					<div
-						className="group order-3 min-w-0 max-w-65 basis-full min-[1330px]:order-1 min-[1330px]:max-w-none min-[1330px]:basis-auto min-[1330px]:min-w-45"
+						className="group order-3 min-w-0 w-48 basis-full min-[712px]:basis-auto"
 						role="search"
 						aria-labelledby="search-questions-label"
 					>
