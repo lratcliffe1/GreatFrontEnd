@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import { hydrateFiltersFromQuery } from "@/lib/store/filtersSlice";
 import { selectCategory, selectSearch, selectStatus, selectDifficulty } from "@/lib/store/selectors";
 import { Difficulty, QuestionStatus, Track } from "@/content/questions";
-import { DIFFICULTY_LEVELS } from "@/lib/constants/filters";
+import { DEFAULT_TRACK_FILTERS, DIFFICULTY_LEVELS } from "@/lib/constants/filters";
 
 export type TrackFilterValues = {
 	search: string;
@@ -61,6 +61,7 @@ export function getUrlFilters(
 	return {
 		hasFilterParams,
 		filters: {
+			...DEFAULT_TRACK_FILTERS,
 			search: params.get(keys.search) ?? "",
 			category: track === Track.Blind75 ? "all" : (params.get(URL_PARAMS.gfe75.category) ?? "all"),
 			status: isTrackStatus(statusParam) ? statusParam : "all",

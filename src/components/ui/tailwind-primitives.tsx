@@ -7,13 +7,16 @@ type BaseProps = {
 	className?: string;
 };
 
+/** Shared muted text styling. Use for secondary/helper text. */
+export const MUTED_TEXT_CLASS = "text-sm [color:var(--muted)]";
+
 const PRIMITIVE_CLASSES = {
 	elevatedCard: "rounded-lg border p-4 shadow-sm [border-color:var(--card-border)] [background:var(--card-bg)]",
 	surfacePanel: "rounded-md border p-3 [border-color:var(--card-border)] [background:var(--card-bg)]",
 	codePanel: "rounded-md border border-slate-700 bg-slate-950 p-3 font-mono text-sm text-slate-100",
 	tracePanel: "space-y-3 rounded-md border p-3 [border-color:var(--card-border)] [background:var(--surface)]",
 	metaPill: "rounded-full px-2 py-1 text-xs font-medium [background:var(--surface)] [color:var(--muted)]",
-	mutedText: "text-sm [color:var(--muted)]",
+	mutedText: MUTED_TEXT_CLASS,
 } as const;
 
 /** Shared primary button/link styling for use with AppButton or Link */

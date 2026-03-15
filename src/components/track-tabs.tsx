@@ -3,18 +3,16 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-import { Track } from "@/content/questions";
 import { PRIMARY_BUTTON_CLASSES } from "@/components/ui/tailwind-primitives";
-import { getTrackLabel } from "@/lib/tracks";
+import { getTrackLabel, TRACKS } from "@/lib/tracks";
 
 export function TrackTabs() {
-	const tabs: Track[] = [Track.Gfe75, Track.Blind75];
 	const searchParams = useSearchParams();
 	const search = searchParams?.toString() ?? "";
 
 	return (
 		<div className="flex gap-2" data-testid="track-tabs">
-			{tabs.map((track) => {
+			{TRACKS.map((track) => {
 				const href = `/${track}${search ? `?${search}` : ""}`;
 				return (
 					<Link key={track} href={href} data-testid={`track-tab-${track}`} className={PRIMARY_BUTTON_CLASSES}>

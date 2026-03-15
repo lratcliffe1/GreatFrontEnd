@@ -1,5 +1,13 @@
 import { Difficulty, QuestionStatus } from "@/content/questions";
 
+/** Single source of truth for default filter values. Used by filtersSlice, selectors, and use-url-filters. */
+export const DEFAULT_TRACK_FILTERS = {
+	search: "",
+	category: "all",
+	status: "all" as const,
+	difficulty: "all" as const,
+} as const;
+
 export const STATUS_LABELS: Record<QuestionStatus, string> = {
 	[QuestionStatus.Todo]: "To do",
 	[QuestionStatus.InProgress]: "In progress",

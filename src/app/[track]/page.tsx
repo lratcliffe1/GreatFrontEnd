@@ -2,16 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { PortfolioHero } from "@/components/portfolio-hero";
-import { Track, getQuestionsByTrack } from "@/content/questions";
+import { getQuestionsByTrack } from "@/content/questions";
 import { TrackQuestionsPageClient } from "@/features/questions/track-questions-page-client";
-import { getTrackLabel, isTrack } from "@/lib/tracks";
-
-const STATIC_TRACKS: Track[] = [Track.Gfe75, Track.Blind75];
+import { getTrackLabel, isTrack, TRACKS } from "@/lib/tracks";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-	return STATIC_TRACKS.map((track) => ({ track }));
+	return TRACKS.map((track) => ({ track }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ track: string }> }): Promise<Metadata> {

@@ -1,17 +1,14 @@
 import Link from "next/link";
 
-import { Track } from "@/content/questions";
 import { GitHubIcon, GlobeIcon } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PRIMARY_BUTTON_SM_CLASSES } from "@/components/ui/tailwind-primitives";
-import { getTrackLabel } from "@/lib/tracks";
+import { getTrackLabel, TRACKS } from "@/lib/tracks";
 
 const iconLinkClass =
 	"rounded-md p-2 text-muted transition hover:bg-card-border hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function AppHeader() {
-	const tracks: Track[] = [Track.Gfe75, Track.Blind75];
-
 	return (
 		<header className="border-b [background:var(--card-bg)] border-card-border">
 			<div className="flex w-full flex-col gap-4 px-8 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-12 md:px-16 lg:px-20 xl:px-24">
@@ -20,7 +17,7 @@ export function AppHeader() {
 					<h1 className="text-base font-bold text-foreground sm:text-lg">GreatFrontEnd Practice Hub</h1>
 				</div>
 				<nav className="flex shrink-0 items-center gap-2">
-					{tracks.map((track) => {
+					{TRACKS.map((track) => {
 						const href = `/${track}`;
 						return (
 							<Link key={track} href={href} className={PRIMARY_BUTTON_SM_CLASSES}>

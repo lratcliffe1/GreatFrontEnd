@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import { Difficulty, QuestionStatus, type Track } from "@/content/questions";
+import { Difficulty, QuestionStatus, Track } from "@/content/questions";
+import { DEFAULT_TRACK_FILTERS } from "@/lib/constants/filters";
 
 type TrackFilters = {
 	search: string;
@@ -19,18 +20,13 @@ type TrackScopedPayload<TValue> = {
 };
 
 function createDefaultTrackFilters(): TrackFilters {
-	return {
-		search: "",
-		category: "all",
-		status: "all",
-		difficulty: "all",
-	};
+	return { ...DEFAULT_TRACK_FILTERS };
 }
 
 const initialState: FiltersState = {
 	byTrack: {
-		gfe75: createDefaultTrackFilters(),
-		blind75: createDefaultTrackFilters(),
+		[Track.Gfe75]: createDefaultTrackFilters(),
+		[Track.Blind75]: createDefaultTrackFilters(),
 	},
 };
 
@@ -69,8 +65,8 @@ const filtersSlice = createSlice({
 		},
 		// Kept for future UX flows (e.g. "Clear filters" button).
 		resetFilters(state) {
-			state.byTrack.gfe75 = createDefaultTrackFilters();
-			state.byTrack.blind75 = createDefaultTrackFilters();
+			state.byTrack[Track.Gfe75] = createDefaultTrackFilters();
+			state.byTrack[Track.Blind75] = createDefaultTrackFilters();
 		},
 		resetFiltersForTrack(state, action: PayloadAction<Track>) {
 			state.byTrack[action.payload] = createDefaultTrackFilters();

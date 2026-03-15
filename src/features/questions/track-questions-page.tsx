@@ -11,16 +11,13 @@ import { useAppDispatch } from "@/lib/store/hooks";
 import { setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
 import { TrackTabs } from "@/components/track-tabs";
 import { getTrackLabel } from "@/lib/tracks";
+import { getUniqueCategories } from "@/features/questions/helpers";
 import { prefetchSolutionRenderer } from "@/features/questions/solution-registry";
 import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
 import { useFilterSync } from "@/features/questions/use-url-filters";
 import { DIFFICULTY_OPTIONS, STATUS_OPTIONS } from "@/lib/constants/filters";
 
 const SEARCH_DEBOUNCE_MS = 150;
-
-function getUniqueCategories(questions: Question[]) {
-	return Array.from(new Set(questions.map((question) => question.category))).sort();
-}
 
 export function TrackQuestionsPage({ track, questions }: { track: Track; questions: Question[] }) {
 	const router = useRouter();
