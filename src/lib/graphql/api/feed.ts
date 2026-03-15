@@ -32,6 +32,7 @@ export const feedApi = graphqlApi.injectEndpoints({
 				variables: { content: content ?? null, imageUrl: imageUrl ?? null },
 			}),
 			transformResponse: (res: unknown) => (res as { createPost: FeedPost }).createPost,
+			invalidatesTags: ["Feed"],
 		}),
 		reactToPost: build.mutation<FeedPost, { postId: string; reaction: string | null }>({
 			query: ({ postId, reaction }) => ({
@@ -39,6 +40,7 @@ export const feedApi = graphqlApi.injectEndpoints({
 				variables: { postId, reaction },
 			}),
 			transformResponse: (res: unknown) => (res as { reactToPost: FeedPost }).reactToPost,
+			invalidatesTags: ["Feed"],
 		}),
 	}),
 	overrideExisting: false,
