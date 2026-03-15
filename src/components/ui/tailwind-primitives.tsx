@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import { Difficulty, QuestionStatus } from "@/content/questions";
 import { STATUS_LABELS } from "@/lib/constants/filters";
 
 type BaseProps = {
@@ -84,7 +85,7 @@ const DIFFICULTY_CLASSES = {
 	Hard: "bg-rose-50 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400",
 } as const;
 
-export function DifficultyPill({ difficulty }: { difficulty: "Easy" | "Medium" | "Hard" }) {
+export function DifficultyPill({ difficulty }: { difficulty: Difficulty }) {
 	return <span className={`rounded-full px-2 py-1 text-xs font-medium ${DIFFICULTY_CLASSES[difficulty]}`}>{difficulty}</span>;
 }
 
@@ -94,7 +95,7 @@ const STATUS_CLASSES = {
 	in_progress: "bg-amber-50 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400",
 } as const;
 
-export function StatusBadge({ status }: { status: "done" | "todo" | "in_progress" }) {
+export function StatusBadge({ status }: { status: QuestionStatus }) {
 	return <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_CLASSES[status]}`}>{STATUS_LABELS[status]}</span>;
 }
 

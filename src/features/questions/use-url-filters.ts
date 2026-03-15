@@ -5,21 +5,21 @@ import { useSearchParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import { hydrateFiltersFromQuery } from "@/lib/store/filtersSlice";
 import { selectCategory, selectSearch, selectStatus, selectDifficulty } from "@/lib/store/selectors";
-import type { Question, Track } from "@/content/questions";
+import { Difficulty, QuestionStatus, Track } from "@/content/questions";
 import { DIFFICULTY_LEVELS } from "@/lib/constants/filters";
 
 export type TrackFilterValues = {
 	search: string;
 	category: string;
-	status: Question["status"] | "all";
-	difficulty: Question["difficulty"] | "all";
+	status: QuestionStatus | "all";
+	difficulty: Difficulty | "all";
 };
 
-function isTrackStatus(value: string | null): value is Question["status"] {
-	return value === "todo" || value === "in_progress" || value === "done";
+function isTrackStatus(value: string | null): value is QuestionStatus {
+	return value === QuestionStatus.Todo || value === QuestionStatus.InProgress || value === QuestionStatus.Done;
 }
 
-function isTrackDifficulty(value: string | null): value is Question["difficulty"] {
+function isTrackDifficulty(value: string | null): value is Difficulty {
 	return value !== null && (DIFFICULTY_LEVELS as readonly string[]).includes(value);
 }
 
@@ -53,13 +53,16 @@ export function getUrlFilters(
 	const statusParam = params.get(keys.status);
 	const difficultyParam = params.get(keys.difficulty);
 	const hasFilterParams =
-		params.has(keys.search) || params.has(keys.status) || params.has(keys.difficulty) || (track === "gfe75" && params.has(URL_PARAMS.gfe75.category));
+		params.has(keys.search) ||
+		params.has(keys.status) ||
+		params.has(keys.difficulty) ||
+		(track === Track.Gfe75 && params.has(URL_PARAMS.gfe75.category));
 
 	return {
 		hasFilterParams,
 		filters: {
 			search: params.get(keys.search) ?? "",
-			category: track === "blind75" ? "all" : (params.get(URL_PARAMS.gfe75.category) ?? "all"),
+			category: track === Track.Blind75 ? "all" : (params.get(URL_PARAMS.gfe75.category) ?? "all"),
 			status: isTrackStatus(statusParam) ? statusParam : "all",
 			difficulty: isTrackDifficulty(difficultyParam) ? difficultyParam : "all",
 		},
@@ -82,9 +85,9 @@ export function syncFiltersToUrl(track: Track, filters: TrackFilterValues) {
 		params.delete(keys.search);
 	}
 
-	if (track === "gfe75" && filters.category !== "all") {
+	if (track === Track.Gfe75 && filters.category !== "all") {
 		params.set(URL_PARAMS.gfe75.category, filters.category);
-	} else if (track === "gfe75") {
+	} else if (track === Track.Gfe75) {
 		params.delete(URL_PARAMS.gfe75.category);
 	}
 

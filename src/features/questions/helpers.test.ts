@@ -1,3 +1,4 @@
+import { QuestionStatus } from "@/content/questions";
 import { formatQuestionStatus, getGraphQlErrorMessage, isHttpUrl } from "@/features/questions/helpers";
 
 describe("helpers", () => {
@@ -21,9 +22,9 @@ describe("helpers", () => {
 
 	describe("formatQuestionStatus", () => {
 		it("formats status values correctly", () => {
-			expect(formatQuestionStatus("todo")).toBe("To do");
-			expect(formatQuestionStatus("in_progress")).toBe("In progress");
-			expect(formatQuestionStatus("done")).toBe("Done");
+			expect(formatQuestionStatus(QuestionStatus.Todo)).toBe("To do");
+			expect(formatQuestionStatus(QuestionStatus.InProgress)).toBe("In progress");
+			expect(formatQuestionStatus(QuestionStatus.Done)).toBe("Done");
 			expect(formatQuestionStatus("all")).toBe("All");
 		});
 	});

@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 
-import type { Question } from "@/content/questions";
+import { QuestionStatus, SolutionType, type Question } from "@/content/questions";
 import { QUESTION_UI_CLASSES } from "@/features/questions/question-ui";
 import { SOLUTION_RENDERER_LOADERS } from "@/solutions/renderer-loaders";
 
@@ -14,8 +14,8 @@ function getRendererKey(question: Question): string {
 }
 
 function getLoader(question: Question) {
-	if (question.solutionType !== "algo_visualizer" && question.solutionType !== "ui_demo") return undefined;
-	if (question.status !== "done") return undefined;
+	if (question.solutionType !== SolutionType.AlgoVisualizer && question.solutionType !== SolutionType.UiDemo) return undefined;
+	if (question.status !== QuestionStatus.Done) return undefined;
 	const key = getRendererKey(question);
 	return key in SOLUTION_RENDERER_LOADERS ? SOLUTION_RENDERER_LOADERS[key as keyof typeof SOLUTION_RENDERER_LOADERS] : undefined;
 }

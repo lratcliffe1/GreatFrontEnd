@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { Track } from "@/content/questions";
 import { render, screen, waitFor, within } from "@/test-utils";
 import { TrackQuestionsPage } from "@/features/questions/track-questions-page";
 import { mockQuestions } from "@/fixtures/questions";
@@ -17,20 +18,20 @@ describe("TrackQuestionsPage", () => {
 	});
 
 	it("renders question list", () => {
-		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
+		render(<TrackQuestionsPage track={Track.Gfe75} questions={mockQuestions} />);
 		expect(screen.getByText(/Debounce/)).toBeInTheDocument();
 		expect(screen.getByText(/Array\.prototype\.reduce/)).toBeInTheDocument();
 	});
 
 	it("renders track title and progress", () => {
-		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
+		render(<TrackQuestionsPage track={Track.Gfe75} questions={mockQuestions} />);
 		expect(screen.getByRole("heading", { name: "GFE 75" })).toBeInTheDocument();
 		expect(screen.getByText("1/2 complete")).toBeInTheDocument();
 	});
 
 	it("filters questions by search", async () => {
 		const user = userEvent.setup();
-		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
+		render(<TrackQuestionsPage track={Track.Gfe75} questions={mockQuestions} />);
 
 		const searchInput = screen.getByTestId("filter-search");
 		await user.type(searchInput, "Debounce");
@@ -46,7 +47,7 @@ describe("TrackQuestionsPage", () => {
 	it("hydrates filters from URL params", () => {
 		window.history.replaceState(window.history.state, "", "/gfe75?searchGfe=reduce&statusGfe=todo&categoryGfe=JavaScript%20functions");
 
-		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
+		render(<TrackQuestionsPage track={Track.Gfe75} questions={mockQuestions} />);
 
 		expect(screen.getByTestId("filter-search")).toHaveValue("reduce");
 		expect(within(screen.getByTestId("filter-status")).getByRole("combobox")).toHaveTextContent("To do");
@@ -58,7 +59,7 @@ describe("TrackQuestionsPage", () => {
 
 	it("syncs filter changes back to URL params", async () => {
 		const user = userEvent.setup();
-		render(<TrackQuestionsPage track="gfe75" questions={mockQuestions} />);
+		render(<TrackQuestionsPage track={Track.Gfe75} questions={mockQuestions} />);
 
 		const searchInput = screen.getByTestId("filter-search");
 		await user.type(searchInput, "Debounce");

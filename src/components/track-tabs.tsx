@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-import type { Track } from "@/content/questions";
+import { Track } from "@/content/questions";
 import { PRIMARY_BUTTON_CLASSES } from "@/components/ui/tailwind-primitives";
 import { getTrackLabel } from "@/lib/tracks";
 
 export function TrackTabs() {
-	const tabs: Track[] = ["gfe75", "blind75"];
+	const tabs: Track[] = [Track.Gfe75, Track.Blind75];
 	const searchParams = useSearchParams();
 	const search = searchParams?.toString() ?? "";
 

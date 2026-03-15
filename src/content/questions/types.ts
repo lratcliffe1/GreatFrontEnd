@@ -1,8 +1,26 @@
-export type Track = "gfe75" | "blind75";
+export enum Track {
+	Gfe75 = "gfe75",
+	Blind75 = "blind75",
+}
 
-export type SolutionType = "ui_demo" | "algo_visualizer" | "code_and_tests" | "writeup";
+export enum SolutionType {
+	UiDemo = "ui_demo",
+	AlgoVisualizer = "algo_visualizer",
+	CodeAndTests = "code_and_tests",
+	Writeup = "writeup",
+}
 
-export type QuestionStatus = "todo" | "in_progress" | "done";
+export enum QuestionStatus {
+	Todo = "todo",
+	InProgress = "in_progress",
+	Done = "done",
+}
+
+export enum Difficulty {
+	Easy = "Easy",
+	Medium = "Medium",
+	Hard = "Hard",
+}
 
 export type Question = {
 	id: string;
@@ -11,7 +29,7 @@ export type Question = {
 	title: string;
 	track: Track;
 	category: string;
-	difficulty: "Easy" | "Medium" | "Hard";
+	difficulty: Difficulty;
 	sourceUrl: string;
 	solutionType: SolutionType;
 	status: QuestionStatus;

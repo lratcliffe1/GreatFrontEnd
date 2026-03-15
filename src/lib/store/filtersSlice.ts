@@ -1,12 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import type { Question, QuestionStatus, Track } from "@/content/questions";
+import { Difficulty, QuestionStatus, type Track } from "@/content/questions";
 
 type TrackFilters = {
 	search: string;
 	category: string;
 	status: QuestionStatus | "all";
-	difficulty: Question["difficulty"] | "all";
+	difficulty: Difficulty | "all";
 };
 
 type FiltersState = {
@@ -47,7 +47,7 @@ const filtersSlice = createSlice({
 		setStatus(state, action: PayloadAction<TrackScopedPayload<QuestionStatus | "all">>) {
 			state.byTrack[action.payload.track].status = action.payload.value;
 		},
-		setDifficulty(state, action: PayloadAction<TrackScopedPayload<Question["difficulty"] | "all">>) {
+		setDifficulty(state, action: PayloadAction<TrackScopedPayload<Difficulty | "all">>) {
 			state.byTrack[action.payload.track].difficulty = action.payload.value;
 		},
 		hydrateFiltersFromQuery(
@@ -57,7 +57,7 @@ const filtersSlice = createSlice({
 				search: string;
 				category: string;
 				status: QuestionStatus | "all";
-				difficulty: Question["difficulty"] | "all";
+				difficulty: Difficulty | "all";
 			}>,
 		) {
 			state.byTrack[action.payload.track] = {

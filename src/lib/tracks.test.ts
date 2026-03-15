@@ -1,9 +1,10 @@
+import { Track } from "@/content/questions";
 import { getTrackLabel, isTrack, TRACKS } from "@/lib/tracks";
 
 describe("tracks", () => {
 	describe("TRACKS", () => {
 		it("includes gfe75 and blind75", () => {
-			expect(TRACKS).toEqual(["gfe75", "blind75"]);
+			expect(TRACKS).toEqual([Track.Gfe75, Track.Blind75]);
 		});
 	});
 
@@ -26,11 +27,11 @@ describe("tracks", () => {
 
 	describe("getTrackLabel", () => {
 		it("returns GFE 75 for gfe75", () => {
-			expect(getTrackLabel("gfe75")).toBe("GFE 75");
+			expect(getTrackLabel(Track.Gfe75)).toBe("GFE 75");
 		});
 
 		it("returns Blind 75 for blind75", () => {
-			expect(getTrackLabel("blind75")).toBe("Blind 75");
+			expect(getTrackLabel(Track.Blind75)).toBe("Blind 75");
 		});
 	});
 });

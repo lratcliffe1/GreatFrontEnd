@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { PortfolioHero } from "@/components/portfolio-hero";
-import type { Track } from "@/content/questions";
-import { getQuestionsByTrack } from "@/content/questions";
+import { Track, getQuestionsByTrack } from "@/content/questions";
 import { TrackQuestionsPageClient } from "@/features/questions/track-questions-page-client";
 import { getTrackLabel, isTrack } from "@/lib/tracks";
 
-const STATIC_TRACKS: Track[] = ["gfe75", "blind75"];
+const STATIC_TRACKS: Track[] = [Track.Gfe75, Track.Blind75];
 
 export const dynamicParams = false;
 

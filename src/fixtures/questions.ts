@@ -1,16 +1,16 @@
-import type { Question, Track } from "@/content/questions";
+import { Difficulty, QuestionStatus, SolutionType, Track, type Question } from "@/content/questions";
 
 const DEFAULT_QUESTION: Question = {
 	id: "gfe-debounce",
 	questionNumber: 1,
 	path: "debounce",
 	title: "Debounce",
-	track: "gfe75",
+	track: Track.Gfe75,
 	category: "JavaScript functions",
-	difficulty: "Medium",
+	difficulty: Difficulty.Medium,
 	sourceUrl: "https://example.com",
-	solutionType: "algo_visualizer",
-	status: "done",
+	solutionType: SolutionType.AlgoVisualizer,
+	status: QuestionStatus.Done,
 	summary: "Delay function execution.",
 	cardSummary: "Delay function execution.",
 	approach: "Use a closure.",
@@ -29,14 +29,14 @@ export const mockQuestion = createMockQuestion();
 /** Creates an array of mock questions. Default returns 2 questions (done + todo). */
 export function createMockQuestions(overrides?: Partial<Question>[]): Question[] {
 	const base = [
-		createMockQuestion({ id: "q1", path: "debounce", title: "Debounce", status: "done" }),
+		createMockQuestion({ id: "q1", path: "debounce", title: "Debounce", status: QuestionStatus.Done }),
 		createMockQuestion({
 			id: "q2",
 			questionNumber: 2,
 			path: "array-reduce",
 			title: "Array.prototype.reduce",
-			solutionType: "code_and_tests",
-			status: "todo",
+			solutionType: SolutionType.CodeAndTests,
+			status: QuestionStatus.Todo,
 			summary: "Implement reduce.",
 			cardSummary: "TODO: Add concise card summary.",
 			approach: "TODO",
@@ -54,4 +54,4 @@ export function createMockQuestions(overrides?: Partial<Question>[]): Question[]
 export const mockQuestions = createMockQuestions();
 
 /** Track values for tests. */
-export const mockTracks: Track[] = ["gfe75", "blind75"];
+export const mockTracks: Track[] = [Track.Gfe75, Track.Blind75];

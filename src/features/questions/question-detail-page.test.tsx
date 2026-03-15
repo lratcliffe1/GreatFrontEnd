@@ -1,12 +1,12 @@
 import { render, screen } from "@/test-utils";
 import { QuestionDetailPage } from "@/features/questions/question-detail-page";
-import type { Question } from "@/content/questions";
+import { SolutionType, Track, type Question } from "@/content/questions";
 import { createMockQuestion } from "@/fixtures/questions";
 
 const mockQuestion = createMockQuestion({
 	id: "gfe-other",
 	sourceUrl: "https://www.greatfrontend.com/interviews/debounce",
-	solutionType: "code_and_tests",
+	solutionType: SolutionType.CodeAndTests,
 	summary: "Debouncing controls how often a function is allowed to execute over time.",
 	cardSummary:
 		"Implement a function to limit how many times a function can be executed by delaying the execution of the function until after a specified time after its last execution attempt",
@@ -54,7 +54,7 @@ describe("QuestionDetailPage", () => {
 		const writeupQuestion: Question = {
 			...mockQuestion,
 			id: "gfe-autocomplete",
-			solutionType: "writeup",
+			solutionType: SolutionType.Writeup,
 		};
 
 		render(<QuestionDetailPage question={writeupQuestion} />);
@@ -66,7 +66,7 @@ describe("QuestionDetailPage", () => {
 		const codeQuestion: Question = {
 			...mockQuestion,
 			id: "gfe-other",
-			solutionType: "code_and_tests",
+			solutionType: SolutionType.CodeAndTests,
 		};
 
 		render(<QuestionDetailPage question={codeQuestion} />);
@@ -79,9 +79,9 @@ describe("QuestionDetailPage", () => {
 			...mockQuestion,
 			id: "blind-find-duplicates-in-array",
 			path: "find-duplicates-in-array",
-			track: "blind75",
+			track: Track.Blind75,
 			title: "Find Duplicates in Array",
-			solutionType: "algo_visualizer",
+			solutionType: SolutionType.AlgoVisualizer,
 		};
 
 		render(<QuestionDetailPage question={duplicateQuestion} />);

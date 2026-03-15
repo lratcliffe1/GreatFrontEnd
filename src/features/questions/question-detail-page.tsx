@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ComponentType } from "react";
 import { startTransition, useEffect, useState } from "react";
 
-import type { Question } from "@/content/questions";
+import { SolutionType, type Question } from "@/content/questions";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { DifficultyPill, PRIMARY_BUTTON_CLASSES, SurfacePanel } from "@/components/ui/tailwind-primitives";
 import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/features/questions/question-ui";
@@ -41,7 +41,7 @@ function LazySolutionRenderer({ question }: { question: Question }) {
 }
 
 function SolutionFallback({ question }: { question: Question }) {
-	if (question.solutionType === "algo_visualizer") {
+	if (question.solutionType === SolutionType.AlgoVisualizer) {
 		return (
 			<div className={FALLBACK_CLASS}>
 				<p>Interactive algorithm walkthrough is pending for this question.</p>
@@ -49,7 +49,7 @@ function SolutionFallback({ question }: { question: Question }) {
 		);
 	}
 
-	if (question.solutionType === "writeup") {
+	if (question.solutionType === SolutionType.Writeup) {
 		return (
 			<div className={`space-y-2 text-sm ${QUESTION_UI_CLASSES.bodyText}`}>
 				<p>{question.approach}</p>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { Track } from "@/content/questions";
+import { Track } from "@/content/questions";
 import { GitHubIcon, GlobeIcon } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PRIMARY_BUTTON_SM_CLASSES } from "@/components/ui/tailwind-primitives";
@@ -10,7 +10,7 @@ const iconLinkClass =
 	"rounded-md p-2 text-muted transition hover:bg-card-border hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function AppHeader() {
-	const tracks: Track[] = ["gfe75", "blind75"];
+	const tracks: Track[] = [Track.Gfe75, Track.Blind75];
 
 	return (
 		<header className="border-b [background:var(--card-bg)] border-card-border">

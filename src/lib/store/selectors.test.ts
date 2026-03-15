@@ -1,7 +1,7 @@
+import { Difficulty, QuestionStatus, Track } from "@/content/questions";
 import { selectCategory, selectDifficulty, selectHasActiveFilters, selectSearch, selectStatus } from "@/lib/store/selectors";
 import { graphqlApi } from "@/lib/graphql/api";
 import filtersReducer, { resetFilters, setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
-import type { Track } from "@/content/questions";
 
 function getState(filters: ReturnType<typeof filtersReducer>) {
 	return {
@@ -11,7 +11,7 @@ function getState(filters: ReturnType<typeof filtersReducer>) {
 }
 
 describe("selectors", () => {
-	const track: Track = "gfe75";
+	const track = Track.Gfe75;
 
 	it("selectSearch returns search value", () => {
 		const state = getState(filtersReducer(undefined, setSearch({ track, value: "debounce" })));
@@ -24,17 +24,17 @@ describe("selectors", () => {
 	});
 
 	it("selectStatus returns status value", () => {
-		const state = getState(filtersReducer(undefined, setStatus({ track, value: "done" })));
-		expect(selectStatus(state, track)).toBe("done");
+		const state = getState(filtersReducer(undefined, setStatus({ track, value: QuestionStatus.Done })));
+		expect(selectStatus(state, track)).toBe(QuestionStatus.Done);
 	});
 
 	it("selectDifficulty returns difficulty value", () => {
-		const state = getState(filtersReducer(undefined, setDifficulty({ track, value: "Hard" })));
-		expect(selectDifficulty(state, track)).toBe("Hard");
+		const state = getState(filtersReducer(undefined, setDifficulty({ track, value: Difficulty.Hard })));
+		expect(selectDifficulty(state, track)).toBe(Difficulty.Hard);
 	});
 
 	it("selectHasActiveFilters returns true when difficulty is not all", () => {
-		const state = getState(filtersReducer(undefined, setDifficulty({ track, value: "Easy" })));
+		const state = getState(filtersReducer(undefined, setDifficulty({ track, value: Difficulty.Easy })));
 		expect(selectHasActiveFilters(state, track)).toBe(true);
 	});
 
@@ -59,9 +59,9 @@ describe("selectors", () => {
 	});
 
 	it("keeps filters isolated by track", () => {
-		const state = getState(filtersReducer(undefined, setSearch({ track: "blind75", value: "two sum" })));
+		const state = getState(filtersReducer(undefined, setSearch({ track: Track.Blind75, value: "two sum" })));
 
-		expect(selectSearch(state, "blind75")).toBe("two sum");
-		expect(selectSearch(state, "gfe75")).toBe("");
+		expect(selectSearch(state, Track.Blind75)).toBe("two sum");
+		expect(selectSearch(state, Track.Gfe75)).toBe("");
 	});
 });

@@ -1,9 +1,9 @@
-import type { Question, Track } from "@/content/questions";
+import type { Difficulty, Question, QuestionStatus, SolutionType, Track } from "@/content/questions";
 
 export type GraphQLTrack = Track;
-export type GraphQLDifficulty = Question["difficulty"];
-export type GraphQLQuestionStatus = Question["status"];
-export type GraphQLSolutionType = Question["solutionType"];
+export type GraphQLDifficulty = Difficulty;
+export type GraphQLQuestionStatus = QuestionStatus;
+export type GraphQLSolutionType = SolutionType;
 export type GraphQLQuestion = Question;
 
 export type QuestionsResponse = {

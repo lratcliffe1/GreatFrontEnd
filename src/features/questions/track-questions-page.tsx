@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 
-import type { Question, Track } from "@/content/questions";
+import { QuestionStatus, Track, type Question } from "@/content/questions";
 import { FilterSelect } from "@/components/ui/filter-select";
 import { DifficultyPill, ElevatedCard, MutedText, StatusBadge } from "@/components/ui/tailwind-primitives";
 import { useAppDispatch } from "@/lib/store/hooks";
@@ -59,7 +59,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 				String(question.questionNumber).startsWith(effectiveSearch.trim()) ||
 				question.title.toLowerCase().includes(effectiveSearch.toLowerCase()) ||
 				question.tags.some((tag) => tag.toLowerCase().includes(effectiveSearch.toLowerCase()));
-			const matchesCategory = track === "blind75" || effectiveCategory === "all" || question.category === effectiveCategory;
+			const matchesCategory = track === Track.Blind75 || effectiveCategory === "all" || question.category === effectiveCategory;
 			const matchesStatus = effectiveStatus === "all" || question.status === effectiveStatus;
 			const matchesDifficulty = effectiveDifficulty === "all" || question.difficulty === effectiveDifficulty;
 
@@ -67,7 +67,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 		});
 	}, [effectiveCategory, effectiveDifficulty, effectiveSearch, effectiveStatus, questions, track]);
 
-	const completedCount = filtered.filter((question) => question.status === "done").length;
+	const completedCount = filtered.filter((question) => question.status === QuestionStatus.Done).length;
 
 	return (
 		<section className="min-w-0" data-testid={`track-page-${track}`}>
@@ -158,7 +158,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 						className="flex h-full min-w-0 flex-col overflow-hidden p-3 sm:p-4"
 						onMouseEnter={() => {
 							prefetchSolutionRenderer(question);
-							if (question.status === "done") {
+							if (question.status === QuestionStatus.Done) {
 								router.prefetch(`/${track}/${question.path}`);
 							}
 						}}
@@ -182,7 +182,7 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 								<StatusBadge status={question.status} />
 							</div>
 							<div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
-								{question.status === "done" ? (
+								{question.status === QuestionStatus.Done ? (
 									<Link
 										href={`/${track}/${question.path}`}
 										data-testid={`open-solution-${question.path}`}
