@@ -54,6 +54,7 @@ describe("QuestionDetailPage", () => {
 		const writeupQuestion: Question = {
 			...mockQuestion,
 			id: "gfe-autocomplete",
+			path: "autocomplete",
 			solutionType: SolutionType.Writeup,
 		};
 

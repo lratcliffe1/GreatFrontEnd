@@ -8,8 +8,12 @@ describe("getSolutionRenderer", () => {
 		expect(getSolutionRenderer(question)).toBeNull();
 	});
 
-	it("returns null for writeup solution type", () => {
-		const question = createMockQuestion({ solutionType: SolutionType.Writeup, status: QuestionStatus.Done });
+	it("returns null for writeup solution type when no loader exists", () => {
+		const question = createMockQuestion({
+			solutionType: SolutionType.Writeup,
+			status: QuestionStatus.Done,
+			path: "autocomplete",
+		});
 		expect(getSolutionRenderer(question)).toBeNull();
 	});
 
