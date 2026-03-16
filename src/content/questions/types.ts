@@ -27,13 +27,21 @@ export enum Difficulty {
 	Hard = "Hard",
 }
 
+export enum Category {
+	AlgorithmicCoding = "Algorithmic coding",
+	JavaScriptFunctions = "JavaScript functions",
+	Quiz = "Quiz",
+	SystemDesign = "System design",
+	UiCoding = "UI coding",
+}
+
 export type Question = {
 	id: string;
 	questionNumber: number;
 	path: string;
 	title: string;
 	track: Track;
-	category: string;
+	category: Category;
 	difficulty: Difficulty;
 	sourceUrl: string;
 	solutionTypes: SolutionType[];

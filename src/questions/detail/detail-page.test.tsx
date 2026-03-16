@@ -67,6 +67,7 @@ describe("QuestionDetailPage", () => {
 		const codeQuestion: Question = {
 			...mockQuestion,
 			id: "gfe-other",
+			path: "array-prototype-reduce",
 			solutionTypes: [SolutionType.CodeAndTests],
 		};
 

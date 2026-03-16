@@ -1,4 +1,4 @@
-import { Difficulty, QuestionStatus, SolutionType, Track, type Question } from "@/content/questions";
+import { Category, Difficulty, QuestionStatus, SolutionType, Track, type Question } from "@/content/questions";
 
 const DEFAULT_QUESTION: Question = {
 	id: "gfe-debounce",
@@ -6,7 +6,7 @@ const DEFAULT_QUESTION: Question = {
 	path: "debounce",
 	title: "Debounce",
 	track: Track.Gfe75,
-	category: "JavaScript functions",
+	category: Category.JavaScriptFunctions,
 	difficulty: Difficulty.Medium,
 	sourceUrl: "https://example.com",
 	solutionTypes: [SolutionType.AlgoVisualizer],
