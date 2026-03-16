@@ -82,7 +82,11 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 				>
 					{completedCount}/{filtered.length} complete
 				</p>
-				<div className="grid min-w-0 max-w-full grid-cols-1 basis-full shrink-0 gap-3 min-[400px]:grid-cols-2 min-[712px]:ml-auto min-[712px]:basis-auto min-[900px]:grid-cols-4 sm:gap-4">
+				<div
+					className={`grid min-w-0 max-w-full basis-full shrink-0 gap-3 min-[400px]:ml-auto min-[400px]:basis-auto min-[400px]:w-fit min-[400px]:grid-cols-2 sm:gap-4 ${
+						track === Track.Blind75 ? "min-[900px]:grid-cols-[1fr_1fr_minmax(0,1fr)]" : "min-[900px]:grid-cols-[1fr_1fr_1fr_minmax(0,1fr)]"
+					}`}
+				>
 					{track !== "blind75" && (
 						<FilterSelect
 							id="category-label"
