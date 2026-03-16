@@ -13,6 +13,9 @@ const staticCacheHeaders = [
 
 const nextConfig: NextConfig = {
 	...(allowedDevOrigins?.length ? { allowedDevOrigins } : {}),
+	experimental: {
+		inlineCss: true,
+	},
 	async headers() {
 		return [
 			{ source: "/", headers: staticCacheHeaders },

@@ -179,16 +179,14 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 									<span className={`font-semibold ${QUESTION_UI_CLASSES.mutedText}`}>{question.category}</span>
 									<StatusBadge status={question.status} />
 								</div>
-								<div className={`text-[10px] sm:text-[11px] ${QUESTION_UI_CLASSES.mutedText}`}>
-									{question.solutionTypes.join(" • ")}
-								</div>
+								<div className={`text-[10px] sm:text-[11px] ${QUESTION_UI_CLASSES.mutedText}`}>{question.solutionTypes.join(" • ")}</div>
 							</div>
 							<div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
 								{question.status === QuestionStatus.Done ? (
 									<Link
 										href={`/${track}/${question.path}`}
 										data-testid={`open-solution-${question.path}`}
-										className="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-500 dark:hover:bg-teal-400 dark:focus-visible:ring-teal-400 sm:px-3 sm:py-1.5"
+										className="inline-flex items-center rounded-md bg-teal-700 px-2.5 py-1 font-semibold text-white transition hover:bg-teal-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus-visible:ring-teal-500 sm:px-3 sm:py-1.5"
 									>
 										Open solution
 									</Link>

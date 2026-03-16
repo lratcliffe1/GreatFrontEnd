@@ -19,17 +19,17 @@ const PRIMITIVE_CLASSES = {
 	mutedText: MUTED_TEXT_CLASS,
 } as const;
 
-/** Shared primary button/link styling for use with AppButton or Link */
+/** Shared primary button/link styling for use with AppButton or Link (teal-700 for WCAG AA contrast) */
 export const PRIMARY_BUTTON_CLASSES =
-	"rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-500 dark:hover:bg-teal-400 dark:focus-visible:ring-teal-400";
+	"rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus-visible:ring-teal-500";
 
 /** Compact variant for nav links */
 export const PRIMARY_BUTTON_SM_CLASSES =
-	"rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-500 dark:hover:bg-teal-400 dark:focus-visible:ring-teal-400";
+	"rounded-md bg-teal-700 px-3 py-2 text-sm font-semibold text-white transition hover:bg-teal-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus-visible:ring-teal-500";
 
 const BUTTON_VARIANT_CLASSES = {
 	primary:
-		"border border-transparent bg-teal-600 text-white hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 disabled:border-card-border disabled:[background:var(--card-bg)] disabled:text-muted disabled:hover:[background:var(--card-bg)] disabled:hover:text-muted dark:bg-teal-500 dark:hover:bg-teal-400 dark:focus-visible:ring-teal-400 dark:disabled:[background:var(--card-bg)]",
+		"border border-transparent bg-teal-700 text-white hover:bg-teal-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 disabled:border-card-border disabled:[background:var(--card-bg)] disabled:text-muted disabled:hover:[background:var(--card-bg)] disabled:hover:text-muted dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus-visible:ring-teal-500 dark:disabled:[background:var(--card-bg)]",
 	danger:
 		"bg-red-600 text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-red-600",
 	dangerSubtle:
