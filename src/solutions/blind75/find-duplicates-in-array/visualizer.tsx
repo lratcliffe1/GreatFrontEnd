@@ -13,6 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import { DUPLICATE_ARRAY_CONSTRAINTS, getDuplicateScanSteps, type DuplicateScanOutcome } from "@/solutions/blind75/find-duplicates-in-array/solution";
 
@@ -102,8 +103,9 @@ export function FindDuplicatesInArrayVisualizer() {
 			>
 				{step ? (
 					<TracePanelContent>
-						<TraceLine>Current index: {step.index ?? "(done)"}</TraceLine>
-						<TraceLine>Current value: {step.value ?? "(none)"}</TraceLine>
+						<div className="mb-2">
+							<ArrayVisualization values={appliedNumbers} activeIndex={step.index} />
+						</div>
 						<TraceLine>Action: {step.action}</TraceLine>
 						<TraceLine>Seen set: {step.seen.length ? step.seen.join(", ") : "(empty)"}</TraceLine>
 						<TraceLine variant={getOutcomeVariant(step.outcome)}>{getOutcomeLabel(step.outcome)}</TraceLine>

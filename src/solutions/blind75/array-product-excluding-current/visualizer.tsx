@@ -13,6 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import { PRODUCT_EXCLUDING_CURRENT_CONSTRAINTS, getProductExcludingCurrentSteps } from "@/solutions/blind75/array-product-excluding-current/solution";
 
@@ -84,16 +85,10 @@ export function ArrayProductExcludingCurrentVisualizer() {
 			>
 				{step ? (
 					<TracePanelContent>
+						<div className="mb-2">
+							<ArrayVisualization values={appliedNumbers} activeIndex={step.index} label="Input array" />
+						</div>
 						<TraceLine>Pass: {step.pass}</TraceLine>
-						<TraceLine>
-							{step.index !== null ? (
-								<>
-									Index: {step.index}, value: {step.value}
-								</>
-							) : (
-								"\u00A0"
-							)}
-						</TraceLine>
 						<TraceLine>left: {step.left}</TraceLine>
 						<TraceLine>right: {step.right}</TraceLine>
 						<TraceLine>result: [{step.result.join(", ")}]</TraceLine>

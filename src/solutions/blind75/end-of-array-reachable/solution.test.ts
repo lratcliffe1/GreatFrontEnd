@@ -2,7 +2,7 @@ import { getEndOfArrayReachableSteps } from "@/solutions/blind75/end-of-array-re
 
 describe("getEndOfArrayReachableSteps", () => {
 	it("returns steps with reached true for [4,1,0,0,2,3]", () => {
-		const steps = getEndOfArrayReachableSteps([4, 1, 0, 0, 2, 3]);
+		const steps = getEndOfArrayReachableSteps([4, 1, 0, 0, 2, 0, 3]);
 		expect(steps.some((s) => s.reached === true)).toBe(true);
 	});
 

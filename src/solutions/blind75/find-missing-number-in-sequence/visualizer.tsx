@@ -13,6 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import {
 	MISSING_NUMBER_CONSTRAINTS,
@@ -81,6 +82,9 @@ export function FindMissingNumberVisualizer() {
 			>
 				{step ? (
 					<TracePanelContent>
+						<div className="mb-2">
+							<ArrayVisualization values={appliedNumbers} activeIndex={step.index} />
+						</div>
 						<TraceLine>{step.action}</TraceLine>
 						<TraceLine>expectedSum = {step.expectedSum ?? "null"}</TraceLine>
 						<TraceLine>actualSum = {step.actualSum ?? "null"}</TraceLine>

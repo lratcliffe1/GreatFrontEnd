@@ -2,6 +2,7 @@
 
 import { startTransition, useMemo, useState } from "react";
 
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { AppButton, EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
 import {
 	StepVisualizerLayout,
@@ -140,11 +141,9 @@ export function MostCommonElementsVisualizer() {
 			>
 				{step ? (
 					<TracePanelContent>
-						{step.index !== null && (
-							<TraceLine>
-								Index: {step.index}, value: {step.value}
-							</TraceLine>
-						)}
+						<div className="mb-2">
+							<ArrayVisualization values={applied.numbers} activeIndex={step.index} />
+						</div>
 						<TraceLine>{step.action}</TraceLine>
 						{freqDisplay != null && <TraceLine>freq: {`{${freqDisplay}}`}</TraceLine>}
 						{sortedDisplay != null && <TraceLine>sorted: [{sortedDisplay}]</TraceLine>}

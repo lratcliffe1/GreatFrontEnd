@@ -13,6 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import { MAX_PRODUCT_ARRAY_CONSTRAINTS, getMaxProductSteps } from "@/solutions/blind75/maximum-product-in-contiguous-array/solution";
 
@@ -29,7 +30,7 @@ const CODE_LINES: CodeLine[] = [
 	{ line: 10, code: "}" },
 ];
 
-const INITIAL_INPUT = "1, 2, -3, 5, 1";
+const INITIAL_INPUT = "1, -2, -3, 5, 1, -6";
 
 export function MaximumProductInContiguousArrayVisualizer() {
 	const [input, setInput] = useState(INITIAL_INPUT);
@@ -80,11 +81,9 @@ export function MaximumProductInContiguousArrayVisualizer() {
 			>
 				{step ? (
 					<TracePanelContent>
-						{step.index !== null && (
-							<TraceLine>
-								Index: {step.index}, value: {step.value}
-							</TraceLine>
-						)}
+						<div className="mb-2">
+							<ArrayVisualization values={appliedNumbers} activeIndex={step.index} />
+						</div>
 						<TraceLine>{step.action}</TraceLine>
 						<TraceLine>maxEnding = {step.maxEndingHere}</TraceLine>
 						<TraceLine>minEnding = {step.minEndingHere}</TraceLine>

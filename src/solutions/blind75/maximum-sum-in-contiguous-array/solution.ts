@@ -33,7 +33,7 @@ export function getMaxSumSteps(numbers: number[]): MaxSumStep[] {
 		});
 	};
 
-	pushStep(2, null, null, `Initialize: maxEnding = globalMax = numbers[0] = ${first}.`);
+	pushStep(2, 0, first, `Initialize: maxEnding = globalMax = numbers[0] = ${first}.`);
 
 	for (let i = 1; i < numbers.length; i++) {
 		const n = numbers[i] as number;

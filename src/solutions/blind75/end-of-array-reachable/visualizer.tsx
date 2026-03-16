@@ -13,6 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import { END_OF_ARRAY_CONSTRAINTS, getEndOfArrayReachableSteps } from "@/solutions/blind75/end-of-array-reachable/solution";
 
@@ -29,39 +30,7 @@ const CODE_LINES: CodeLine[] = [
 	{ line: 10, code: "}" },
 ];
 
-const INITIAL_INPUT = "4, 1, 0, 0, 2, 3";
-
-function ArrayVisualization({ numbers, currentIndex, maxReach }: { numbers: number[]; currentIndex: number | null; maxReach: number }) {
-	const lastIndex = numbers.length - 1;
-
-	return (
-		<div className="flex flex-wrap gap-1">
-			{numbers.map((value, i) => {
-				const isCurrent = i === currentIndex;
-				const isReachable = i <= maxReach;
-				const isLast = i === lastIndex;
-
-				return (
-					<div
-						key={i}
-						className={`
-							flex min-w-10 flex-col items-center rounded border-2 px-2 py-1 text-center text-sm
-							${isCurrent ? "border-teal-500 bg-teal-900/60 text-white" : ""}
-							${!isCurrent && isReachable ? "border-slate-500 bg-slate-700/40 text-slate-200" : ""}
-							${!isCurrent && !isReachable ? "border-slate-600 bg-slate-800/30 text-slate-500" : ""}
-							${isLast ? "ring-1 ring-amber-400/60" : ""}
-						`}
-					>
-						<span className="text-xs text-slate-400">{i}</span>
-						<span className="font-mono font-medium">{value}</span>
-						{isLast && <span className="text-[10px] text-amber-400">goal</span>}
-						{isCurrent && <span className="text-[10px] text-teal-300">current</span>}
-					</div>
-				);
-			})}
-		</div>
-	);
-}
+const INITIAL_INPUT = "4, 1, 0, 0, 2, 0, 3";
 
 export function EndOfArrayReachableVisualizer() {
 	const [input, setInput] = useState(INITIAL_INPUT);
@@ -83,7 +52,7 @@ export function EndOfArrayReachableVisualizer() {
 				label="Numbers input"
 				hint="Comma-separated integers. Each value = max jump length from that index. Constraints: 1–10,000 elements, each in [0, 100,000]."
 				inputId="end-of-array-input"
-				placeholder="Try: 4, 1, 0, 0, 2, 3 or 1, 0, 0, 0"
+				placeholder="Try: 4, 1, 0, 0, 2, 0, 3 or 1, 0, 0, 0"
 				value={input}
 				onChange={setInput}
 				error={parsedInput.error}
@@ -113,8 +82,12 @@ export function EndOfArrayReachableVisualizer() {
 				{step ? (
 					<TracePanelContent>
 						<div className="mb-2">
-							<p className="mb-1 text-xs font-medium text-slate-400">Array (index → value)</p>
-							<ArrayVisualization numbers={appliedNumbers} currentIndex={step.index} maxReach={step.maxReach} />
+							<ArrayVisualization
+								values={appliedNumbers}
+								activeIndex={step.index}
+								rangeEnd={step.maxReach}
+								targetIndex={appliedNumbers.length - 1}
+							/>
 						</div>
 						<TraceLine>{step.action}</TraceLine>
 						<TraceLine>maxReach = {step.maxReach}</TraceLine>

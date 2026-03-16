@@ -13,6 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
+import { ArrayVisualization } from "@/components/visualizer/array-visualization";
 import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import { MAX_SUM_ARRAY_CONSTRAINTS, getMaxSumSteps } from "@/solutions/blind75/maximum-sum-in-contiguous-array/solution";
 
@@ -79,11 +80,9 @@ export function MaximumSumInContiguousArrayVisualizer() {
 			>
 				{step ? (
 					<TracePanelContent>
-						{step.index !== null && (
-							<TraceLine>
-								Index: {step.index}, value: {step.value}
-							</TraceLine>
-						)}
+						<div className="mb-2">
+							<ArrayVisualization values={appliedNumbers} activeIndex={step.index} />
+						</div>
 						<TraceLine>{step.action}</TraceLine>
 						<TraceLine>maxEnding = {step.maxEndingHere}</TraceLine>
 						<TraceLine variant="emphasized">globalMax = {step.globalMax}</TraceLine>

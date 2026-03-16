@@ -36,7 +36,7 @@ export function getMaxProductSteps(numbers: number[]): MaxProductStep[] {
 		});
 	};
 
-	pushStep(2, null, null, `Initialize: maxEnding = minEnding = globalMax = numbers[0] = ${first}.`);
+	pushStep(2, 0, first, `Initialize: maxEnding = minEnding = globalMax = numbers[0] = ${first}.`);
 
 	for (let i = 1; i < numbers.length; i++) {
 		const n = numbers[i] as number;
