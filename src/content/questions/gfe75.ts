@@ -141,12 +141,17 @@ Implementation details:
 		difficulty: Difficulty.Easy,
 		sourceUrl: "https://www.greatfrontend.com/interviews/gfe75",
 		solutionType: SolutionType.UiDemo,
-		status: QuestionStatus.InProgress,
-		summary: "TODO: Solve Contact Form.",
+		status: QuestionStatus.Done,
+		summary: `Build a basic "Contact Us" form, commonly seen on marketing websites for visitors to ask questions or provide feedback.
+
+Requirements:
+- Name field, Email field, Message field (textarea), Submit button with text "Send"
+- Form submits via native HTML POST (no JavaScript)
+- POST to https://questions.greatfrontend.com/api/questions/contact-form with body fields: name, email, message`,
 		cardSummary: "Build a contact form which submits user feedback and contact details to a back end API",
-		approach: "TODO",
-		complexity: "TODO",
-		tags: [],
+		approach: `Client: contact-form-demo.tsx uses onSubmit with preventDefault, reads FormData, and fetch POSTs JSON to /api/contact-form. On response, shows alert and resets form. Next.js App Router maps that URL to route.ts. Server: route.ts parses and validates the body, proxies the request to the Great Frontend API, and forwards the response. The proxy avoids CORS: the browser only talks to same-origin /api/contact-form; the server calls the external API (no CORS on server-to-server).`,
+		complexity: "O(1) form submission.",
+		tags: ["forms", "html"],
 	},
 	{
 		id: "gfe-holy-grail",

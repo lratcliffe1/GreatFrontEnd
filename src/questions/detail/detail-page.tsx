@@ -114,7 +114,11 @@ export function QuestionDetailPage({ question }: { question: Question }) {
 
 			<SurfacePanel className="space-y-2">
 				<h3 className={QUESTION_UI_CLASSES.panelHeading}>Runnable solution</h3>
-				{hasSolutionRenderer(question) ? <LazySolutionRenderer question={question} /> : <SolutionFallback question={question} />}
+				<div className="flex justify-center">
+					<div className="w-full max-w-2xl min-w-0">
+						{hasSolutionRenderer(question) ? <LazySolutionRenderer question={question} /> : <SolutionFallback question={question} />}
+					</div>
+				</div>
 			</SurfacePanel>
 
 			{showComplexity ? (
