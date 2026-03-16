@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import { graphqlApi } from "@/lib/graphql/api";
+import { graphqlApi } from "@/lib/graphql/api/base";
 import filtersReducer from "@/lib/store/filtersSlice";
 
 const rootReducer = combineReducers({

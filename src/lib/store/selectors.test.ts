@@ -1,6 +1,6 @@
 import { Difficulty, QuestionStatus, Track } from "@/content/questions";
 import { selectCategory, selectDifficulty, selectSearch, selectStatus } from "@/lib/store/selectors";
-import { graphqlApi } from "@/lib/graphql/api";
+import { graphqlApi } from "@/lib/graphql/api/base";
 import filtersReducer, { setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
 
 function getState(filters: ReturnType<typeof filtersReducer>) {
