@@ -8,6 +8,14 @@ export type CodeLine = {
 	code: string;
 };
 
+export type TraceLog = {
+	id: number;
+	at: string;
+	line: number;
+	message: string;
+	timestamp: number;
+};
+
 const DEFAULT_TRACE_TITLE = "Execution trace (step-by-step)";
 
 type StepVisualizerLayoutProps = {
@@ -23,6 +31,7 @@ type StepVisualizerLayoutProps = {
 	canPrev: boolean;
 	canNext: boolean;
 	summary?: ReactNode;
+	footer?: ReactNode;
 	children: ReactNode;
 };
 
@@ -39,42 +48,46 @@ export function StepVisualizerLayout({
 	canPrev,
 	canNext,
 	summary,
+	footer,
 	children,
 }: StepVisualizerLayoutProps) {
 	return (
-		<div className="grid gap-4 md:grid-cols-[4fr_1.5fr]">
-			<CodePanel>
-				<p className="mb-2 text-xs text-slate-400">{codeTitle}</p>
-				{codeLines.map((entry, index) => {
-					const isActive = entry.line !== null && activeLine === entry.line;
-					return (
-						<div
-							key={`${entry.line ?? "none"}-${index}`}
-							className={`rounded px-2 py-1 whitespace-pre-wrap wrap-break-word ${isActive ? "bg-teal-800 text-white" : "text-slate-200"}`}
-						>
-							<span className="mr-3 inline-block w-8 text-slate-500">{entry.line ?? ""}</span>
-							<code>{entry.code}</code>
-						</div>
-					);
-				})}
-			</CodePanel>
+		<div className="flex flex-col gap-4">
+			<div className="grid gap-4 md:grid-cols-[4fr_1.5fr]">
+				<CodePanel>
+					<p className="mb-2 text-xs text-slate-400">{codeTitle}</p>
+					{codeLines.map((entry, index) => {
+						const isActive = entry.line !== null && activeLine === entry.line;
+						return (
+							<div
+								key={`${entry.line ?? "none"}-${index}`}
+								className={`rounded px-2 py-1 whitespace-pre-wrap wrap-break-word ${isActive ? "bg-teal-800 text-white" : "text-slate-200"}`}
+							>
+								<span className="mr-3 inline-block w-8 text-slate-500">{entry.line ?? ""}</span>
+								<code>{entry.code}</code>
+							</div>
+						);
+					})}
+				</CodePanel>
 
-			<TracePanel className={tracePanelClassName}>
-				<h4 className="font-semibold text-foreground">{traceTitle}</h4>
-				{summary}
-				<div className="flex items-center gap-2">
-					<StepControlButton onClick={onPrev} disabled={!canPrev}>
-						Prev
-					</StepControlButton>
-					<StepControlButton onClick={onNext} disabled={!canNext}>
-						Next
-					</StepControlButton>
-					<span className="text-sm text-muted">
-						Step {totalSteps === 0 ? 0 : stepIndex + 1}/{totalSteps}
-					</span>
-				</div>
-				{children}
-			</TracePanel>
+				<TracePanel className={tracePanelClassName}>
+					<h4 className="font-semibold text-foreground">{traceTitle}</h4>
+					{summary}
+					<div className="flex items-center gap-2">
+						<StepControlButton onClick={onPrev} disabled={!canPrev}>
+							Prev
+						</StepControlButton>
+						<StepControlButton onClick={onNext} disabled={!canNext}>
+							Next
+						</StepControlButton>
+						<span className="text-sm text-muted">
+							Step {totalSteps === 0 ? 0 : stepIndex + 1}/{totalSteps}
+						</span>
+					</div>
+					{children}
+				</TracePanel>
+			</div>
+			{footer && <div className="w-full">{footer}</div>}
 		</div>
 	);
 }

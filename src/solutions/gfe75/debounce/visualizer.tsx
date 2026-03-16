@@ -10,11 +10,13 @@ import {
 	TraceLine,
 	StepVisualizerPage,
 	type CodeLine,
+	type TraceLog,
 } from "@/components/visualizer/step-visualizer-layout";
+import { TimelineVisualization } from "@/components/visualizer/timeline-visualization";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
 import { toClockTime } from "@/lib/utils/to-clock-time";
-import { debounce, type DebounceTraceEvent } from "@/solutions/gfe75/debounce/solution";
+import { debounce, type DebounceTimelineEvent, type DebounceTraceEvent } from "@/solutions/gfe75/debounce/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: "return (...args) => {" },
@@ -30,16 +32,10 @@ const CODE_LINES: CodeLine[] = [
 	{ line: 11, code: "};" },
 ];
 
-type TraceLog = {
-	id: number;
-	at: string;
-	line: number;
-	message: string;
-};
-
 export function DebounceVisualizer() {
 	const [delayMs, setDelayMs] = useState(500);
 	const [traceLogs, setTraceLogs] = useState<TraceLog[]>([]);
+	const [timelineEvents, setTimelineEvents] = useState<Array<DebounceTimelineEvent<[string]>>>([]);
 	const [stepIndex, setStepIndex] = useState(0);
 	const [executedPayloads, setExecutedPayloads] = useState<string[]>([]);
 	const clickCounterRef = useRef(0);
@@ -63,10 +59,14 @@ export function DebounceVisualizer() {
 							at: toClockTime(Date.now()),
 							line: event.line,
 							message: event.message,
+							timestamp: event.timestamp,
 						},
 					];
 					return next;
 				});
+			},
+			(event: DebounceTimelineEvent<[string]>) => {
+				setTimelineEvents((prev) => [...prev, event]);
 			},
 		);
 	}, [delayMs]);
@@ -79,19 +79,25 @@ export function DebounceVisualizer() {
 
 	function runRapidScenario() {
 		flash();
-		setTraceLogs([]);
-		setStepIndex(0);
-		setExecutedPayloads([]);
 		clickCounterRef.current += 1;
-		debounced(`scenario-${clickCounterRef.current}`);
+		debounced(`click-${clickCounterRef.current}`);
 		setTimeout(() => {
 			clickCounterRef.current += 1;
-			debounced(`scenario-${clickCounterRef.current}`);
+			debounced(`click-${clickCounterRef.current}`);
 		}, 120);
 		setTimeout(() => {
 			clickCounterRef.current += 1;
-			debounced(`scenario-${clickCounterRef.current}`);
+			debounced(`click-${clickCounterRef.current}`);
 		}, 240);
+	}
+
+	function reset() {
+		flash();
+		setTraceLogs([]);
+		setTimelineEvents([]);
+		setStepIndex(0);
+		setExecutedPayloads([]);
+		clickCounterRef.current = 0;
 	}
 
 	return (
@@ -114,6 +120,9 @@ export function DebounceVisualizer() {
 					<AppButton type="button" onClick={runRapidScenario}>
 						Run rapid 3-click scenario
 					</AppButton>
+					<AppButton type="button" onClick={reset} disabled={traceLogs.length === 0}>
+						Reset
+					</AppButton>
 				</div>
 			</div>
 
@@ -129,6 +138,26 @@ export function DebounceVisualizer() {
 				onNext={onNext}
 				canPrev={canPrev}
 				canNext={canNext}
+				footer={
+					<div className="flex flex-col gap-4 rounded-lg border border-card-border bg-card-bg p-6">
+						<TimelineVisualization
+							events={timelineEvents.map((e) => {
+								if (e.type === "invoked") return { type: "invoked" as const, label: String(e.args[0]), timestamp: e.timestamp };
+								if (e.type === "cleared") return { type: "cleared" as const, timestamp: e.timestamp };
+								if (e.type === "scheduled") return { type: "scheduled" as const, delayMs: e.delayMs, timestamp: e.timestamp };
+								if (e.type === "executed") return { type: "executed" as const, label: "Executed", timestamp: e.timestamp };
+								return e;
+							})}
+							highlightTimestamp={traceLogs[stepIndex]?.timestamp}
+						/>
+						<div>
+							<p className="text-sm font-semibold text-foreground">Executed payloads</p>
+							<p className="text-sm text-foreground">
+								{executedPayloads.length ? executedPayloads.join(", ") : "None yet (debounce delay has not elapsed)."}
+							</p>
+						</div>
+					</div>
+				}
 			>
 				{currentStep ? (
 					<TracePanelContent>
@@ -140,13 +169,6 @@ export function DebounceVisualizer() {
 				) : (
 					<TraceEmptyState message="No events yet. Trigger the handler or run the rapid scenario." />
 				)}
-
-				<div>
-					<p className="text-sm font-semibold text-foreground">Executed payloads</p>
-					<p className="text-sm text-foreground">
-						{executedPayloads.length ? executedPayloads.join(", ") : "None yet (debounce delay has not elapsed)."}
-					</p>
-				</div>
 			</StepVisualizerLayout>
 		</StepVisualizerPage>
 	);

@@ -10,11 +10,13 @@ import {
 	TraceLine,
 	StepVisualizerPage,
 	type CodeLine,
+	type TraceLog,
 } from "@/components/visualizer/step-visualizer-layout";
+import { TimelineVisualization } from "@/components/visualizer/timeline-visualization";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
 import { toClockTime } from "@/lib/utils/to-clock-time";
-import { throttle, type ThrottleTraceEvent } from "@/solutions/gfe75/throttle/solution";
+import { throttle, type ThrottleTimelineEvent, type ThrottleTraceEvent } from "@/solutions/gfe75/throttle/solution";
 
 const CODE_LINES: CodeLine[] = [
 	{ line: 1, code: "return (...args) => {" },
@@ -29,16 +31,10 @@ const CODE_LINES: CodeLine[] = [
 	{ line: 10, code: "};" },
 ];
 
-type TraceLog = {
-	id: number;
-	at: string;
-	line: number;
-	message: string;
-};
-
 export function ThrottleVisualizer() {
 	const [waitMs, setWaitMs] = useState(100);
 	const [traceLogs, setTraceLogs] = useState<TraceLog[]>([]);
+	const [timelineEvents, setTimelineEvents] = useState<Array<ThrottleTimelineEvent<[string]>>>([]);
 	const [stepIndex, setStepIndex] = useState(0);
 	const [executedPayloads, setExecutedPayloads] = useState<string[]>([]);
 	const clickCounterRef = useRef(0);
@@ -62,10 +58,14 @@ export function ThrottleVisualizer() {
 							at: toClockTime(Date.now()),
 							line: event.line,
 							message: event.message,
+							timestamp: event.timestamp,
 						},
 					];
 					return next;
 				});
+			},
+			(event: ThrottleTimelineEvent<[string]>) => {
+				setTimelineEvents((prev) => [...prev, event]);
 			},
 		);
 	}, [waitMs]);
@@ -78,23 +78,28 @@ export function ThrottleVisualizer() {
 
 	function runThrottleScenario() {
 		flash();
-		setTraceLogs([]);
-		setStepIndex(0);
-		setExecutedPayloads([]);
-		clickCounterRef.current = 0;
 		// t=0: first call, executes immediately
 		clickCounterRef.current += 1;
-		throttled(`t0-${clickCounterRef.current}`);
+		throttled(`click-${clickCounterRef.current}`);
 		// t=50: within wait, throttled
 		setTimeout(() => {
 			clickCounterRef.current += 1;
-			throttled(`t50-${clickCounterRef.current}`);
+			throttled(`click-${clickCounterRef.current}`);
 		}, 50);
 		// t=101: wait elapsed, executes
 		setTimeout(() => {
 			clickCounterRef.current += 1;
-			throttled(`t101-${clickCounterRef.current}`);
+			throttled(`click-${clickCounterRef.current}`);
 		}, 101);
+	}
+
+	function reset() {
+		flash();
+		setTraceLogs([]);
+		setTimelineEvents([]);
+		setStepIndex(0);
+		setExecutedPayloads([]);
+		clickCounterRef.current = 0;
 	}
 
 	return (
@@ -117,6 +122,9 @@ export function ThrottleVisualizer() {
 					<AppButton type="button" onClick={runThrottleScenario}>
 						Run t=0, t=50, t=101 scenario
 					</AppButton>
+					<AppButton type="button" onClick={reset} disabled={traceLogs.length === 0}>
+						Reset
+					</AppButton>
 				</div>
 			</div>
 
@@ -132,6 +140,23 @@ export function ThrottleVisualizer() {
 				onNext={onNext}
 				canPrev={canPrev}
 				canNext={canNext}
+				footer={
+					<div className="flex flex-col gap-4 rounded-lg border border-card-border bg-card-bg p-6">
+						<TimelineVisualization
+							events={timelineEvents.map((e) => {
+								if (e.type === "invoked") return { type: "invoked" as const, label: String(e.args[0]), timestamp: e.timestamp };
+								if (e.type === "executed") return { type: "executed" as const, label: String(e.args[0]), timestamp: e.timestamp };
+								if (e.type === "skipped") return { type: "skipped" as const, label: String(e.args[0]), timestamp: e.timestamp };
+								return e;
+							})}
+							highlightTimestamp={traceLogs[stepIndex]?.timestamp}
+						/>
+						<div>
+							<p className="text-sm font-semibold text-foreground">Executed payloads</p>
+							<p className="text-sm text-foreground">{executedPayloads.length ? executedPayloads.join(", ") : "None yet."}</p>
+						</div>
+					</div>
+				}
 			>
 				{currentStep ? (
 					<TracePanelContent>
@@ -143,11 +168,6 @@ export function ThrottleVisualizer() {
 				) : (
 					<TraceEmptyState message="No events yet. Trigger the handler or run the scenario." />
 				)}
-
-				<div>
-					<p className="text-sm font-semibold text-foreground">Executed payloads</p>
-					<p className="text-sm text-foreground">{executedPayloads.length ? executedPayloads.join(", ") : "None yet."}</p>
-				</div>
 			</StepVisualizerLayout>
 		</StepVisualizerPage>
 	);
