@@ -74,7 +74,9 @@ export function syncFiltersToUrl(track: Track, filters: TrackFilterValues) {
 	if (typeof window === "undefined") {
 		return;
 	}
-	if (window.location.pathname !== `/${track}`) return;
+	const pathname = window.location.pathname;
+	const pathMatchesTrack = pathname === `/${track}` || (pathname === "/" && track === Track.Gfe75);
+	if (!pathMatchesTrack) return;
 
 	const params = new URLSearchParams(window.location.search);
 	const keys = URL_PARAMS[track];
