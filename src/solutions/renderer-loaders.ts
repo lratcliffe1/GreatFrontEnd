@@ -22,4 +22,5 @@ export const SOLUTION_RENDERER_LOADERS: Partial<Record<RendererKey, RendererLoad
 	"blind75/find-missing-number-in-sequence": () => import("@/solutions/blind75/find-missing-number-in-sequence/renderer"),
 	"blind75/maximum-product-in-contiguous-array": () => import("@/solutions/blind75/maximum-product-in-contiguous-array/renderer"),
 	"blind75/maximum-sum-in-contiguous-array": () => import("@/solutions/blind75/maximum-sum-in-contiguous-array/renderer"),
+	"blind75/most-common-elements": () => import("@/solutions/blind75/most-common-elements/renderer"),
 };

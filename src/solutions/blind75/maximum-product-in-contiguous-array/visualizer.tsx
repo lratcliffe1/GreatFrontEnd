@@ -13,7 +13,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
-import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-comma-separated-integers";
+import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-visualizer-user-inputs";
 import { MAX_PRODUCT_ARRAY_CONSTRAINTS, getMaxProductSteps } from "@/solutions/blind75/maximum-product-in-contiguous-array/solution";
 
 const CODE_LINES: CodeLine[] = [

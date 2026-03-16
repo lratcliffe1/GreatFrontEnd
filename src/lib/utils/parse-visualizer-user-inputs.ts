@@ -1,3 +1,9 @@
+/**
+ * Parse visualizer user inputs.
+ *
+ * - parseCommaSeparatedIntegers: Parse comma-separated lists with length/value constraints.
+ * - parseK: Parse a single positive integer (e.g. k for "top k").
+ */
 export type CommaSeparatedIntegerConstraints = {
 	minLength: number;
 	maxLength: number;
@@ -73,4 +79,15 @@ export function parseCommaSeparatedIntegers(
 	}
 
 	return { data: numbers, error: null };
+}
+
+/**
+ * Parse a single positive integer (e.g. k for "top k").
+ */
+export function parseK(raw: string): ParseResult<number> {
+	const trimmed = raw.trim();
+	if (!trimmed) return { data: null, error: "Enter a value for k." };
+	const num = Number(trimmed);
+	if (!Number.isInteger(num) || num < 1) return { data: null, error: "k must be a positive integer." };
+	return { data: num, error: null };
 }

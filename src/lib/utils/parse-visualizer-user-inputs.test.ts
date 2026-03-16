@@ -1,4 +1,4 @@
-import { parseCommaSeparatedIntegers } from "@/lib/utils/parse-comma-separated-integers";
+import { parseCommaSeparatedIntegers, parseK } from "@/lib/utils/parse-visualizer-user-inputs";
 
 const CONSTRAINTS = { minLength: 1, maxLength: 5, minValue: 0, maxValue: 10 };
 
@@ -37,5 +37,36 @@ describe("parseCommaSeparatedIntegers", () => {
 		const result = parseCommaSeparatedIntegers("1, 2", { minLength: 1, maxLength: 5 }, () => "Custom error");
 		expect(result.data).toBeNull();
 		expect(result.error).toBe("Custom error");
+	});
+});
+
+describe("parseK", () => {
+	it("parses valid positive integer", () => {
+		expect(parseK("2")).toEqual({ data: 2, error: null });
+		expect(parseK("1")).toEqual({ data: 1, error: null });
+	});
+
+	it("returns error for empty input", () => {
+		const result = parseK("");
+		expect(result.data).toBeNull();
+		expect(result.error).toMatch(/Enter a value/);
+	});
+
+	it("returns error for zero", () => {
+		const result = parseK("0");
+		expect(result.data).toBeNull();
+		expect(result.error).toMatch(/positive integer/);
+	});
+
+	it("returns error for negative", () => {
+		const result = parseK("-1");
+		expect(result.data).toBeNull();
+		expect(result.error).toMatch(/positive integer/);
+	});
+
+	it("returns error for non-integer", () => {
+		const result = parseK("2.5");
+		expect(result.data).toBeNull();
+		expect(result.error).toMatch(/positive integer/);
 	});
 });

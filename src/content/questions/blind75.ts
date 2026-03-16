@@ -144,13 +144,25 @@ Constraints: 1 <= numbers.length <= 10,000, -10,000 <= numbers[i] <= 10,000`,
 		category: "Algorithmic coding",
 		difficulty: Difficulty.Medium,
 		sourceUrl: "https://www.greatfrontend.com/interviews/blind75",
-		solutionType: SolutionType.CodeAndTests,
-		status: QuestionStatus.InProgress,
-		summary: "TODO: Solve Most Common Elements.",
-		cardSummary: "TODO: Add concise card summary.",
-		approach: "TODO",
-		complexity: "TODO",
-		tags: [],
+		solutionType: SolutionType.AlgoVisualizer,
+		status: QuestionStatus.Done,
+		summary: `Given an array of integers numbers and a number k, find the k most frequent numbers in the array. Here, k represents the number of elements that should be returned, which are the ones that appear the most frequently. The order of the result does not matter.
+
+Examples:
+- [4,4,4,6,6,5,5,5], k=2 => [4,5]
+- [7,7,7,8,8,9,9,9], k=3 => [7,9,8]
+- [10,10,10,10,10], k=1 => [10]
+
+Constraints:
+- 1 <= numbers.length <= 1000
+- -10,000 <= numbers[i] <= 10,000
+- 1 <= k <= Number of unique elements in numbers
+- The solution is guaranteed to have a unique result`,
+		cardSummary: "Find the k most frequent numbers in an array using a frequency map and sort.",
+		approach:
+			"Build a frequency map in one pass (Map<number, count>). Sort entries by count descending (with value as tiebreaker for deterministic output). Return the first k numbers.",
+		complexity: "Time: O(n log n) for sort, Space: O(n) for the frequency map.",
+		tags: ["arrays", "hash-map", "sorting"],
 	},
 	{
 		id: "blind-array-product-excluding-current",
@@ -179,7 +191,7 @@ Constraints: 1 <= numbers.length <= 10,000, -10,000 <= numbers[i] <= 10,000`,
 		difficulty: Difficulty.Medium,
 		sourceUrl: "https://www.greatfrontend.com/interviews/blind75",
 		solutionType: SolutionType.CodeAndTests,
-		status: QuestionStatus.Todo,
+		status: QuestionStatus.InProgress,
 		summary: "TODO: Solve End of Array Reachable.",
 		cardSummary: "TODO: Add concise card summary.",
 		approach: "TODO",
