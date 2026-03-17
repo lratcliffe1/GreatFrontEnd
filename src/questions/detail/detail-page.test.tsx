@@ -6,7 +6,7 @@ import { createMockQuestion } from "@/questions/mock-questions";
 const mockQuestion = createMockQuestion({
 	id: "gfe-other",
 	sourceUrl: "https://www.greatfrontend.com/interviews/debounce",
-	solutionTypes: [SolutionType.CodeAndTests],
+	solutionTypes: [],
 	summary: "Debouncing controls how often a function is allowed to execute over time.",
 	cardSummary:
 		"Implement a function to limit how many times a function can be executed by delaying the execution of the function until after a specified time after its last execution attempt",
@@ -66,9 +66,9 @@ describe("QuestionDetailPage", () => {
 	it("renders code-and-tests fallback", () => {
 		const codeQuestion: Question = {
 			...mockQuestion,
-			id: "gfe-other",
-			path: "array-prototype-reduce",
-			solutionTypes: [SolutionType.CodeAndTests],
+			id: "gfe-classnames",
+			path: "classnames",
+			solutionTypes: [],
 		};
 
 		render(<QuestionDetailPage question={codeQuestion} />);

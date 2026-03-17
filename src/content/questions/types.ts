@@ -7,7 +7,6 @@ export enum SolutionType {
 	UiDemo = "UI Demo",
 	AlgoVisualizer = "Algo Visualizer",
 	TimelineVisualizer = "Timeline Visualizer",
-	CodeAndTests = "Code and Tests",
 	Writeup = "Write Up",
 	GraphQL = "GraphQL",
 	Redux = "Redux",

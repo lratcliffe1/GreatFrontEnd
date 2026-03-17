@@ -34,7 +34,7 @@ export function createMockQuestions(overrides?: Partial<Question>[]): Question[]
 			questionNumber: 2,
 			path: "array-reduce",
 			title: "Array.prototype.reduce",
-			solutionTypes: [SolutionType.CodeAndTests],
+			solutionTypes: [],
 			status: QuestionStatus.Todo,
 			summary: "Implement reduce.",
 			cardSummary: "TODO: Add concise card summary.",

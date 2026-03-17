@@ -5,9 +5,9 @@ import { createMockQuestion } from "@/questions/mock-questions";
 describe("getSolutionRenderer", () => {
 	it("returns null when done but no loader exists for path", () => {
 		const question = createMockQuestion({
-			solutionTypes: [SolutionType.CodeAndTests],
+			solutionTypes: [],
 			status: QuestionStatus.Done,
-			path: "array-prototype-reduce",
+			path: "classnames",
 		});
 		expect(getSolutionRenderer(question)).toBeNull();
 	});
@@ -62,9 +62,9 @@ describe("prefetchSolutionRenderer", () => {
 
 	it("does not throw when no loader exists", () => {
 		const question = createMockQuestion({
-			solutionTypes: [SolutionType.CodeAndTests],
+			solutionTypes: [],
 			status: QuestionStatus.Done,
-			path: "array-prototype-reduce",
+			path: "classnames",
 		});
 		expect(() => prefetchSolutionRenderer(question)).not.toThrow();
 	});
