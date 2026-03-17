@@ -227,12 +227,22 @@ Constraints: 1 <= numbers.length <= 1000, -10,000 <= numbers[i], target <= 10,00
 		category: Category.AlgorithmicCoding,
 		difficulty: Difficulty.Medium,
 		sourceUrl: "https://www.greatfrontend.com/interviews/blind75",
-		solutionTypes: [SolutionType.CodeAndTests],
-		status: QuestionStatus.InProgress,
-		summary: "TODO: Solve Smallest element in rotated sorted array.",
-		cardSummary: "TODO: Add concise card summary.",
-		approach: "TODO",
-		complexity: "TODO",
+		solutionTypes: [SolutionType.AlgoVisualizer],
+		status: QuestionStatus.Done,
+		summary: `Given a sorted and rotated array numbers containing unique elements, find and return the minimum element in this array.
+
+Rotating an array [a[0], a[1], ..., a[n-1]] once results in [a[n-1], a[0], a[1], ..., a[n-2]].
+
+Examples:
+- [1,2,3,4] => 1
+- [3,4,1,2] => 1
+- [6,7,8,-5,-4,2] => -5
+
+Constraints: 1 <= numbers.length <= 1000, -10,000 <= numbers[i] <= 10,000`,
+		cardSummary: "Binary search: compare nums[mid] with nums[hi]; min is in left or right half.",
+		approach:
+			"Binary search: compare nums[mid] with nums[hi]. If nums[mid] < nums[hi], right half [mid..hi] is sorted ascending, so min is in [lo..mid] → hi = mid. If nums[mid] > nums[hi], left half is sorted, min is in [mid+1..hi] → lo = mid + 1. When lo === hi, return numbers[lo].",
+		complexity: "Time: O(log n), Space: O(1).",
 	},
 	{
 		id: "blind-bst-kth-smallest-element",
