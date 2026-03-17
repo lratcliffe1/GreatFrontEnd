@@ -2,7 +2,7 @@
  * Parse visualizer user inputs.
  *
  * - parseCommaSeparatedIntegers: Parse comma-separated lists with length/value constraints.
- * - parseK: Parse a single positive integer (e.g. k for "top k").
+ * - parseSingleInteger: Parse a single integer with optional min/max bounds.
  */
 export type CommaSeparatedIntegerConstraints = {
 	minLength: number;
@@ -81,13 +81,33 @@ export function parseCommaSeparatedIntegers(
 	return { data: numbers, error: null };
 }
 
+export type ParseSingleIntegerOptions = {
+	min?: number;
+	max?: number;
+	label?: string;
+	emptyError?: string;
+	rangeError?: string;
+};
+
+/** Options for parsing k (positive integer) in "top k" style problems. */
+export const PARSE_K_OPTIONS: ParseSingleIntegerOptions = {
+	min: 1,
+	max: Number.MAX_SAFE_INTEGER,
+	label: "k",
+	emptyError: "Enter a value for k.",
+	rangeError: "k must be a positive integer.",
+};
+
 /**
- * Parse a single positive integer (e.g. k for "top k").
+ * Parse a single integer with optional min/max bounds.
+ * Use for target values, k, or any single-integer input.
  */
-export function parseK(raw: string): ParseResult<number> {
+export function parseSingleInteger(raw: string, options: ParseSingleIntegerOptions = {}): ParseResult<number> {
+	const { min = -10_000, max = 10_000, label = "value", emptyError = `Enter a ${options.label ?? "value"}.`, rangeError } = options;
 	const trimmed = raw.trim();
-	if (!trimmed) return { data: null, error: "Enter a value for k." };
+	if (!trimmed) return { data: null, error: emptyError };
 	const num = Number(trimmed);
-	if (!Number.isInteger(num) || num < 1) return { data: null, error: "k must be a positive integer." };
+	if (!Number.isInteger(num)) return { data: null, error: rangeError ?? `${label} must be an integer.` };
+	if (num < min || num > max) return { data: null, error: rangeError ?? `${label} must be between ${min} and ${max}.` };
 	return { data: num, error: null };
 }

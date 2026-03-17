@@ -15,7 +15,7 @@ import {
 } from "@/components/visualizer/step-visualizer-layout";
 import { useTraceFlash } from "@/components/visualizer/use-trace-flash";
 import { useStepNavigation } from "@/components/visualizer/use-step-navigation";
-import { parseCommaSeparatedIntegers, parseK } from "@/lib/utils/parse-visualizer-user-inputs";
+import { parseCommaSeparatedIntegers, parseSingleInteger, PARSE_K_OPTIONS } from "@/lib/utils/parse-visualizer-user-inputs";
 import { MOST_COMMON_ELEMENTS_CONSTRAINTS, getMostCommonElementsSteps } from "@/solutions/blind75/most-common-elements/solution";
 
 const CODE_LINES: CodeLine[] = [
@@ -43,7 +43,7 @@ export function MostCommonElementsVisualizer() {
 	const { flash, tracePanelClassName } = useTraceFlash();
 	const [applied, setApplied] = useState<{ numbers: number[]; k: number }>(() => {
 		const nums = parseCommaSeparatedIntegers(INITIAL_NUMBERS, MOST_COMMON_ELEMENTS_CONSTRAINTS);
-		const k = parseK(INITIAL_K);
+		const k = parseSingleInteger(INITIAL_K, PARSE_K_OPTIONS);
 		return {
 			numbers: nums.data ?? [],
 			k: k.data ?? 2,
@@ -55,7 +55,7 @@ export function MostCommonElementsVisualizer() {
 		() => parseCommaSeparatedIntegers(debouncedNumbersInput, MOST_COMMON_ELEMENTS_CONSTRAINTS),
 		[debouncedNumbersInput],
 	);
-	const parsedK = useMemo(() => parseK(kInput), [kInput]);
+	const parsedK = useMemo(() => parseSingleInteger(kInput, PARSE_K_OPTIONS), [kInput]);
 
 	const kError = useMemo(() => {
 		if (parsedK.error) return parsedK.error;
@@ -76,7 +76,7 @@ export function MostCommonElementsVisualizer() {
 
 	const handleApply = () => {
 		const numsResult = parseCommaSeparatedIntegers(numbersInput, MOST_COMMON_ELEMENTS_CONSTRAINTS);
-		const kResult = parseK(kInput);
+		const kResult = parseSingleInteger(kInput, PARSE_K_OPTIONS);
 		if (numsResult.error || numsResult.data === null || kResult.error || kResult.data === null) return;
 		const uniqueCount = new Set(numsResult.data).size;
 		if (kResult.data > uniqueCount) return;

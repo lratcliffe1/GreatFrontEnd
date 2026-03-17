@@ -201,12 +201,22 @@ Constraints:
 		category: Category.AlgorithmicCoding,
 		difficulty: Difficulty.Medium,
 		sourceUrl: "https://www.greatfrontend.com/interviews/blind75",
-		solutionTypes: [SolutionType.CodeAndTests],
-		status: QuestionStatus.InProgress,
-		summary: "TODO: Solve Find Element in Rotated Array.",
-		cardSummary: "TODO: Add concise card summary.",
-		approach: "TODO",
-		complexity: "TODO",
+		solutionTypes: [SolutionType.AlgoVisualizer],
+		status: QuestionStatus.Done,
+		summary: `Given a sorted and rotated array numbers containing unique elements and an integer target, return the index of target if it is in numbers, or -1 if it is not.
+
+Rotating an array [a[0], a[1], ..., a[n-1]] once results in [a[n-1], a[0], a[1], ..., a[n-2]].
+
+Examples:
+- [0,1,2,3,4], target=2 => 2
+- [2,3,4,0,1], target=0 => 3
+- [4], target=2 => -1
+
+Constraints: 1 <= numbers.length <= 1000, -10,000 <= numbers[i], target <= 10,000`,
+		cardSummary: "Binary search in rotated sorted array: one half is always sorted; search there if target is in range.",
+		approach:
+			"Key insight: in a rotated sorted array, one half [lo..mid] or [mid..hi] is always sorted. Binary search: compute mid; if nums[mid] === target, return mid. If nums[lo] <= nums[mid], left half is sorted—if target in [nums[lo], nums[mid]), search left (hi = mid-1), else search right (lo = mid+1). Otherwise right half is sorted—if target in (nums[mid], nums[hi]], search right, else search left. Each step halves the search space → O(log n).",
+		complexity: "Time: O(log n), Space: O(1).",
 	},
 	{
 		id: "blind-smallest-element-in-rotated-sorted-array",

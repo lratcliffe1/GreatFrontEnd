@@ -1,4 +1,4 @@
-import { parseCommaSeparatedIntegers, parseK } from "@/lib/utils/parse-visualizer-user-inputs";
+import { parseCommaSeparatedIntegers, parseSingleInteger, PARSE_K_OPTIONS } from "@/lib/utils/parse-visualizer-user-inputs";
 
 const CONSTRAINTS = { minLength: 1, maxLength: 5, minValue: 0, maxValue: 10 };
 
@@ -40,33 +40,43 @@ describe("parseCommaSeparatedIntegers", () => {
 	});
 });
 
-describe("parseK", () => {
-	it("parses valid positive integer", () => {
-		expect(parseK("2")).toEqual({ data: 2, error: null });
-		expect(parseK("1")).toEqual({ data: 1, error: null });
+describe("parseSingleInteger", () => {
+	it("parses valid integer with default range", () => {
+		expect(parseSingleInteger("42")).toEqual({ data: 42, error: null });
+		expect(parseSingleInteger("-100")).toEqual({ data: -100, error: null });
+	});
+
+	it("parses with custom label and range", () => {
+		expect(parseSingleInteger("4", { min: -10_000, max: 10_000, label: "target" })).toEqual({ data: 4, error: null });
 	});
 
 	it("returns error for empty input", () => {
-		const result = parseK("");
+		const result = parseSingleInteger("", { label: "target" });
 		expect(result.data).toBeNull();
-		expect(result.error).toMatch(/Enter a value/);
-	});
-
-	it("returns error for zero", () => {
-		const result = parseK("0");
-		expect(result.data).toBeNull();
-		expect(result.error).toMatch(/positive integer/);
-	});
-
-	it("returns error for negative", () => {
-		const result = parseK("-1");
-		expect(result.data).toBeNull();
-		expect(result.error).toMatch(/positive integer/);
+		expect(result.error).toMatch(/Enter a target/);
 	});
 
 	it("returns error for non-integer", () => {
-		const result = parseK("2.5");
+		const result = parseSingleInteger("2.5", { label: "target" });
 		expect(result.data).toBeNull();
-		expect(result.error).toMatch(/positive integer/);
+		expect(result.error).toMatch(/must be an integer/);
+	});
+
+	it("returns error for out-of-range", () => {
+		const result = parseSingleInteger("15000", { min: -10_000, max: 10_000, label: "target" });
+		expect(result.data).toBeNull();
+		expect(result.error).toMatch(/between -10000 and 10000/);
+	});
+
+	it("parses k-style positive integer with PARSE_K_OPTIONS", () => {
+		expect(parseSingleInteger("2", PARSE_K_OPTIONS)).toEqual({ data: 2, error: null });
+		expect(parseSingleInteger("1", PARSE_K_OPTIONS)).toEqual({ data: 1, error: null });
+	});
+
+	it("returns k-style errors for invalid input", () => {
+		expect(parseSingleInteger("", PARSE_K_OPTIONS).error).toMatch(/Enter a value/);
+		expect(parseSingleInteger("0", PARSE_K_OPTIONS).error).toMatch(/positive integer/);
+		expect(parseSingleInteger("-1", PARSE_K_OPTIONS).error).toMatch(/positive integer/);
+		expect(parseSingleInteger("2.5", PARSE_K_OPTIONS).error).toMatch(/positive integer/);
 	});
 });

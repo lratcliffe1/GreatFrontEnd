@@ -26,4 +26,5 @@ export const SOLUTION_RENDERER_LOADERS: Partial<Record<RendererKey, RendererLoad
 	"blind75/most-common-elements": () => import("@/solutions/blind75/most-common-elements/renderer"),
 	"blind75/array-product-excluding-current": () => import("@/solutions/blind75/array-product-excluding-current/renderer"),
 	"blind75/end-of-array-reachable": () => import("@/solutions/blind75/end-of-array-reachable/renderer"),
+	"blind75/find-element-in-rotated-array": () => import("@/solutions/blind75/find-element-in-rotated-array/renderer"),
 };

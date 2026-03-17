@@ -2,18 +2,20 @@ type ArrayVisualizationProps = {
 	values: number[];
 	activeIndex?: number | null;
 	rangeEnd?: number;
+	rangeStart?: number;
 	targetIndex?: number;
 	label?: string;
 };
 
 /**
  * Renders an array as cells with index and value.
- * Optional highlighting: active cell, range [0..rangeEnd], target cell.
+ * Optional highlighting: active cell, range [0..rangeEnd] or [rangeStart..rangeEnd], target cell.
  */
 export function ArrayVisualization({
 	values,
 	activeIndex = null,
 	rangeEnd,
+	rangeStart,
 	targetIndex,
 	label = "Array (index → value)",
 }: ArrayVisualizationProps) {
@@ -23,7 +25,8 @@ export function ArrayVisualization({
 			<div className="flex flex-wrap gap-1">
 				{values.map((value, i) => {
 					const isActive = i === activeIndex;
-					const inRange = rangeEnd !== undefined && i <= rangeEnd;
+					const inRange =
+						rangeStart !== undefined && rangeEnd !== undefined ? i >= rangeStart && i <= rangeEnd : rangeEnd !== undefined && i <= rangeEnd;
 					const isTarget = targetIndex !== undefined && i === targetIndex;
 
 					return (
