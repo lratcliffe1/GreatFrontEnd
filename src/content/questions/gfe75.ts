@@ -416,13 +416,16 @@ Interview-ready extensions:
 		category: Category.JavaScriptFunctions,
 		difficulty: Difficulty.Easy,
 		sourceUrl: "https://www.greatfrontend.com/interviews/gfe75",
-		solutionTypes: [],
+		solutionTypes: [SolutionType.AlgoVisualizer],
 		tags: [Tag.Polyfill],
-		status: QuestionStatus.Todo,
-		summary: "TODO: Solve Function.prototype.call.",
+		status: QuestionStatus.Done,
+		summary: `Function.prototype.call invokes a function with a given this value and arguments provided individually.
+
+Implement Function.prototype.myCall without calling the native call. The key insight: to invoke fn with thisArg as this, attach fn to thisArg as a temporary property, call it as a method, then remove the property.`,
 		cardSummary: "Implement the Function.prototype.call() function that calls the function with a given `this` value and provided arguments",
-		approach: "TODO",
-		complexity: "TODO",
+		approach:
+			"Store fn = this. Resolve obj = thisArg == null ? globalThis : Object(thisArg). Use a unique Symbol key to avoid collisions. Set obj[key] = fn, invoke result = obj[key](...args), delete obj[key], return result.",
+		complexity: "Time: O(1), Space: O(1).",
 	},
 	{
 		id: "gfe-list-format",

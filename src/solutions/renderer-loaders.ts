@@ -17,6 +17,7 @@ export const SOLUTION_RENDERER_LOADERS: Partial<Record<RendererKey, RendererLoad
 	"gfe75/todo-list": () => import("@/solutions/gfe75/06-todo-list/renderer"),
 	"gfe75/contact-form": () => import("@/solutions/gfe75/07-contact-form/renderer"),
 	"gfe75/news-feed-facebook": () => import("@/solutions/gfe75/12-news-feed-facebook/renderer"),
+	"gfe75/function-prototype-call": () => import("@/solutions/gfe75/20-function-prototype-call/renderer"),
 	"gfe75/cookie-sessionstorage-localstorage": () => import("@/solutions/gfe75/30-cookie-sessionstorage-localstorage/renderer"),
 	"gfe75/script-async-defer": () => import("@/solutions/gfe75/31-script-async-defer/renderer"),
 	"blind75/balanced-brackets": () => import("@/solutions/blind75/01-balanced-brackets/renderer"),

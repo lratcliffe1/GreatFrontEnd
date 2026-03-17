@@ -18,25 +18,22 @@ import { ArrayVisualization } from "@/components/visualizer/array-visualization"
 import { parseCommaSeparatedIntegers, parseSingleInteger } from "@/lib/utils/parse-visualizer-user-inputs";
 import { REDUCE_ARRAY_CONSTRAINTS, getReduceSteps } from "@/solutions/gfe75/02-array-prototype-reduce/solution";
 
-function buildCodeLines(initialValue: number | undefined): CodeLine[] {
-	const init = initialValue ?? 0;
-	return [
-		{ line: 1, code: "Array.prototype.myReduce = function(callback, initialValue) {" },
-		{ line: 2, code: "  let acc = initialValue ?? 0;" },
-		{ line: 3, code: "  for (let i = 0; i < this.length; i++) {" },
-		{ line: 4, code: "    acc = callback(acc, this[i], i, this);" },
-		{ line: 5, code: "  }" },
-		{ line: 6, code: "  return acc;" },
-		{ line: 7, code: "};" },
-		{ line: 8, code: "" },
-		{ line: 9, code: "function reduceSum(arr, initialValue) {" },
-		{ line: 10, code: "  const result = arr.myReduce(" },
-		{ line: 11, code: "      (prev, curr) => prev + curr" },
-		{ line: 12, code: `      , ${init});` },
-		{ line: 13, code: "  return result;" },
-		{ line: 14, code: "}" },
-	];
-}
+const CODE_LINES: CodeLine[] = [
+	{ line: 1, code: "Array.prototype.myReduce = function(callback, initialValue) {" },
+	{ line: 2, code: "  let acc = initialValue ?? 0;" },
+	{ line: 3, code: "  for (let i = 0; i < this.length; i++) {" },
+	{ line: 4, code: "    acc = callback(acc, this[i], i, this);" },
+	{ line: 5, code: "  }" },
+	{ line: 6, code: "  return acc;" },
+	{ line: 7, code: "};" },
+	{ line: 8, code: "" },
+	{ line: 9, code: "export function reduceSum(arr, initialValue) {" },
+	{ line: 10, code: "  const result = arr.myReduce(" },
+	{ line: 11, code: "      (prev, curr) => prev + curr" },
+	{ line: 12, code: "      , initialValue);" },
+	{ line: 13, code: "  return result;" },
+	{ line: 14, code: "}" },
+];
 
 const INITIAL_ARRAY = "1, 2, 3, 4";
 const INITIAL_VALUE = "5";
@@ -67,7 +64,6 @@ export function ArrayPrototypeReduceVisualizer() {
 	}, [debouncedInitialInput]);
 
 	const steps = useMemo(() => getReduceSteps(appliedArray, appliedInitialValue), [appliedArray, appliedInitialValue]);
-	const codeLines = useMemo(() => buildCodeLines(appliedInitialValue), [appliedInitialValue]);
 
 	const { step, onPrev, onNext, canPrev, canNext } = useStepNavigation(steps, stepIndex, setStepIndex);
 	const activeLine = step?.line ?? null;
@@ -131,7 +127,7 @@ export function ArrayPrototypeReduceVisualizer() {
 
 			<StepVisualizerLayout
 				codeTitle="Calling arr.myReduce"
-				codeLines={codeLines}
+				codeLines={CODE_LINES}
 				activeLine={activeLine}
 				tracePanelClassName={tracePanelClassName}
 				stepIndex={stepIndex}
