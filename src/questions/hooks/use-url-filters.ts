@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import { hydrateFiltersFromQuery } from "@/lib/store/filtersSlice";
 import { selectCategory, selectSearch, selectStatus, selectDifficulty } from "@/lib/store/selectors";
 import { Difficulty, QuestionStatus, Track } from "@/content/questions";
-import { DEFAULT_TRACK_FILTERS, DIFFICULTY_LEVELS } from "@/lib/constants/filters";
+import { DEFAULT_TRACK_FILTERS, DIFFICULTY_LEVELS } from "@/lib/constants";
 
 export type TrackFilterValues = {
 	search: string;

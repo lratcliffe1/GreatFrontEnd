@@ -1,7 +1,7 @@
-import { render, screen } from "@/test-utils";
+import { render, screen } from "@/testing/test-utils";
 import { QuestionDetailPage } from "@/questions/detail/detail-page";
 import { SolutionType, Track, type Question } from "@/content/questions";
-import { createMockQuestion } from "@/questions/mock-questions";
+import { createMockQuestion } from "@test-fixtures/mock-questions";
 
 const mockQuestion = createMockQuestion({
 	id: "gfe-other",

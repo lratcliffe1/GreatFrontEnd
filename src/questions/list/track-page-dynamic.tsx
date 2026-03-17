@@ -9,11 +9,11 @@ type TrackQuestionsPageProps = {
 	questions: Question[];
 };
 
-const TrackQuestionsPageNoSSR = dynamic(() => import("@/questions/list/track-page").then((mod) => mod.TrackQuestionsPage), {
+const LazyTrackQuestionsPage = dynamic(() => import("@/questions/list/track-page").then((mod) => mod.TrackQuestionsPage), {
 	ssr: false,
 	loading: () => <div className="text-sm text-muted">Loading...</div>,
 });
 
-export function TrackQuestionsPageClient(props: TrackQuestionsPageProps) {
-	return <TrackQuestionsPageNoSSR {...props} />;
+export function TrackQuestionsPageDynamic(props: TrackQuestionsPageProps) {
+	return <LazyTrackQuestionsPage {...props} />;
 }

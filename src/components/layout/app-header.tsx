@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { GitHubIcon, GlobeIcon } from "@/components/ui/icons";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { PRIMARY_BUTTON_SM_CLASSES } from "@/components/ui/tailwind-primitives";
+import { PRIMARY_BUTTON_SM_CLASSES } from "@/components/ui/primitives";
 import { getTrackLabel, TRACKS } from "@/lib/constants";
 
 const iconLinkClass =

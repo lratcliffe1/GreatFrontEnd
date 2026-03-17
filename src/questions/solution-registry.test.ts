@@ -1,6 +1,6 @@
 import { QuestionStatus, SolutionType, Track } from "@/content/questions";
 import { getSolutionRenderer, prefetchSolutionRenderer } from "@/questions/solution-registry";
-import { createMockQuestion } from "@/questions/mock-questions";
+import { createMockQuestion } from "@test-fixtures/mock-questions";
 
 describe("getSolutionRenderer", () => {
 	it("returns null when done but no loader exists for path", () => {

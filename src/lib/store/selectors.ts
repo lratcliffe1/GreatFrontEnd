@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 import type { Track } from "@/content/questions";
-import { DEFAULT_TRACK_FILTERS } from "@/lib/constants/filters";
+import { DEFAULT_TRACK_FILTERS } from "@/lib/constants";
 import type { RootState } from "@/lib/store";
 
 const selectTrackFilters = (state: RootState, track: Track) => state.filters.byTrack[track] ?? DEFAULT_TRACK_FILTERS;

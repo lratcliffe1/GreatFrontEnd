@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen, waitFor } from "@/test-utils";
+import { render, screen, waitFor } from "@/testing/test-utils";
 import { TodoDemo } from "@/solutions/gfe75/06-todo-list/todo-demo";
 
 const mockTasks: { id: number; label: string }[] = [];

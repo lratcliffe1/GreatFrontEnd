@@ -1,8 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import { Track } from "@/content/questions";
-import { render, screen, waitFor, within } from "@/test-utils";
+import { render, screen, waitFor, within } from "@/testing/test-utils";
 import { TrackQuestionsPage } from "@/questions/list/track-page";
-import { mockQuestions } from "@/questions/mock-questions";
+import { mockQuestions } from "@test-fixtures/mock-questions";
 
 jest.mock("next/navigation", () => {
 	const actual = jest.requireActual<typeof import("next/navigation")>("next/navigation");

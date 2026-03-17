@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, startTransition, useCallback, useEffect, useRef, useState } from "react";
-import { AppButton } from "@/components/ui/tailwind-primitives";
+import { AppButton } from "@/components/ui/primitives";
 import type { FeedPost, ReactionKey } from "@/lib/graphql/api";
 import { useCreatePostMutation, useFeedPageQuery, useLazyFeedPageQuery, useReactToPostMutation } from "@/lib/graphql/api";
 

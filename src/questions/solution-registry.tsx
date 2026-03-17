@@ -4,8 +4,8 @@ import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 
 import { QuestionStatus, type Question } from "@/content/questions";
-import { QUESTION_UI_CLASSES } from "@/questions/ui/question-ui";
-import { SOLUTION_RENDERER_LOADERS } from "@/solutions/renderer-loaders";
+import { QUESTION_UI_CLASSES } from "@/questions/ui";
+import { SOLUTION_RENDERER_LOADERS } from "@/solutions/solution-loaders";
 
 type SolutionComponent = ComponentType;
 
@@ -17,11 +17,6 @@ function getLoader(question: Question) {
 	if (question.status !== QuestionStatus.Done) return undefined;
 	const key = getRendererKey(question);
 	return key in SOLUTION_RENDERER_LOADERS ? SOLUTION_RENDERER_LOADERS[key as keyof typeof SOLUTION_RENDERER_LOADERS] : undefined;
-}
-
-/** True when question is done and has a loader registered for its track/path. */
-export function isRunnableQuestion(question: Question): boolean {
-	return getLoader(question) !== undefined;
 }
 
 /** Returns true if a solution renderer exists (without creating it). */
@@ -63,7 +58,7 @@ function shouldPrefetch(): boolean {
 
 /** Prefetch the solution chunk on hover so it loads faster when the user clicks. Skips on slow/metered connections. */
 export function prefetchSolutionRenderer(question: Question): void {
-	if (!shouldPrefetch() || !isRunnableQuestion(question)) return;
+	if (!shouldPrefetch() || !hasSolutionRenderer(question)) return;
 	const loader = getLoader(question);
 	if (loader) loader();
 }

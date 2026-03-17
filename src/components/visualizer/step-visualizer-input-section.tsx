@@ -2,8 +2,8 @@
 
 import type { ReactNode } from "react";
 
-import { AppButton, EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
-import { ERROR_CLASSES, INPUT_CLASSES } from "./visualizer-input-constants";
+import { AppButton, EditableFieldPrompt } from "@/components/ui/primitives";
+import { ERROR_CLASSES, INPUT_CLASSES } from "./step-visualizer-constants";
 
 /** Shared layout for visualizer input sections. Matches Most Common Elements pattern. */
 export function StepVisualizerInputSection({

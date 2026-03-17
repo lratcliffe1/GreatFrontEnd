@@ -1,7 +1,7 @@
 "use client";
 
 import { Component, type ReactNode } from "react";
-import { AppButton } from "@/components/ui/tailwind-primitives";
+import { AppButton } from "@/components/ui/primitives";
 
 type Props = {
 	children: ReactNode;

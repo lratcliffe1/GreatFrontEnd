@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { PortfolioHero } from "@/components/layout/portfolio-hero";
 import { getQuestionsByTrack, Track } from "@/content/questions";
-import { TrackQuestionsPageClient } from "@/questions/list/track-page-client";
+import { TrackQuestionsPageDynamic } from "@/questions/list/track-page-dynamic";
 
 export const metadata: Metadata = {
 	title: "GFE 75 | GreatFrontEnd Portfolio",
@@ -15,7 +15,7 @@ export default function Home() {
 	return (
 		<div className="space-y-6">
 			<PortfolioHero />
-			<TrackQuestionsPageClient key="gfe75" track={Track.Gfe75} questions={questions} />
+			<TrackQuestionsPageDynamic key="gfe75" track={Track.Gfe75} questions={questions} />
 		</div>
 	);
 }

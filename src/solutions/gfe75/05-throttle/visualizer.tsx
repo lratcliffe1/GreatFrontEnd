@@ -2,8 +2,8 @@
 
 import { useMemo, useRef, useState } from "react";
 
-import { AppButton, EditableFieldPrompt } from "@/components/ui/tailwind-primitives";
-import { INPUT_CLASSES } from "@/components/visualizer/visualizer-input-constants";
+import { AppButton, EditableFieldPrompt } from "@/components/ui/primitives";
+import { INPUT_CLASSES } from "@/components/visualizer/step-visualizer-constants";
 import {
 	StepVisualizerLayout,
 	TraceEmptyState,

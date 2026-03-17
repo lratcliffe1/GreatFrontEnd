@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AppButton } from "@/components/ui/tailwind-primitives";
+import { AppButton } from "@/components/ui/primitives";
 
 const COOKIE_KEY = "gfe_cookie_demo";
 const SESSION_KEY = "gfe_session_demo";

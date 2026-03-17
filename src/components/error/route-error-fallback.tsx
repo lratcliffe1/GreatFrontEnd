@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AppButton } from "@/components/ui/tailwind-primitives";
+import { AppButton } from "@/components/ui/primitives";
 
 export function RouteErrorFallback({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
 	return (

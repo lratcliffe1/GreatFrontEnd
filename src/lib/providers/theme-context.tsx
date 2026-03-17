@@ -51,10 +51,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 		localStorage.setItem(STORAGE_KEY, p);
 	}, []);
 
-	const value = useMemo(
-		() => ({ preference, resolvedMode, setPreference }),
-		[preference, resolvedMode, setPreference],
-	);
+	const value = useMemo(() => ({ preference, resolvedMode, setPreference }), [preference, resolvedMode, setPreference]);
 
 	return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

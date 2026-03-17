@@ -1,5 +1,5 @@
 import { Track } from "@/content/questions";
-import { getTrackLabel, isTrack, TRACKS } from "@/lib/constants/tracks";
+import { getTrackLabel, isTrack, TRACKS } from "@/lib/constants";
 
 describe("tracks", () => {
 	describe("TRACKS", () => {

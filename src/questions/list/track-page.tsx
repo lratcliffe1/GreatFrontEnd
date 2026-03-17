@@ -6,17 +6,15 @@ import { startTransition, useCallback, useEffect, useMemo, useRef, useState } fr
 
 import { QuestionStatus, Track, type Question } from "@/content/questions";
 import { FilterSelect } from "@/components/ui/filter-select";
-import { DifficultyPill, ElevatedCard, MutedText, StatusBadge } from "@/components/ui/tailwind-primitives";
+import { DifficultyPill, ElevatedCard, MutedText, StatusBadge } from "@/components/ui/primitives";
 import { useAppDispatch } from "@/lib/store/hooks";
 import { setCategory, setDifficulty, setSearch, setStatus } from "@/lib/store/filtersSlice";
 import { TrackTabs } from "@/components/layout/track-tabs";
-import { getTrackLabel } from "@/lib/constants";
-import { getUniqueCategories } from "@/questions/helpers";
+import { DIFFICULTY_OPTIONS, getTrackLabel, SEARCH_DEBOUNCE_MS, STATUS_OPTIONS } from "@/lib/constants";
+import { getUniqueCategories } from "@/questions/question-utils";
 import { prefetchSolutionRenderer } from "@/questions/solution-registry";
-import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/questions/ui/question-ui";
+import { QUESTION_UI_CLASSES, SourcePromptLink } from "@/questions/ui";
 import { useFilterSync } from "@/questions/hooks/use-url-filters";
-import { DIFFICULTY_OPTIONS, STATUS_OPTIONS } from "@/lib/constants/filters";
-import { SEARCH_DEBOUNCE_MS } from "@/lib/constants/ui";
 
 const INITIAL_VISIBLE = 10;
 const LOAD_MORE_BATCH = 10;

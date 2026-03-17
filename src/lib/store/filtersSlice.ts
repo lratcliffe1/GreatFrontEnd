@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 import { Difficulty, QuestionStatus, Track } from "@/content/questions";
-import { DEFAULT_TRACK_FILTERS } from "@/lib/constants/filters";
+import { DEFAULT_TRACK_FILTERS } from "@/lib/constants";
 
 type TrackFilters = {
 	search: string;

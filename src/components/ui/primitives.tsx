@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 import { Difficulty, QuestionStatus } from "@/content/questions";
-import { STATUS_LABELS } from "@/lib/constants/filters";
+import { STATUS_LABELS } from "@/lib/constants";
 
 type BaseProps = {
 	children: ReactNode;

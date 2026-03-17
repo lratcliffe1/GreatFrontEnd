@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { PortfolioHero } from "@/components/layout/portfolio-hero";
 import { getQuestionsByTrack } from "@/content/questions";
-import { TrackQuestionsPageClient } from "@/questions/list/track-page-client";
+import { TrackQuestionsPageDynamic } from "@/questions/list/track-page-dynamic";
 import { getTrackLabel, isTrack, TRACKS } from "@/lib/constants";
 
 export const dynamicParams = false;
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ track: st
 	};
 }
 
-export default async function TrackPage({ params }: { params: Promise<{ track: string }> }) {
+export default async function TrackRoute({ params }: { params: Promise<{ track: string }> }) {
 	const { track } = await params;
 
 	if (!isTrack(track)) {
@@ -36,7 +36,7 @@ export default async function TrackPage({ params }: { params: Promise<{ track: s
 	return (
 		<div className="space-y-6">
 			<PortfolioHero />
-			<TrackQuestionsPageClient key={track} track={track} questions={questions} />
+			<TrackQuestionsPageDynamic key={track} track={track} questions={questions} />
 		</div>
 	);
 }

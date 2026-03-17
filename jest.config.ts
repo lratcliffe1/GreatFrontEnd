@@ -11,6 +11,7 @@ const config: Config = {
 	setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 	moduleNameMapper: {
 		"^@/(.*)$": "<rootDir>/src/$1",
+		"^@test-fixtures/(.*)$": "<rootDir>/tests/fixtures/$1",
 	},
 	testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/tests/e2e/"],
 	collectCoverageFrom: [
@@ -22,6 +23,7 @@ const config: Config = {
 		"!src/solutions/**/*-demo.tsx",
 		"!src/**/*.example.{ts,tsx}",
 		"!src/**/test-utils.{ts,tsx}",
+		"!src/testing/**",
 	],
 	coverageThreshold: {
 		global: {

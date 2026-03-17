@@ -4,7 +4,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { graphqlRequestBaseQuery } from "@rtk-query/graphql-request-base-query";
 import { GraphQLClient } from "graphql-request";
 
-import { GRAPHQL_PATH } from "@/lib/constants/api";
+import { GRAPHQL_PATH } from "@/lib/constants";
 
 function getGraphQLEndpoint() {
 	if (typeof window === "undefined") {

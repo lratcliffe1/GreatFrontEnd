@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CodePanel, StepControlButton, TracePanel } from "@/components/ui/tailwind-primitives";
+import { CodePanel, StepControlButton, TracePanel } from "@/components/ui/primitives";
 
 const TRACE_CONTENT_CLASSES = "rounded border border-card-border bg-card-bg p-3 space-y-1";
 
