@@ -63,7 +63,8 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 				effectiveSearch.length === 0 ||
 				String(question.questionNumber).startsWith(effectiveSearch.trim()) ||
 				question.title.toLowerCase().includes(effectiveSearch.toLowerCase()) ||
-				question.solutionTypes.some((t) => t.toLowerCase().includes(effectiveSearch.toLowerCase()));
+				question.solutionTypes.some((t) => t.toLowerCase().includes(effectiveSearch.toLowerCase())) ||
+				(question.tags ?? []).some((t) => String(t).toLowerCase().includes(effectiveSearch.toLowerCase()));
 			const matchesCategory = track === Track.Blind75 || effectiveCategory === "all" || question.category === effectiveCategory;
 			const matchesStatus = effectiveStatus === "all" || question.status === effectiveStatus;
 			const matchesDifficulty = effectiveDifficulty === "all" || question.difficulty === effectiveDifficulty;
@@ -205,7 +206,9 @@ export function TrackQuestionsPage({ track, questions }: { track: Track; questio
 									<span className={`font-semibold ${QUESTION_UI_CLASSES.mutedText}`}>{question.category}</span>
 									<StatusBadge status={question.status} />
 								</div>
-								<div className={`text-[10px] sm:text-[11px] ${QUESTION_UI_CLASSES.mutedText}`}>{question.solutionTypes.join(" • ")}</div>
+								<div className={`text-[10px] sm:text-[11px] ${QUESTION_UI_CLASSES.mutedText}`}>
+									{[...question.solutionTypes, ...(question.tags ?? []).map((t) => String(t))].join(" • ")}
+								</div>
 							</div>
 							<div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
 								{question.status === QuestionStatus.Done ? (
